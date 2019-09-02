@@ -1,0 +1,96 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter.tex
+%% NOVA thesis document file
+%%
+%% Chapter with solution proposal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusions}
+\label{cha:concl}
+
+%In this section we rest the case. First we will give a quick summary and conclusions of the thesis. Then we state what were our major contributions and we end with suggestions for future work.
+
+\section{Thesis summary}
+
+This thesis had the main goal of presenting a solution for evaluating the usability of \gls{dsl}s. We started by introducing our research objectives, formulating research questions and presenting our research approach (Chapter \ref{cha:introduction}). We continued by understanding the relevant \gls{dsl} context (its implementation, stakeholders and life-cycle) and the traditional procedure of usability evaluation of software products (Chapter \ref{cha:context}). Further, we introduced a related work, highlighting a state of practice in \gls{dsl} evaluation and identifying a usability evaluation approaches for \gls{gpl}s and efforts which may lead to \gls{dsl} usability evaluation, like the cases of application of \gls{ucd} methodology and inclusion of the domain experts feedback into \gls{dsl} development (Chapter \ref{cha:related}). 
+
+We proposed to approach our problem by introducing an experiment design model which is general enough to be applied to different usability assessments. This model was further placed in a process of iterative \gls{ucd} \gls{dsl} development which was defined as a pattern language (Chapter \ref{cha:approach}). We captured all the relevant concepts and activities, by using a \gls{mdd} approach, in a \gls{useme} conceptual framework (Chapter \ref{cha:useme}) which was evaluated internally by the NOVA-LINCS researchers knowledgeable about the \gls{dsl}, \gls{mdd} or usability. 
+
+From the point of view of feasibility of \gls{useme} conceptual framework to support the \gls{dsl} usability evaluation, we have developed a declarative tool support integrable into DSL development infrastructure. The prototype was used to instantiate the usability evaluation of industrial \gls{dsl} and was evaluated with the master students involved in \gls{dsl} development projects (Chapter \ref{cha:prototype}). Further, we illustrated how the \gls{useme} can be integrated with \gls{dsl} development and discussed the applicability of \gls{useme} approach to incremental iterative \gls{dsl} development, as well outside of the scope of \gls{mdd} \gls{dsl} approach (Chapter \ref{cha:applicability}). Finally, we discussed the potential users of the \gls{useme} approach. 
+    
+The final step was to prove that our approach provides a solution to our research problems. In Chapter \ref{cha:evaluation} we report on the experimental evaluation of the persons experienced in the \gls{dsl} development or usability evaluation domain. We presented \gls{useme} evaluation following our evaluation methodology, i.e. by explicitly presenting the considered context. The
+evaluation corroborates our hypothesis.
+
+We reported in Section \ref{sec:methodology}, how we addressed our engineering problem through progressive evaluation with several case studies, on which we report details in Chapter \ref{cha:cases}. 
+We reported our experience during the development of a \gls{rpg} \gls{dsl} following the regulative development cycle (Annex \ref{ann:RPGDSL}) and our initial evaluation of the \gls{dsl} named \gls{pheasant} (Annex \ref{ann:Pheasant}) as a part of our problem investigation. Further, two industrial case studies, FlowSL (Annex \ref{ann:FlowSL}) and Visualino (Annex \ref{ann:Visualino}), and one academic study, DSE Merge (Annex \ref{ann:DSEMerge}), served to illustrate our solution design. Further, we combined approach with an existing requirement engineering approach for DSLs to show it's \textit{integrability} with existing \gls{dsl} development support (Annex \ref{ann:RDAL}).
+
+
+%As future work, we propose to use our framework to improve the usability of \gls{dsl} and produce reusable evaluation models. 
+
+\section{Results obtained}		%(source: CAT Section 1.4)
+
+%contributions here
+
+The problem tackled in this thesis is very well-known in the area. To our knowledge before this thesis was written there was no real attempt to tackle the problem in such a global and methodical manner. Therefore, during our thesis argumentation, we believe to have introduced the systematic approach which promotes quality in use of \gls{dsl}s, during their development process by leveraging usability as a first-class concern.
+We present a summary of the main results achieved and some of the benefits of the development of this dissertation:
+    \begin{enumerate}
+        \item To \textbf{address the problem of the absence of the systematic approach for the \gls{dsl} usability evaluation we proposed a conceptual modelling framework called \gls{useme}}. This comprehensive framework, which is presented in Chapter \ref{cha:useme}, identifies all the mandatory concepts and activities and aggregates them into a formal meta-model. It highlights the complexity of the information that should be traced to streamline and automate the \gls{ucd} process.
+        The conceptual framework contributed directly to the thesis objective, by providing a set of practices that should be introduced to provide a complete solution to a complex problem of placing intended users as a focal point of \gls{dsl}s design and conception.
+        The framework helps the language engineers to explicitly model the evaluation process, which contributes to monitoring the impact of language evolution to the efficiency and effectiveness of practitioners using the language.
+        We applied our approach in real-life case studies of the usability evaluation of a several \gls{dsl}s.
+
+
+%In the long run, this approach is expected to lower the cost of usability assessments and to improve the productivity of the \gls{dsl} users.
+    
+        \item To \textbf{promote usability concerns since an early stage of development of \gls{dsl}s, we proposed a set of patterns and specified an iterative process which integrates well with the \gls{dsl} development phases}. The incremental nature of a typical DSL life cycle may also give the erroneous feeling that the language is being implicitly validated due to the intense interaction with the domain experts. The problem there is that the domain experts involved in the language development may not actually be the end users, and may therefore introduce biases in the perception of the language design and its usability. We proposed systematic approach which describe the best practices for application of usability evaluation methodologies during a \gls{dsl} development process \cite{Barisic2012patterns} (Section \ref{sec:iterativeUCD}).
+        The \gls{useme} conceptual framework supports specifying experimental assessments and tracing the impact of usability improvements since an early stage of development of \gls{dsl}s.
+        Further, the systematic approach, where usability concerns were promoted early, was applied in the context of the iterative development of a two industrial \gls{dsl}s: \gls{dsl} for humanitarian campaigns flow specification (FlowSL) \cite{barisic2014flows} (Section \ref{sec:flowsl}); and a language which supports children to program a robot (Visualino) (Section \ref{sec:visualino}).
+        
+    
+    
+        \item To \textbf{integrate existing \gls{ide} support for development of \gls{dsl}s with high Quality in Use, we developed a tool support} \cite{barisic2017UseMe1.1}. Despite the importance of patterns and comprehensive conceptual framework, they may not be sufficient to enable the language engineers to learn and use the systematic approach, in practice. The previously mentioned contributions would not be easily deployed if not supported by a modelling tool integrable into \gls{dsl} development infrastructure. The \gls{useme} prototype \cite{barisic2017UseMe1.1} (Chapter \ref{cha:prototype}) was integrated with an existing Eclipse-based \gls{ide} to support the development of \gls{dsl}s. This prototype enables language engineers to take the role of Expert Evaluators and to prepare the evaluation models. Also, it supports tracing the evaluation goals, reusing experiment designs and providing better documentation and reasoning.
+        
+    
+    \end{enumerate}
+    
+    Some of the benefits arising from these results and confirmed by case studies:
+    \begin{itemize}
+        \item \textbf{Feasibility of the conceptual framework to support the language engineers to prepare evaluation models.}  We found that evaluation experts knowledge can be transmitted to a typical \gls{dsl} Engineer through the \gls{useme} conceptual framework. The framework was first validated by researchers from NOVA-LINCS research centre which were not involved in the framework development. 
+        These experts provided valuable feedback and improvement suggestions over the framework. However, people with high level of experience might also not be available during the \gls{dsl} development process to take the role of Expert Evaluators. Therefore, we performed a preliminary pilot evaluation of the framework prototype with inexperienced engineers (i.e. master students in informatics) \cite{barisic2017pilot}. They found it easy to create test model specifications for the evaluation and a supporting tool expressive enough for the purpose of specifying usability evaluation. Finally, we conducted evaluation study with experts in community, which confirmed the feasibility of \gls{useme} conceptual framework to support language engineers in conducting usability evaluation of \gls{dsl}s. 
+        %Finally, we received a community feedback \todo{}
+        
+        
+        \item \textbf{Traceability of evaluation goals.} Our systematic approach enabled tracing a justification of the assessment, and its impact throughout the evolution of the \gls{dsl}. Each evaluation goal is a concrete instantiation of a high-level usability objective.  It refers to the precise context which stores the assumptions which impacted the evaluation decision. As a consequence of the evaluation, new features get discovered, and development priorities can change. The result of the previously performed evaluations alters its scope, as context awareness of the \gls{dsl} stakeholders grows and changes over time. The evaluation impact gets smaller as the context knowledge gets wider.  
+        
+        \item \textbf{Easy integration.} The given systematic approach does not depend on any particular technology. It was specified taking into consideration reuse of the existing knowledge defined in the common \gls{dsl} development. Explicit integration points are designated as a part of a conceptual framework enabling easy integration with existing \gls{dsl} artefacts or assessment support. 
+        
+         \item \textbf{Reusable experiment design.} The evaluation modelling defines the experiment objects which are reusable. We showed in the case of Visualino (Section \ref{sec:visualino}) that we managed to reuse the majority of the experiment design between iterations and benefit from this reuse by having a direct comparison between the current and previous version of the language. 
+        %\item Better documentation. 
+    \end{itemize}
+
+
+
+\section{Future work}
+
+In this section, we are pointing out the future work which emerged from the proposed methodological solution. Namely, we highlight the following two work directions to be explored:
+
+\textbf{Evolution of the tool.}
+The USE-ME approach, besides documenting the evaluation process, enables reasoning about the models and setting a clear workflow to its users. As part of the future work, we are improving the tool support to guide the users through the modelling process and validate the models. It is being implemented as a part of Goal Coverage engine, which will contain specification and verification of different syntactic and semantic rules depending in which step of the USE-ME process is a user. This engine will also support the verification of the rules taken into account by the models in the different development stages. Finally, the USE-ME engine will be extended with a tool for (semi)automatically determine the success coverage of the specified usability goals by the DSL developer. %The following step to this new add-ons, already underway, is to repeat the evaluation of USE-ME with a more experienced audience in model-driven engineering, agile and human-computer interaction fields. %Further, we plan to perform the evaluation of the improved USE-ME tool with novice users from the software engineering, as we found them as a most important target audience for use of the tool. 
+
+%The tool open new research opportunities. One of the first things to improve it is to develop a guiding wizard due to its complexity. Another thing is to develop a more advanced visual editor for creating models. \todo{Sara}
+
+\textbf{Identification and illustration of the integration points.} One example was to join our approach with existing requirement based approaches for the development of DSLs.  Another perspective is the integration of support for experimental design, as well as a survey and interaction modelling support with the tool.
+Finally, another follow-up to the presented work is to study the integration of USE-ME with already existing solutions and modelling workbenches for the development of the DSLs. We believe that this contribution is a step towards the automation of the DSL development process tackling a specific concern that is typically neglected, Quality in use.
+
+%In the context of MPM4CPS Cost action, we validated the integrability of USE-ME with the RADAL requirements approach \cite{blouin2017stsm}. The RADAL was designed to be reusable with other languages and showed to be feasible while using the USE-ME. This ongoing work proceeds with the extension of a prototype which correlates the USE-ME models with DSL architecture and requirements. This combination of existing languages and tools still to be developed will constitute an interesting case study of languages composition. This case study will help us to identify explicitly how certain USE-ME elements are integrable and can reuse knowledge from DSL development approach.
+
+We highlight here issues which were not addressed in the context of this thesis:
+
+\textbf{Validation of iterative life cycle.} The proposed \gls{useme} conceptual framework is claimed to support an iterative DSL development life cycle. 
+In a real DSL development environment, it is hard and not realistic to apply two different development processes. In this case, one process should be implemented with the USE-ME conceptual framework and another without it to real case development of DSL.
+For this it is necessary to have organizations available to support investment into this two different projects and to support it with resources. 
+
+
+\textbf{Reusability of the evaluation models in various context (reusing existing designs for the other DSLs).}
+We pointed out the reusability of the produced USE-ME models and showed that it is possible to apply in the development of the same product in our two industrial case studies (Sections \ref{sec:flowsl} and \ref{sec:visualino}). However, we find that reusing and reasoning about different designs can be reused in different contexts. To make this possible, it is necessary to obtain an appropriate number of developed models, and organise them with the support of an Usability Catalogue. We leave this for future work as it is not the focus of this thesis. 
+%However, the process of the data collection is a long term and was not feasible to make it the part of this thesis. 

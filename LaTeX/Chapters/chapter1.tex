@@ -1,0 +1,261 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter1.tex
+%% NOVA thesis document file
+%%
+%% Chapter with introduciton
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\novathesis}{\emph{novathesis}}
+\newcommand{\novathesisclass}{\texttt{novathesis.cls}}
+
+
+\chapter{Introduction}
+\label{cha:introduction}
+
+\section{Context and motivation} 	%(source: CAT Section 1.1)
+    \label{sec:context}
+    The increasing pace at which the software is adopted in daily tasks, including those of users not necessarily proficient with computing, is pushing the need for rapid production of a growing number of complex software applications. The degree of specialisation in certain areas is pushing for the involvement of domain concepts in the software development process, as complex software configuration tasks. A \textbf{Domain-Specific Language (\gls{dsl})} is specialised in a particular application domain \cite{Mernik2005CSUR}. It can be defined as a user empowerment tool to increase productivity in software systems development \cite{kelly2008domain, ChallengerComLan}. It offers the expressiveness required to specify the software applications at a higher level of abstraction, after which they can be automatically deployed or even simulated, with notations closer to the end user. \gls{dsl}s are designed to bridge the gap between the problem domain (essential concepts, domain knowledge, techniques, and paradigms) and the solution domain (technical space, middleware, platforms and programming languages) \cite{Voelter2013Book}. Bridging this gap is expected to increase language users' productivity.
+    
+    Practitioners often experience some practical difficulties when adopting \gls{dsl}s \cite{gray2008dsls}. During the language development, the importance of aligning the \gls{dsl}s with the needs of their end users seems to be underestimated \cite{Kelly2009IEEESoftware, voelter2009best}. The necessity for assessing the impact of introducing a \gls{dsl} in a domain workflow has been discussed in the literature, often with a focus on the business value that \gls{dsl} can bring \cite{kelly2008domain}. This business value often translates into productivity gains resulting from the extent to which the domain users can use the \gls{dsl} in practice \cite{Voelter2013Book}.
+    
+    Although building and adopting \gls{dsl}s may seem intuitive, we need to have means to evaluate their impact. The measure of success has to be determined by assessing the impact of using \gls{dsl}, in a realistic context of use, by its target domain users \cite{Barisic2011HowEvaluation}. Investment into this assessment, commonly called usability evaluation, is justified by a reduction in development costs and increased revenues for other software products, brought by an improved effectiveness and efficiency by their end users \cite{Marcus2004, Bias2005Cost}. We expect a similar effect by introducing this practice into \gls{dsl} development.
+    
+    The software industry does not often report investment on the assessment of \gls{dsl}s \cite{kosar2016domain, Gabriel2010CIBSE}. Most of the reported \gls{dsl} evaluations are performed only at final stages of a development cycle when changes in the \gls{dsl} have a significant impact on the budget. The lack of systematic approaches, guidelines and comprehensive set of adequate tools may explain this shortcoming in the current state of practice. We argue that this situation is due to the perceived high costs of \gls{dsl} evaluation, which lacks a consistent and computer-aided integration of two different and demanding complementary software processes: \gls{dsl} development and usability engineering.
+    
+    \textbf{\gls{sle}} is the application of a systematic, disciplined and quantifiable approach to the development, usage, and maintenance of software languages \cite{kleppe2009software}. Although the phases of the \gls{dsl} life cycle are systematically defined \cite{Mernik2005CSUR}, we claim that this process lacks one crucial step, namely language evaluation \cite{Barisic2011INFORUM}. Existing \textbf{\gls{ese}} techniques \cite{Basili2007} combined with \textbf{Usability Engineering} techniques \cite{Nielsen1993} can be adopted to support the \gls{dsl}s' evaluations. Our goal is to \emph{promote quality in use of \gls{dsl}s by building up a conceptual framework that supports their development process by leveraging usability as a first-class concern}.
+    
+    We can engineer \gls{dsl}s to become more usable with a combination of both proactive and reactive approaches. Current proactive approaches that can be used to improve \gls{dsl} usability, such as guidelines for developing visual notations \cite{moody2009evaluating}, usability heuristics \cite{nielsen1990heuristic}, cognitive dimensions of notations \cite{Blackwell2003NotationalFramework, green1996usability}, or even quality assessment framework for \gls{dsl}s \cite{kahraman2013framework}. Reactive approaches are necessary as well \cite{kosar2016domain}: \gls{dsl}s should be tested experimentally with users using systematic techniques to confirm the impact of design decisions in a real context of use.  In the early stages of this dissertation work, we highlighted the experimental approach \cite{barisic2012book},  based on four \gls{dsl} evaluation experiments that are examples of best practices (\cite{Barisic2012plateu, kieburtz1996software, kosar2011program,murray2000kaleidoquery}). Recently, we can find more examples of performing this kind of assessments in practice (e.g. \cite{Erdwig2015, Haser2016DSLExper, Johanson2016ESE, Albuquerque2015QuantifyUsability, Melia2016SQJ}).
+    
+    Usability concerns need to be addressed from the early stages of the \gls{dsl} life cycle so that practitioners can perform timely evaluations \cite{izquierdo2013engaging}. Rather than designing the complete \gls{dsl} before the implementation, abstractions should be evaluated iteratively and incrementally, in the context of a development cycle \cite{Barisic2011HowEvaluation}. Building a systematic iterative usability evaluation approach is supposed to mitigate the risk of producing the inappropriate solutions that often cannot be reused.
+    This work is expected to enhance the community's awareness to the relevance of \gls{dsl}s' usability assessments to bridge the gap between the domain users and abstractions provided by language engineers.
+
+\section{Research problems}		%(source: CAT Section 1.2, 1.3, 3.1)
+\label{sec:problems}
+
+    Our research work tackled the following problems:
+    \begin{itemize}
+        \item \textbf{Absence of a systematic approach for \gls{dsl} usability evaluation.} 
+        The current state of the art does not report on existing systematic approaches for \gls{dsl} evaluation. %\gls{dsl}s are claimed to bridge the gap between the domain abstractions provided by the technology and those perceived by the domain users. 
+        As will be detailed in Chapter \ref{cha:related}, this absence leads to several problems: lack of integration of \gls{dsl}s with other software engineering processes, absence of the effectiveness measures of \gls{dsl} approaches, no proofs for applicability of \gls{dsl} in targeted domain, among others. Some researchers already highlighted this issue and are looking for alternative approaches.
+        
+        \item \textbf{Promoting usability concerns since an early stage of development of \gls{dsl}s is perceived as expensive.} The lack of a systematic evaluation approach, the involvement of domain experts rather than domain users in the development process, and the diversity of domains, and therefore of domain users which the corresponding \gls{dsl}s are meant to support, 
+        %consideration of just experts involvement into development,  and diversity of domains and end users which a DSLs are meant to support 
+        are some of the main reasons that make the usability assessment perceived as expensive and not reusable. For instance, due to this inability to express best practices, most of the performed evaluation studies are not mature enough (toy examples). 
+        
+        \item \textbf{Lack of \gls{ide} support for the development of \gls{dsl}s with high Quality in Use.} In order to support language engineers with a systematic usability evaluation approach, it is necessary to provide an approach supported by adequate tools which can be integrated with existing \gls{ide} support for \gls{dsl} development. 
+     
+    \end{itemize}
+    
+    The results of the preliminary systematic literature review of Gabriel et al. \cite{Gabriel2010CIBSE} and more recently by the systematic mapping study of Kosar et al. \cite{kosar2016domain},  share a particular concern regarded to the clear lack of \gls{dsl} evaluation efforts reported in the research. In particular, there is an urgent need for controlled experiments supporting these evaluations to become more common. There is also documented evidence that the problems 
+    %faced by the author in the field and 
+    tackled within this dissertation are real industry problems \cite{karna2009evaluating}.
+    
+    The impact of an evaluation process for \gls{dsl}s is interesting from an industry point of view. With many organisations developing their languages, or hiring companies to develop such languages for them, our framework can aid them in conducting a usability evaluations and reaching more usable languages.
+    
+ %   \section{Addressed Challenges}
+    The main challenges while addressing the problems identified in this dissertation were:
+    \begin{enumerate}
+        \item \textbf{Defining an appropriate experimental model for \gls{dsl} evaluation.} Most of the existing evaluations are performed ad-hoc, not reporting enough details of the experimental design or result analysis. This research work produced a general experimental evaluation model, tailored for \gls{dsl}s’ experimental evaluation, and instantiates it in several \gls{dsl}’s evaluation examples \cite{barisic2012book} (Section \ref{sec:experiment}). 
+    \item  \textbf{Integrating the usability evaluation process with the \gls{dsl} development.}  Both the usability evaluation and \gls{dsl} development process are complex and evolving. Therefore, we discussed the quality criteria and proposed a development and evaluation process that can be used to achieve usable \gls{dsl}s in a better way \cite{Barisic2011HowEvaluation} (Section \ref{sec:iterativeUCD} and Chapter \ref{cha:applicability}). By allowing significant changes to correct \gls{dsl} deficiencies along the development process instead of just evaluating at the end of it (when it might be too late),  the \gls{ucd} was introduced, as it is claimed to reduce development and support costs, and reduce staff cost for employers \cite{barivsic1115iterative}.
+    
+    \item  \textbf{Applying the usability assessments to \gls{dsl} development in industrial context and for different domains.} The \gls{dsl}s are developed for different domains, each of them having the users with a different background knowledge and necessity to understand specific concepts. It was challenging to apply our approach in the development of \gls{dsl}s for different domains and industrial contexts. However, we succeeded to apply our approach in the context of the following domains:   \gls{hep} \cite{Barisic2012plateu} (Section \ref{sec:Pheasant}), model merge approach \cite{barisic2016stsm} (Section \ref{sec:DSEMerge}), humanitarian campaign management \cite{barisic2014flows} (Section \ref{sec:flowsl}) and low-cost robotics for children (Section \ref{sec:visualino}). In the case of the last two studies, we followed several iterative cycles of development to observe the impact of our approach during a long-term process. 
+    
+    \item  \textbf{Developing the conceptual framework and tool support.} 
+    It was challenging to capture the complexity of information and process and leverage it in a systematic fashion, as presented in Chapter \ref{cha:useme}. We developed a tool support \cite{barisic2017UseMe1.1} (Chapter \ref{cha:prototype}) which helps to use discovered knowledge, validate assumptions and provides a possibility to automate. This knowledge is presented in a formal model which captures only the meaningful information, helps with traceability and development decisions.
+    
+    %\item  \textbf{Experimental Validation.}  
+    %To deal with a problem of having a small number of people knowledgeable 
+    %It was not trivial to find subjects which were developing a DSLs and had time to participate in the controlled experiment. Also, due to the complexity of the approach, and the fact that it is necessary also to prove its impact during the long term process, it was hard to find a study which was tested trough several iterations. However, we manage to follow several iterative cycles of development of industrial DSLs; namely Visualino (see Annex \ref{ann:Visualino}) and FlowSL \cite{barisic2014flows}.
+    \end{enumerate}
+    
+\section{Research questions}	 %(source: CAT Section 3.2)
+    \label{sec:rq}
+    
+    The objective of the research is 
+    \textit{to promote quality in use of \gls{dsl}s by building up a conceptual framework that supports their development process, leveraging usability as a first-class concern}.
+    This will involve the integration and adaptation of the current evaluation methodologies, their concepts, methods, tools, processes, and metrics. 
+    
+    As briefly presented in Section \ref{sec:problems}, the aim of our research consists in providing contributions for the following major problems faced in the realm of \gls{dsl} usability evaluation:
+    \begin{itemize}
+        \item[\textbf{RP1:}] Absence of a systematic approach for the \gls{dsl} usability evaluation. 
+        \item[\textbf{RP2:}] How to promote usability concerns since an early stage of development of \gls{dsl}s. 
+        \item[\textbf{RP3:}] Integration of systematic approach with existing \gls{ide} support for development of \gls{dsl}s built with high Quality in Use.
+    \end{itemize}
+
+    In particular, we address the following research questions:
+    \begin{itemize}
+        \item[\textbf{RQ1:}] How to model the \gls{dsl} usability evaluation?
+        \item[\textbf{RQ2:}] How to promote usability concerns from an early stage of development of the \gls{dsl}?
+        \item[\textbf{RQ3:}] How to integrate the proposed systematic approach to build usability evaluation in the development process of the \gls{dsl}?
+       % \todo{ To what extent can we reuse DSL evaluation work?}
+    \end{itemize}
+    
+    The RQ1 is related with RP1, RQ2 with RP2 and RQ3 is related with RP3. Each of the
+    above research questions is also related to the research hypotheses in the following section.
+
+\section{Research approach} 		%(source: CAT Section 1.5, Annex 2 Section 3)
+\label{sec:methodology}
+     The motivation of this work is to \textbf{provide a systematic methodological approach to evaluate the usability of domain-specific languages during its development for application domains targeting large end-user groups}. The design science methodology \cite{von2004design, simon1996sciences, wieringa2014empirical} fosters the creation of artefacts that are driven to problem-solving projects. Wieringa \cite{Wieringa2009DesignSolving} regards design science projects as a set of nested regulative cycles that solve practical (i.e. engineering) and knowledge (i.e. research) problems that are decomposed in subproblems. An engineering problem is defined as a \textit{"difference between the way the world is experienced by the stakeholders and the way they would like it to be"} and a research problem is the \textit{"difference between the current knowledge of stakeholders about the world and what they would like to know"}. 
+     
+     \subsection{Addressing the engineering problem}
+    
+        We argue that, in general, one of the main goals of any \gls{dsl} that is meant to be used by humans is to improve the productivity of its user; Thus, we provide the \gls{useme} framework \cite{barisic2017UseMeJournal} (Chapters \ref{cha:useme} and \ref{cha:prototype}) as a solution to an engineering (i.e. practical) problem.
+        The regulative cycle follows the five tasks: problem investigation, solution design, design validation, solution implementation and implementation evaluation (see Figure \ref{fig:research}).
+        
+        \begin{figure}%[h]
+            \centering
+            	\includegraphics[scale=0.5]{Chapters/Figures/ResearchProcess.png}
+            	\caption{Research Process Overview}
+            	\label{fig:research}
+            \end{figure}
+ 
+        
+            \subsubsection{Problem investigation}
+
+                The first step was to analyse the problem in detail during the 'Problem investigation'. We started by focusing our attention onto stakeholders who have the need for a \gls{dsl}, i.e. Domain Users, and specify their goals regarding a development of the \gls{dsl} (Chapter \ref{cha:context}). To understand better the problem they are facing and their causes, we have analysed the existing \gls{dsl} development techniques and artefacts produced during a regulative development cycle. The development of different \gls{dsl}s followed in the context of the FCT/UNL MSc courses on \gls{dsl}s  and the \gls{dsmtp} summer school series \footnote{dsm-tp.org (accessed September 19, 2017)}. These activities gave us a practical experience in using different modelling workbenches (EMF, TextEdit, Eugenia, MetaEdit, Kaos, ATL). We reported our experience during the development of a \gls{rpg} \gls{dsl} following the regulative development cycle \cite{marques2012rpg} (Section \ref{sec:RPG}, Annex \ref{ann:RPGDSL}).  Besides that, we have performed an initial evaluation on the \gls{dsl} named \gls{pheasant} for the \gls{hep} domain \cite{Barisic2012plateu} (Section \ref{sec:Pheasant}, Annex \ref{ann:Pheasant}). This study helped us understand the impact of the problem in the context where the \gls{dsl} is meant to be used by non-programmers in a sensitive context. Finally, we analysed existing evaluation examples of \gls{dsl}s and specified a generic experimental model \cite{barisic2012book} (Section \ref{sec:experiment}). The experimental model helped us understanding the criteria for stakeholders to consider the problem as solved. 
+                
+            \subsubsection{Solution design}
+                The following step was to analyse available solutions and design new ones during 'Solution design'. It was necessary to research the domain to justify that none of the existing solutions solves the problem \cite{Barisic2011INFORUM}. As no satisfactory solution has been found, there was room to propose a new one \cite{Barisic2011HowEvaluation, Barisic2012patterns} (Section \ref{sec:iterativeUCD}, Appendix \ref{app:patterns}). 
+                The usability of a language needs to be evaluated through controlled experiments involving the language's end users. To be able to identify potential quality problems that will lead to user interaction and experience problems, a suitable approach is to apply \gls{ucd} practices during design and development of the language. However, this practices makes it hard to control budget and plan time and responsibilities accordingly. Therefore incremental, iterative process should be applied, which enables tracking of design changes and validation of usability metrics.
+                
+            \subsubsection{Design validation}
+                Once this design is completed, it is necessary to validate the solution during 'Design Validation' before its realisation. For that matter, the solution properties are assessed according to the criteria defined in the problem investigation, characterising the context of the target application and the coverage of the solution. If the solution has the desired effect for stakeholders in their context, the solution can be finally implemented.
+                For that purpose, we have applied the approach in the two industrial cases of \gls{dsl} development, namely FlowSL \cite{barisic2014flows} (Section \ref{sec:flowsl}, Annex \ref{ann:FlowSL}) and Visualino (Section \ref{sec:visualino}, Annex \ref{ann:Visualino}). FlowSL served an instantiation of usability evaluation into a \gls{dsl} development guided by agile management during three iteration cycles \cite{BarisicModels2013}. The second one, Visualino, was followed along three development iterations and evaluated after each cycle. This case study is a good representation of the \gls{dsl} where the usability evaluation is mandatory as the users are children, and the programmed behaviour is expected to run on a physical system i.e. an Arduino robot. Finally, we applied our approach in the case of DSE Merge language \cite{barisic2016stsm} (Section \ref{sec:DSEMerge}, Annex \ref{ann:DSEMerge}), which is to be used by the programmers. This experience showed how the end users who are programmers could also benefit from the usability approach. Also, in this familiar environment it was easier to set up a more complex experiment and explore several possibilities for reusing it a virtual evaluation environment.
+                
+            \subsubsection{Solution implementation}
+                The next step was to perform the 'Solution implementation', which defines the concepts and activities which are mandatory for the application of the approach.
+                The main concepts supporting the modelling approach for usability evaluations are formally specified as \gls{uml} class diagrams. The flow of activities is described by  \gls{uml} activity diagrams. The supporting conceptual framework described in Chapter \ref{cha:useme} presents a generic systematic approach specified in a formal model as a solution for the engineering problem addressed in the scope of this thesis. 
+        
+            \subsubsection{Implementation evaluation}
+            Finally, the 'Implementation Evaluation' was performed as follows:
+            \begin{itemize}
+                \item The specification of the \gls{useme} conceptual framework, using  \gls{uml} diagrams which define the abstract syntax, was reviewed by a research group of NOVA-LINCS during a presentation session followed by individual questionnaires.
+                
+                \item The feasibility of experimental models implementation was validated through the implementation of the prototype tool and an instantiation of the evaluation models for the Visualino case study (Section \ref{sec:visualino}, Annex \ref{ann:Visualino}) in Chapter \ref{cha:prototype}. This showed that it was possible to model a performed usability assessment following the predefined steps. Afterwards, we performed a pilot empirical evaluation of the implemented tool on four \gls{dsl} development projects \cite{barisic2017pilot}. We have shown that it is feasible to capture the relevant information for the evaluation and its use in the result analysis.
+                
+                \item The feasibility to integrate our approach with another language for supporting DSL development, was validated on the case of \gls{useme} integration with the RDAL requirements approach \cite{barisic2017RDAL} (Section \ref{sec:RDAL}, Annex \ref{ann:RDAL}). This showed that it is feasible to integrate \gls{useme} approach with existing approaches. 
+                
+                \item Finally, we systematically obtain a community feedback about the feasibility and usefulness of the conceptual framework proposed in the context of this thesis and document its model using \gls{useme} approach (Chapter \ref{cha:evaluation}). A detailed interview was run with people which used our approach both in early, or later phases of the DSL development process. An evaluation survey was also conducted within the DSL community.
+            \end{itemize}
+
+        
+        \subsection{Addressing the research problem}
+     
+            To address the knowledge (i.e. research) problem, the work has regularly been submitted to international conferences for peer-reviewing after each milestone of results gathering and discussion. During this research work, the obtained results were materialised into the publications presented in Table \ref{tb:publications}.
+            They are grouped in three respective areas of interest: Systematic approach for the \gls{dsl} usability evaluation, Thesis Proposal and Case Studies.  Publications reflect the obtained results, even if preliminary, to obtain the recognition of the community about the relevance of the problem. 
+            
+            
+            The research work on this topic led to peer-reviewed publications of approach in the \gls{comlan} Journal \cite{barisic2017UseMeJournal}, a
+            book chapter \cite{barisic2012book}, at the conference on Pattern Languages and Programs (PLOP) 2012 \cite{Barisic2012patterns}, \gls{mpm} at IEEE/\gls{acm} MODELS 2011 \cite{Barisic2011HowEvaluation} and Portuguese National Symposium on Informatics (INFORUM) 2011 \cite{Barisic2011INFORUM}.
+            Performed case studies were published in the \gls{acm} \gls{sac} conference 2018
+            \gls{sle} conference 2017 \cite{barisic2017RDAL} and workshop events, namely, Model-Driven Development Processes and Practices (MD2P2) at IEEE/\gls{acm} MODELS 2014 \cite{barisic2014flows},  \gls{dsm} at SPLASH 2012 \cite{marques2012rpg}, 2012), and Evaluation and Usability of Programming Languages and Tools (PLATEAU) at SPLASH 2011 \cite{Barisic2012plateu}. Finally, the research proposal was accepted at 
+            doctoral symposiums of two relevant conferences, namely, QUATIC 2012 \cite{barisic2012sedes} and MODELS 2013 \cite{BarisicModels2013}, as well as at the \gls{acm} \gls{src} at \gls{acm} SPLASH 2017 \cite{barisic2017src} and \gls{acm}/IEEE MODELS 2013 \cite{barivsic1115iterative}. These publications have obtained over 100 citations, indicating a relevance of performed work and acceptance of the approach in the research community. 
+            
+                      % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Publications}
+            \label{tb:publications}
+            \begin{tabular}{|p{0.04\columnwidth}|p{0.6\columnwidth}|p{0.05\columnwidth}|p{0.22\columnwidth}|p{0.03\columnwidth}|}
+            \hline
+            \textbf{}                & \textbf{Title}                                                                                                       & \textbf{Year} & \textbf{Published by} & \textbf{C\tablefootnote{Citations obtained from https://scholar.google.pt/ on October 20 2017}}                                                                                                             \\ \hline
+            \multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}\textbf{Systematic approach for the \gls{dsl} usability evaluation}} & \cellcolor[HTML]{C0C0C0}\textbf{57}                                                                                                                                                                                       \\ \hline
+            \cite{barisic2017UseMeJournal}        & Usability Driven \gls{dsl} development with \gls{useme}     &   2017                                                                 & \gls{comlan} Journal     &                  1                                                       \\ \hline
+              \cite{barisic2017pilot}  & \gls{useme} Empirical evaluation pilot study & 2017 & [Data set]. Zenodo. &
+                               \\ \hline
+             \cite{barisic2017UseMe1.1}\tablefootnote{\gls{useme} tool - https://github.com/akki55/useme (accessed September 19, 2017)}      & \gls{useme} 1.1                                                   & 2017         & {[}Data set{]}. Zenodo. &                                                                                                           \\ \hline
+             \cite{barisicDSLSLR2015}        & Domain-Specific Language domain analysis and evaluation: a systematic literature review                              & 2015          & UNL, FCT, {[}Report{]}. Zenodo.   &   1                                                                                             \\ \hline
+             \cite{barisic2012book}          & Evaluating the Usability of \gls{dsl}s                                                                & 2012          & IGI Global      & 16                                              \\ \hline
+            \cite{Barisic2012patterns}      & Patterns for Evaluating Usability of \gls{dsl}s                                                       & 2012          & PLoP@SPLASH & 11
+            \\ \hline
+            \cite{Barisic2011HowEvaluation} & How to reach a usable \gls{dsl}? Moving toward a systematic evaluation                                                     & 2011          & \gls{mpm} @MODELS & 19
+                                        \\ \hline
+            \cite{Barisic2011INFORUM}       & Quality in Use of \gls{dsl}s: Current Evaluation Methods                                                                   & 2011          & INForum       & 9                                                  \\ \hline
+            
+            
+                               
+                           
+            
+            
+            \multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}\textbf{Case Studies}}  & \cellcolor[HTML]{C0C0C0}\textbf{47}                                                                                                                                                                                                                                 \\ \hline
+                \cite{barisic2018Visualino} (\ref{ann:Visualino})\tablefootnote{Visualino companion site - https://sites.google.com/view/vl-empiricalstudy/home (accessed September 19, 2017)}                  & Leveraging teens feedback in the development of a \gls{dsl}:  the case of programming low-cost robots &2018     &\gls{sac} &                                                        \\ \hline
+            
+                \cite{barisic2017RDAL} (\ref{ann:RDAL})         & A Requirements Engineering Approach for Usability-Driven DSL Development                        & 2017          & \gls{sle}         &                                        \\ \hline
+                 
+                 %\tablefootnote{DSE Merge experiment data - goo.gl/Kq3R1G}
+                 \cite{barisic2016stsm} (\ref{ann:DSEMerge})          & STSM Report: Evaluating the efficiency in use of search-based automated model merge technique                        & 2016          & MPM4CPS @COST, {[}Report{]} Zenodo        &  1                                      \\ \hline
+                 %\tablefootnote{FlowSL report - goo.gl/gQzX7B}
+              \cite{barisic2014flows} (\ref{ann:FlowSL})        
+              & Introducing Usability Concerns Early in the \gls{dsl} Development Cycle : FlowSL Experience Report                         & 2014          & MD2P2@MoDELS & 5                                       \\ \hline
+              \cite{marques2012rpg} (\ref{ann:RPGDSL})          & The \gls{rpg} \gls{dsl}: a case study of language engineering using MDD for Generating \gls{rpg} Games for Mobile Phones               & 2012          & \gls{dsm} @SPLASH   & 11                                                                \\ \hline
+                
+            \cite{Barisic2012plateu} (\ref{ann:Pheasant})       & Quality in use of \gls{dsl}s: a case study                                                            & 2011          & PLATEAU @SPLASH   & 30 \\ \hline
+            
+            
+                             
+            \multicolumn{4}{|l|}{\cellcolor[HTML]{C0C0C0}\textbf{Thesis proposal}} & \cellcolor[HTML]{C0C0C0}\textbf{23}                                                                                                                                                                                                                               \\ \hline
+            \cite{barisic2017src}    & Framework support for Usability evaluation of \gls{dsl}s                                                                 & 2017          & \gls{acm} \gls{src}  &  \\ \hline
+            
+         %   \cite{barisicCAT2017}           & Usability evaluation of \gls{dsl}s - PhD Thesis Proposal                                                  & 2017          & UNL, FCT                   &                                               \\ \hline
+            
+         %   \cite{barisicCAT2015}           & Usability evaluation of \gls{dsl}s - PhD Thesis Plan                                                  & 2015          & UNL, FCT                   &                                               \\ \hline
+            
+            \cite{barivsic1115iterative}    & Iterative Evaluation of \gls{dsl}s                                                                    & 2013          & \gls{acm} \gls{src}  & \\ \hline
+            \cite{BarisicModels2013}        & Evaluating the Quality in Use of \gls{dsl}s in an Agile Way                                           & 2013          & Doctoral Symposium @MoDELS   & 2    \\ \hline
+            \cite{barisic2012sedes}         & Usability evaluation of \gls{dsl}s                                                                  & 2012          & SEDES  @QUATIC & 21 \\ \hline
+                
+            \end{tabular}
+            \end{table}
+            
+            
+            
+            
+            Also, apart from productivity indicators regarding publications, the thesis candidate was invited to give seminars about the research, both abroad (University of Alabama, USA, 2013; University of Maribor, Slovenia, 2014; University of Malaga, Spain, 2016) and in Portugal (Agile \& Scrum Portugal 2013). The candidate also contributed to the community in several roles, namely as a member of the teams organising the Domain Specific Languages: Theory and Practice (\gls{dsm}-TP) summer school series from 2012, a \gls{dsl} Summer Courses on Domain-Specific Languages in the University of Belgrade, Serbia, 2013-2014, as well as HuFaMo workshop @MODELS 2015. She was invited to be PC member of \gls{dsm} at SPLASH since 2013, WAPL workshop at FedCSIS conference since 2015, Doctoral Symposium at IEEE/\gls{acm} MODELS 2014, and as a reviewer of the Journals ComSIS and ASE.J by Elsevier and SQJ by Springer. The candidate was awarded the following grants: Short Term Scientific Mission (STSM) for \gls{mpm4cps} by \gls{cost} IC1404 2016, SIGSOFT CAPS Award by \gls{acm} CAPS 2014, \gls{acm}-W Professional Activities Prize 2012 and \gls{acm} SIGPLAN Professional Activities Committee Prize 2011. Finally, the candidate is actively participating in EU ITC \gls{cost} Action IC1404 \gls{mpm4cps} and DSML4MA TUBITAK/0008/2014 project for Developing a Framework for Evaluating \gls{dsm} Languages for Multi-agent Systems.
+           % The application of this methodology is presented in detail in Sections 3, 4 and 5 of Annex \ref{ann:ComLan}.
+            
+            
+            %To achieve this goal, it is mandatory to have means to reason about the usability of the language. 
+            
+  
+            
+            
+           
+
+
+
+\section{Thesis outline}
+
+This thesis is divided into following major parts:
+\begin{itemize}
+    \item{context and related work}
+    \begin{itemize}
+         \item Chapter \ref{cha:context} deals with the problem definition. Here, we introduce the reader to the context of \gls{dsl}s and their life cycle. It is followed by a description of the usability evaluation approaches and specification, and the motivation for our work.
+    
+        \item Chapter \ref{cha:related} details the related approaches, and highlights the scope of related work, its benefits and shortcomings for solving the problem addressed in this thesis.
+    \end{itemize}
+    
+    \item {proposal of systematic approach}
+    \begin{itemize}
+
+        \item Chapter \ref{cha:approach} introduces concepts that are crucial for the argumentation of our proposed solution in the next part. The experimental model for \gls{dsl} and patterns for evaluating usability of \gls{dsl}s are described. 
+    
+        \item Chapter \ref{cha:useme} presents a \gls{useme} conceptual framework as a proposed solution of the given problem.
+    \end{itemize}
+    
+    \item {feasibility and applicability of proposed approach}
+    \begin{itemize}
+    
+    \item Chapter \ref{cha:prototype} shows a feasibility of \gls{useme} approach and introduces a prototype tool.
+    
+    \item Chapter \ref{cha:applicability} discusses applicability of \gls{useme} approach.
+     \end{itemize}
+     \item{evaluation of research questions and case studies}
+    \begin{itemize}
+    \item Chapter \ref{cha:evaluation} presents a evaluation model for \gls{useme}.
+    \item Chapter \ref{cha:cases} details the performed case studies.
+    \end{itemize}
+    
+\end{itemize}
+Finally, Chapter \ref{cha:concl} discusses future work and concludes the thesis.

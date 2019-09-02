@@ -1,0 +1,334 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter.tex
+%% NOVA thesis document file
+%%
+%% Chapter with solution proposal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Feasibility study with the USE-ME prototype}
+\label{cha:prototype}
+
+%(source: Annex 2 Section 5)
+
+In a Chapter \ref{cha:useme}, we described the implementation of our systematic approach in the form of a conceptual framework, for which we present a feasibility study in this Chapter. First, we present the implementation architecture of our prototype. Further, we illustrate an instantiation of the prototype models on an industrial case study. Finally, we perform a pilot empirical evaluation of the implemented tool on four \gls{dsl} development projects. This illustrates the feasibility of capturing all the relevant information for conducting a DSL evaluation, and how it can be used in results analysis.
+
+\section{Implementation architecture}
+
+    The \gls{useme} prototype \cite{barisic2017UseMe1.1} was developed as a specialization of our conceptual framework (see Figure \ref{fig:arhitecture}). 
+    The \gls{useme} conceptual framework was formally specified on Cameo Systems Modeler\footnote{https://www.nomagic.com/products/cameo-systems-modeler (accessed September 19, 2017)}, a cross-platform collaborative model-based systems engineering environment. This platform enabled us to produce \gls{uml} \footnote{http://www.uml.org/ (accessed September 19, 2017)} compliant models and diagrams. Namely, we specified the main concepts with class diagrams and the process as activity diagrams. These diagrams served as a general specification of the abstract syntax for the \gls{useme} conceptual framework. They were reviewed by the Automated Software Engineering research group of NOVA-LINCS during a presentation session and trough individual questionnaires. 
+    
+    
+    \begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.78]{Chapters/Figures/UseMeArhitecture.jpg}
+        \caption{USE-ME architecture (taken from \cite{barisic2017UseMeJournal})}
+        \label{fig:arhitecture}
+    \end{figure}
+    
+    The \gls{useme} prototype\footnote{https://github.com/akki55/useme (accessed September 19, 2017)} was developed using the Eclipse Modeling Framework (EMF)\footnote{http://www.eclipse.org/modeling/emf/ (accessed September 19, 2017)}, which is an Eclipse-based modelling framework for building tools and other applications based on a structured data model. From an XMI model specification, EMF provides tools and runtime support to produce a set of Java classes for the model. The EMF framework includes a meta model (Ecore) for describing models and runtime support for the models. The class diagram specified in Cameo System Modeler was transformed to an Ecore model. 
+    Due to constraints in the target meta-modelling tool, we had to adapt the model given in pure  \gls{uml} in order not to lose information from the original contents and to address restrictions required by Ecore (e.g. necessity of containment relationships).
+    
+    
+    Further, we used Sirius \footnote{https://eclipse.org/sirius/ (accessed September 19, 2017)}, a platform for developing and using graphical model editors, which is also based on the Eclipse Platform, and in particular the modelling stack based on EMF. The Sirius platform is domain-agnostic, in that it can be used by modellers for any business domain as long as they can describe it using EMF. In our prototype, we used Sirius to declare the visual representation of models instantiated in Ecore. 
+    The \gls{useme} architecture as described in this document supports modellers to design the \gls{useme} instances in an EMF generated editor with Ecore tooling. It is also possible to redefine and preview the implemented representations by Sirius.
+    
+\section{Case study}\label{sec:visualinoPrototype}
+
+    We dedicate this Section to illustrate the \gls{useme} conceptual framework with a case study about a free web-based programming language, named \textit{Visualino} (see Section \ref{sec:visualino}, Annex \ref{ann:Visualino}), for rover-like robots. The work was developed under the collaboration between the group ASE NOVA/LINCS and Artica\footnote{http://artica.cc/ (accessed September 19, 2017)}, a company that specialises in the development of robotic and audio-visual solutions.
+    Visualino was developed to lower the barriers between this hardware technology and children. The goal is for children to program the robot using Visualino. The Visualino specification is then automatically translated into the Arduino textual code. This approach avoids the inherent complexity of programming directly the Arduino which requires a steep learning curve.
+    The following description refers to the design of an empirical study conducted during the second development iteration of Visualino\footnote{https://sites.google.com/view/vl-empiricalstudy/home (accessed September 19, 2017)}, where the \gls{useme} conceptual framework was applied systematically.
+    
+    During the description we use following symbols; 
+    
+    \begin{enumerate}[a)]
+        \item[-] [] - instantiation of the concept i.e. instance object;
+        \item[-] <<>> - property of the instance object;
+        \item[-] \{\} - property value of the instance object;
+    \end{enumerate}
+
+
+\subsection{Context model instantiation}
+        The Context modelling starts with prioritising the initial user hierarchy, which is represented by the \gls{dsl}'s stakeholders. Therefore, we are having a [DSL Stakeholder] as a 'root' element of the hierarchy, and its subProfiles defined as [Domain Expert], [End User], [Expert Evaluator] and [Language Engineer] (see Figure \ref{fig:VHierarchy}).
+        
+        %\begin{figure} []
+        %\begin{raggedleft}    %% not needed
+        %\hfill
+        %\subfloat[]{\scalebox{0.39}{\includegraphics{example-image}}}
+        %\hfill
+        %\subfloat[]{\scalebox{0.29}{\includegraphics{example-image-a}}}
+        %\end{raggedleft}
+        %\hfill
+        %\subfloat[]{\includegraphics[width=1cm]{example-image-b}}
+        %\caption{The figures to be shown }
+        %\label{A1E}
+        %\end{figure}
+        
+        
+        For the case of Visualino, the target users are children, which usually are not experienced with programming. As such, the usability evaluation of the language with its end users is highly important. We set up the priority of its [End User] to be \{High\}. Having, a lower priority value associated with other stakeholders indicates that the investment in the usability evaluation of these profiles is not as important during the current development cycle. 
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.54]{Chapters/Figures/VUserHierarchy.PNG}
+            \caption{User Hierarchy (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VHierarchy}
+        \end{figure}
+        
+        However, as the language develops further, the investment into the evaluation with other user profiles may become more important. For instance, the development iteration may focus on the language extension that supports the [Domain Expert] to specify the environment configurations for different robots. Then, the priority for the [Domain Expert] profile will be updated accordingly. In this case, the priority of the [End User] should stay the same. Setting up a 'lower' priority is reasonable only if the initial purpose of the language has changed. For example, this may occur if the language 'fails' to be adopted by the initial audience, and the opportunity for further development presented itself in a different context. 
+        
+        After the initial prioritisation, we classify user profiles and define profile templates (see Figure \ref{fig:VUPTemplate}). Profile templates are categorised as a \{Background Demographics\} and \{Background Experience\}. They are captured with logical expressions. These expressions reflect profile characteristics and their values, concrete or as measurable scales. For instance, the expression <<language>> indicates that [End User] is expected to speak \{Portuguese\} or \{English\}. On the other hand, <<programming>> is a characteristic that can be measured by \{ordinalscale(experience)\} which can be later specified with concrete scales. 
+        
+        Logical expressions can be used further as classifiers. For instance, an  expression <<age>> is defined as a condition \{age > 7\} for [End User] profile. When creating the 'child' profiles, we use this expression as a classifier, meaning it will be restricted in two or more distinct sets (e.g. \{age = 7-19\}) for [Child] and \{age > 19\}) for [Adult]). It further specialises a [Child] into [Kid] and [Teen] profiles. Each subProfile inherits profile templates and logical expressions that are assigned to their parents. 
+        
+        \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.99\textwidth}
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VTemplatesChild.png}
+            \caption{User Profile Template (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VUPTemplate}
+        \end{minipage}\hfill
+        \end{figure}
+        
+        This kind of structural analysis of domain users for a \gls{dsl} answers to the question 'Who will use the \gls{dsl}?'. The next step is to respond the question 'Where will the \gls{dsl} be used?' by specifying the context environment. 
+        
+        The context environment is described by environmental elements (i.e. CEVariable) such as the social, physical and technical environment  (see Figure \ref{fig:VEnContex}). These elements can be reused from architectural descriptions, feature diagrams or other specification files of the language. For each environment element, it is necessary to specify if it is \{Mandatory\} or \{Optional\}. Further, it is possible to define contained environment elements and specify their types as a list of values that can be prioritised.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.52]{Chapters/Figures/VEnvironmentContext.png}
+            \caption{Environment Context (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VEnContex}
+        \end{figure}
+        
+        For example, the social environment of Visualino is characterised by [WorkPlace] which is described by <<Classroom>> <<Home>>, <<Public place>>, <<Outdoor>>. Further, the [Purpose] can be <<Competition>>,  <<Education>> or <<Entertainment>>. Finally, the [Country] is specialised only to <<Portugal>>, as Visualino is being prepared to be distributed only in this country, for now. 
+        The physical environment expects from the user to have a [Computer], that is specified by <<Processor>>, <<RAM>>, and <<USB Port>>, being all mandatory. Also, the physical environment should contain [Interaction Devices], from which <<Mouse>> and <<Keyboard>> are mandatory. On the other hand, it is optional, but probably convenient, to have a [Robot] during the use of the Visualino \gls{dsl}. Each [Robot] can have the specific <<Configuration>>, reflecting the parts of a robot that are configured to be used. A <<Robot type>> indicates the version of the Arduino robots (i.e. \{Farrusco\} and \{Gyro\}), and a <<USB Cable>>. 
+        Finally, the technical environment is specified by the [OS] and the [Web Browser], which are both mandatory for running Visualino.  The supported [OS] should be <<Windows>>, <<Mac>> and <<Linux>>. Their concrete versions are stored in a list. Further, the [Web Browser] indicates a <<Google Chrome>> and <<Windows Explorer>>.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.52]{Chapters/Figures/VWorkflowUC.png}
+            \caption{Workflows (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VWorkflow}
+        \end{figure}
+        
+        
+        
+        The answer to the question 'How is the \gls{dsl} expected to be used?' can build on scenario-based approaches, such as use case descriptions, which define scenarios and workflows. (see Figure \ref{fig:VWorkflow}). In the case of Visualino, use case specifications are designed with the Sys \gls{uml} language.
+        These specifications are referred in the <<Process Model>> instance. The actors who make part of the use case description are represented by different user profiles (users) or environment elements (other systems) that initialise a use case.
+        
+        
+        
+        
+        
+        A workflow [W1] poses a scenario in which the \{End User\} (specified as an actor) wants to program a behaviour of a robot and, eventually, execute that behaviour on a physical \{Robot\} defined in the context environment. In most of the cases, the priority of each workflow can be easily inherited based on the involved user profiles priorities. Following that rule, this case is has a \{High\} priority. In the workflow [W2] the \{Domain Expert\} wants to configure the language environment, which inherits the \{Medium\} priority. Finally, the workflow [W3] represents the case of a \{Language Engineer\} who wants to create a new language component or change or remove the existing one, in this instance, inheriting the \{low\} priority.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VScenarioUC.PNG}
+            \caption{Scenarios (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VScenario}
+        \end{figure}
+        
+        
+        Several scenarios are associated with a workflow [W1] (see Figure \ref{fig:VScenario}).
+        The first scenario is to program the robot to \textit{move forward} and then \textit{move back}.
+        The second scenario is to program the robot to move along a path similar to a `5'. This scenario includes the following sequence of instructions: \textit{move forward}, \textit{first turn left}, \textit{second turn left}, \textit{first turn right}, \textit{second turn right} and \textit{stop}. In each turn, the robot needs to execute the move operation using the same amount of time and then to make a 90$^o$ angle turn.
+        The third scenario is to program a robot to \textit{move forward} until it \textit{bumps} into some object, then it would \textit{move back} and \textit{stop}.
+        The fourth scenario aggregates the sequences from the previous scenarios. It describes how to program the robot to make a shape of `5', as in the second exercise, but the robot will only turn when it hits the bumper. 
+
+\subsection{Goal model instantiation}
+        In this section, we show how the collected knowledge from the context model can be used in goal analysis (see Figure \ref{fig:VUGoalModel}). We start with an empty model, as there is no existing goal model from the previous development iteration of Visualino. The 'root' goal represents the highest objective of our analysis, that is to achieve [Quality in Use]. 
+        %Having this goal as a 'root', we call other goals expressed by USE-ME framework Usability Goals. 
+        It is prioritised as high, indicating that usability evaluation is highly necessary for this development project. Its <<scope>> is set to be applicable on \{all\} CM, designed in the previous section. The <<actor>> responsible for achievement of the highest usability goal reflects all stakeholders included in the development. The \{Children robotics expert\} and \{Visualino development\} represent the domain experts and language engineers from Artica, while \{Language Evaluator\} represents the authors that were included as expert evaluators. 
+        
+        
+        \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.99\textwidth}
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VUsabilityGoalModel.PNG}
+            \caption{Usability Goal Model (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VUGoalModel}
+        \end{minipage}\hfill
+        \end{figure}
+        
+        
+        
+        
+        The [Quality in Use] is divided into three <<subGoals>>, namely [UG1], [UG2] and [UG3], which reflect different workflows from Figure \ref{fig:VWorkflow}. The <<scope>> objects, associated with these goals, restrict a CM in a way that they reflect parts for which each workflow applies. They are only associated to a sub-branch of the user hierarchy model that consider a user profile of the workflow's actor. A goal [UG1] is given the high <<priority>> as its <<scope>> reflects the \{End User\} profile and \{Workflow1\} workflow.
+        As it is suggested by goal modelling approaches, such as KAOS or i*, we further divide this goal into the subgoal [U1] for which the evaluation the responsible is just one <<actor>>, \{Language evaluator\}.
+        
+        
+        A usability goal [U1] specifies that the <<actor>> \{Language evaluator\} evaluates the [Usability to program a robot] and represents a quality goal usually measured by non-functional requirements (see Figure \ref{fig:VUReq}). It answers the <<question>> \{Is it usable for an [End User] to program a robot?\}. Further, a measurable method is specified as [Programming a <Use Case> is usable] and is related to particular usability requirements. This method is related to a functional goal [F1].
+        A functional goal specifies that the \{Visualino development\} verifies that it is possible to program a robot. It answers the <<question>> \{Which scenarios are verified to be programmable using Visualino?\} by testing requirements which describe the necessary functionalities to execute the selected <<Test case>>, \{Workflow1\}.
+        
+        Further, usability requirements are specified in a way they can be measured in the current phase of development. In the case of Visualino, we focus on the evaluation activity which was planned to be executed after the implementation. In this phase, the following measurable requirements are found to impact the goal [U1]: [Effectiveness], measured by a \{Correctness of programmed <Use Case>.\}; [Satisfaction], measured by \{Satisfaction questions related to <Use Case>.\}; [Efficiency], measured by \{Time to program the <Use Case>.\};  and, [Learnability], measured by \{Success to program the learned {Use Case}.\}. Note that other measures could be appropriate in different development stages: for the design phase without working prototype, readability and understandability \cite{barisic2014flows}, or for a proof of concept, feasibility and integrability. The catalogue of usability metrics (Section \ref{sec:catal}) is expected to support this choice and document the metrics from existing experiences. 
+        
+         \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.99\textwidth}
+        \centering
+            \includegraphics[scale=0.54]{Chapters/Figures/VUsabilityReq.png}
+            \caption{Usability requirements for usability goal [U1] (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VUReq}
+        \end{minipage}\hfill
+        \end{figure}
+        
+
+\subsection{Evaluation model instantiation}
+
+        As mentioned previously, language usability can be promoted by combining Usability Engineering techniques with \gls{ese}. In this section, we present an evaluation model for the empirical study of our target \gls{dsl}, Visualino, which is specified based on its [CM] and [GM]. The first thing to do is to model the evaluation objectives (see Figure \ref{fig:VEObjectives}). The primary language of the presented study is a [Visualino]. It was found useful to compare its early prototype to other widely used language for programming robots, namely [Lego], representing a second language in [EM]. The participants were expected to match the \{Teen\} <<profile>>, as the experiment was performed with secondary school subjects during the ExpoFCT event\footnote{https://www.expo.fct.unl.pt/ (accessed September 19, 2017)} at Universidade Nova de Lisboa in Portugal. The goal was to evaluate the <<usability goal>> \{U1 - Usability of programming the robot\}, specified by GM. Namely, each evaluation goal was to validate <<usability requirement>>: first addressing the \{Effectiveness\}, and second by \{Satisfaction\}. For each, we have specified the research question in the form of a <<problem>> using the GQM template, from which we have derived the <<hypothesis>>.
+        
+        
+        
+        
+        We analysed the Lego context by giving attention to the workflows and environment that are comparable to the Visualino's, and the ones that are in the scope of the <<usability goal>> which we are evaluating. During this analysis, it was possible to identify the context in which the evaluation study was appropriate to be performed - this is described by the evaluation context (see Figure \ref{fig:VEInstantiation}). 
+        The evaluation context is defined by: <<user profile>> of [ExpoFCTParticipant], which is \{Teen\}; the <<context environment>> that represents where the experiment will take place; and, by the <<workflow>> that will be used. For instance, for the social environment, the <<country>> was set to \{Portugal\}, and the <<workPlace>> was selected to be a \{Classroom\}, while the <<purpose>> was chosen to be a \{Competition\} to create a motivating environment for the participants. The technical environment was instantiated by <<OS>> \{Windows 7\} and the <<browser>> \{Google Chrome\}. The physical environment details the information about the <<computers>>, <<interaction devices>> and <<robots>> that will be used. The preferred <<configuration>> for both robots (Lego and Farrusco) is specified, to assure that the robots will have the same functionality. We can note how the environmental elements of Visualino's CM are initialized to concrete values, which are saved to value lists associated with this objects. Finally, the observed <workflow> is the \{Workflow1\}, which includes all scenarios defined previously, as they are executable in this specific context.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VEvaluationObjectives.PNG}
+            \caption{Evaluation objectives (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VEObjectives}
+        \end{figure}
+        
+        
+        
+        
+        
+        
+        
+        We used a 'between groups' design where participants were randomly assigned to either programming a robot using [Visualino] or [Lego], but not both. The evaluation process [emVisualinoProcess] was designed to start with a 30 minutes learning session, during which the participants should learn the language's concepts and how to solve three basic exercises that reflect the first three scenarios specified in \{Workflow1\}. These three activities and the tool help were prepared as printable documents, presentations and video demos with the version of the language under evaluation. The materials were saved as documentation objects. Further, it is necessary to define a <<test model>> through survey modelling for \{Background Questionnaire\}, which was filled in during the evaluation session. The evaluation continued with 15 minutes of a competition session during which the participants tried to solve a programming \{Challenge\} reflecting the fourth scenario,  which was aggregating the sequences from the previous scenarios. The <<test model>> for this session was specified with the interaction model, as we wanted to capture relevant events by recording the contents of the computer screen during the session. Finally, there was a feedback session, taking up to 5 minutes, to collect the children's subjective opinions about using the language they were assigned to, by answering to the \{Satisfaction Questionnaire\}, which was modelled by the survey modelling activity, but dependent on the specification of the interaction model.
+        
+        
+        
+        While preparing this evaluation, from the teaching materials and the events analysis, we were also creating the documentation of  Visualino and its application scenarios that can be shipped along with the software product, as they were reviewed and improved for the purposes of the experiment. This material, referring to a specific scenario can be documented within the CM. Further, we illustrate how the test models are designed using the interaction modelling and the survey modelling activities. 
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.55]{Chapters/Figures/VEvaluationInstantiation.PNG}
+            \caption{Evaluation Instantiation (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VEInstantiation}
+        \end{figure}
+
+\subsection{Interaction model instantiation}
+        
+        In this section, we instantiate the interaction test model (see Figure \ref{fig:VInteractionTestM}), which is used during the competition session of evaluation. This model encapsulates the <<interaction syntax>> from both, Visualino and Lego. Further, it is specified for the <<task>> which is associated with the concrete scenario from the evaluation context, named \{Challenge\}. A correct solution of the problem was provided by the Artica developers for Visualino, and by a language engineer who had experience with Lego.  
+        
+         \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VInteractionTestModel.png}
+            \caption{Interaction Test Model (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VInteractionTestM}
+        \end{figure}
+        
+        
+        By analysing the given task and the evaluation model, three events are defined to be captured. To measure <<usability requirement>> \{Effectiveness\}, described as correctness of solving <Use Case:Challenge>,  [Event1] and [Event3] are specified.  [Event1] captures  Success  (S)  or  Fail  (F) of modelling  the following  concepts: Bumper, First  Turn Left, Second  Turn  Left, First  Turn  Right,  and Second  Turn Right. It is captured manually observing \{Screen Record\}, e.g. videos of the participant's interaction with the language while trying to provide a correct solution. Further, [Event3] was marked with Success (S) if the robot successfully performed the challenge in the arena; Fail (F) if the team tried until the time limit, but did not succeed to program the robot correctly; and Quit (Q), if the team gave up. Finally, in the [Event3], we  assessed additional useful information during the video analysis, like if the team: (i) saved or reused the previous exercises; (ii) experienced technical problems or functional errors; (iii) had  interaction  difficulties  (e.g.  using  copy/paste  for  visual objects or connecting concepts in sequence); (iv) reused previously constructed sequences (within the same exercise); or (v) used any other additional language features (e.g. zooming). [Event3] registers the time of occurrence of certain <captureEvents>, measured from the beginning of the competition session and can serve as a source for ideas on improvement of certain language features for language engineers. 
+        
+       
+        
+        
+        
+        The interaction results are analysed by the expert evaluator, who prepared the data collection sheets and has put forward the analysis. The correlation analysis was supported by the SPSS tool \cite{leech2005spss}, and the graphs were generated in Excel.
+
+\subsection{Survey model instantiation}
+
+        By performing survey modelling, we instantiated the test models (see Figure \ref{fig:VStveyTM}) for the background questionnaire used during the learning session, and for the feedback questionnaire used during the feedback session. The survey forms were composed of Smileyometers, which are found to be appropriate for children questionnaires \cite{sim2012investigating}. While answering to forms, children were assisted by an adult (one of the experiment assistants). This was done to ensure that there were no misinterpretations of questions and answers, and to confirm that participants did not experience reading problems. As participants were grouped into teams, the participants' individual answers to questionnaires were merged, and the mean rate was computed within each team, for each answer.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VSurveyTestModel.png}
+            \caption{Survey Test Model (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VStveyTM}
+        \end{figure}
+        
+        
+        The background questionnaire [BackgroundVisualino] is related with the \{Teen\} <<profile>>. Each question in this questionnaire is related to one of the logical expressions associated with evaluated profile in CM. For instance, for [Q1:Age], the <<logical expression>> \{age\} was associated. In this case, the age is defined as an actual value ranging from 13-19. As so, the expected answer is defined as an \{integer\} ranging from 13 to 19. If another value occurs, the participant's data is discarded from further analysis. The collected data includes <<indicators>> defined as \{Demographics\}. These help to verify if there are other factors, such as age or gender, influencing the results.
+        %This kind of questions served to verify if the other results were depending on, for instance, age or sex of participant. 
+        On the other hand, certain <<indicators>> like \{Experience\} were calculated as a average value of this group of questions to serve for further impact analysis. Also, the abstract scale, for instance of <<logical expression>> \{Computer game\} was instantiated as 3-point Likert scale \{[1]: Very often, [0.5] Often, [0] Not so often\} with concrete weights which are used for later calculations.
+        
+        
+        
+        The feedback survey was designed to measure the <<requirement>> \{Satisfaction\}, which was characterised by the following <<indicators>>: \{Confidence\}, reflecting how confident children were about their solution,  \{Likability\}, reflecting how interesting and enjoyable they found the challenge itself; and \{Learnability\}, reflecting how useful they found what was taught during the learning session to help them facing the final challenge. Each question can be related to a concrete <<scenario>> included in EM. For instance, the question [F2: Did you find it difficult to program the robot to move in front?] indicates \{Confidence\} of the participant regarding the learned <<scenario>> \{Program robot to move front and back\}. The <<scale>> for all satisfaction questions reflects positive or negative experiences and is defined as \{[1]: Smiley[positive], [0]: Smiley[neutral], [-1]: Smiley[negative]\}. 
+        
+\subsection{Result model instantiation} 
+        
+        To evaluate the usability of \{Visualino\} and \{Lego\} we reused techniques of \gls{ui} evaluation that imply the involvement of real users as subjects of controlled experiments. A comparison criterion was based on the correctness of the problem solution, the time to solve it and personal preference. To get correct interpretations of our results, it was mandatory to profile the users. The criteria that were observed were their age, gender, and programming background. Further, we collected the participant's feedback and success rate regarding their experience with a language. During the report modelling activity, we declared all of these results in a Report Model [expo2015result] (see Figure \ref{fig:VReportM}).
+        The results specified by the interaction and survey models are documented for each event or questionnaire. They are correlated to evaluation results, whose objective was to analyse the \{Effectiveness\} and \{Satisfaction\} <<requirements>> for each language. The statistical analysis documents are assigned as <<outsideRef>> properties.
+        
+                
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.55]{Chapters/Figures/ReportModelwProp.PNG}
+            \caption{Report Model (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:VReportM}
+        \end{figure}
+        
+        The observed evaluation results of the second iteration of the design of the \gls{dsl} showed convergence and highlighted new possible improvements of Visualino. The children subjects were still having problems in making a right solution, having a small \{Effectiveness\} score of 0.37 for Visualino. The subjects were expressing likability toward Lego, while toward a Visualino they were indifferent. Based on these results, we created the recommended GM [Recommendations] consisting of new requirements impacting the usability goal for [U1] and functional goal [F1]. 
+        
+\section{Pilot evaluation study} %\todo{insert}
+        
+        %context
+        In this section, we report on the pilot assessment of the feasibility of the \gls{useme} tool with master students in computer science which were involved in a \gls{dsl} course. In total, four groups were consisting of two or three participants which were developing the following \gls{dsl}s:
+        \begin{enumerate}
+            
+            \item[-] \emph{DSL Spreadsheets} - a \gls{dsl} that transforms an activity graph into a Gantt chart. The target users of this \gls{dsl} are project managers.
+            \item[-] \emph{Gestures Kinect} - a \gls{dsl} which supports specification of communication between navy users using a Kinect device. The target users of this \gls{dsl} are navy operators.
+            \item[-] \emph{Peddy Paper} - a \gls{dsl} which creates several instances of personalised rally paper scripts. The target users are rally paper organisers.
+            \item[-] \emph{Smart House} - a \gls{dsl} which supports a design of the elements and operations for a smart home. It is meant to be used by house owners. 
+        \end{enumerate}
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/UseMeDSLCourse.png}
+            \caption{Pilot session process Model (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:DSLCourse}
+        \end{figure}
+        
+        The evaluation sessions were prepared as shown in Figure \ref{fig:DSLCourse}. The first learning session took place after four weeks of the \gls{dsl} development. Students were introduced to the usability evaluation during a 2h theoretical lecture. For the next two hours, the students received a tutorial on the \gls{useme} tool and were guided to perform installation and set up working environment. Also, the students were given a participation questionnaire to fill in and describe a purpose of their \gls{dsl}. At the end of the session, they were given the background questionnaire to fill in. The following two weekly four-hour sessions consisted of \gls{useme} hands on labs. The students were introduced to the modelling activities followed by Visualino example. For each activity, the same student from the group was using the tool to create \gls{useme} models for their \gls{dsl}, while other students from the group were helping in deciding what would be a correct specification. 
+        Finally, students were asked to try to finish the learned models and deliver them as a part of the \gls{dsl} course. After delivery, the students who were using the tool to model were asked to fill in a feedback questionnaire. 
+        
+        
+        
+        
+        
+        %Results
+        The evaluation deliveries (project reports, \gls{useme} models), background and feedback questionnaire results and evaluation results can be found at \cite{barisic2017pilot}. Here we shortly describe the obtained results:
+        
+        The participants were master students with intermediate knowledge of modelling techniques, namely having a background knowledge of  \gls{uml} (class diagrams, use cases, activity diagrams and interaction diagrams). Also, participants knowledge related to the working environment was advanced.  However, the participants had little or no knowledge regarding \gls{hci}, especially empirical experiments or the usability testing. As the objectives of the \gls{useme} conceptual framework are to support Language Engineers in specifying the usability evaluations, as the Expert Evaluators are often found to be too expensive to be included, we find that participants are adequate surrogates for the target end user of \{Language Engineer\} profile which is to be supported by \gls{useme} conceptual framework. 
+        %However, the participants represent just surrogates for expert language developers. 
+        
+        
+        \begin{table}[h]
+        \centering
+        \caption{Validation table of USE-ME models produced for different DSLs}
+        \label{table:evaluationUSeMe}
+        \begin{tabular}{|p{0.32\columnwidth}|p{0.1\columnwidth}||p{0.1\columnwidth}||p{0.1\columnwidth}||p{0.1\columnwidth}||p{0.07\columnwidth}|}
+        \hline
+        \gls{dsl}                          & \textit{\textbf{Spread Sheets}} & \textit{\textbf{Gestures Kinect}} & \textit{\textbf{Peddy Paper}} & \textit{\textbf{Smart House}} & \textbf{AVG}   \\ \hline
+        \textbf{Participation time}  & 6h                              & 12h                               & 12h                           & 12h                           &                \\ \hline
+        \textit{CONTEXT MODELING}    & \textit{\textbf{0.36}}          & \textit{\textbf{0.72}}            & \textit{\textbf{0.56}}        & \textit{\textbf{0.76}}        & \textbf{0.6}   \\ \hline
+        User Hierarchy               & 0.6                             & 0.8                               & 0.8                           & 1                             & 0.8            \\ \hline
+        User Profile Template        & 0.4                             & 0.6                               & 0.4                           & 0.6                           & 0.5            \\ \hline
+        Environment Context          & 0.2                             & 0.8                               & 0.6                           & 0.8                           & 0.6            \\ \hline
+        Workflows                    & 0.2                             & 0.8                               & 0.2                           & 0.8                           & 0.5            \\ \hline
+        Scenarios                    & 0.4                             & 0.6                               & 0.8                           & 0.6                           & 0.6            \\ \hline
+        \textit{GOAL MODELING}       & \textit{\textbf{0}}             & \textit{\textbf{1}}               & \textit{\textbf{0.4}}         & \textit{\textbf{0.5}}         & \textbf{0.475} \\ \hline
+        Usability Goal Model         & 0                               & 1                                 & 0.4                           & 0.8                           & 0.55           \\ \hline
+        Usability Requirements       & 0                               & 1                                 & 0.4                           & 0.2                           & 0.4            \\ \hline
+        \textit{EVALUATION MODELING} & \textit{\textbf{0.2}}           & \textit{\textbf{0.6}}             & \textit{\textbf{0.7}}         & \textit{\textbf{0.7}}         & \textbf{0.55}  \\ \hline
+        Evaluation objectives        & 0.2                             & 0.8                               & 0.6                           & 0.6                           & 0.55           \\ \hline
+        Evaluation instantiation     & 0.2                             & 0.4                               & 0.8                           & 0.6                           & 0.5            \\ \hline
+        Interaction Test Model       & 0.2                             & 0.4                               & 0.8                           & 0.8                           & 0.55           \\ \hline
+        Survey Test Model            & 0.2                             & 0.8                               & 0.6                           & 0.8                           & 0.6            \\ \hline
+        \end{tabular}
+        \end{table}
+        
+        
+        Table \ref{table:evaluationUSeMe} presents the results of the \gls{useme} model validation for each reported \gls{dsl}. We have analysed all diagrams which should be provided for Context Modelling, Goal Modelling and Evaluation Modelling activities. The diagrams were graded regarding their completeness and correctness as follows: (0) - no delivered model, (0.2) - very low, (0.4) - low , (0.6) - satisfactory, (0.8) - good, (1) - very good. We can note that all groups expect the Spreadsheet \gls{dsl} manage at least satisfactory to specify their models. However, Spreadsheet group participated only for a two hours of a hands-on session and this impacted the low score of their reports. In each case, we can observe that delivered models were satisfactory and by this indicating the understandability of the conceptual framework in specifying the usability evaluation within a small amount of time. However, it seems the biggest challenge for participants was to figure out how to specify usability goal model and associated requirements. In its current version, the prototype does not yet support the usability catalogue. We believe that this extension will help users without much knowledge about requirement engineering and quality evaluation to define properly usability objectives for their case. 
+        
+        
+        The participants from the groups which were having a bit higher understanding of \gls{hci}  were naturally selected to be responsible for modelling with the \gls{useme} conceptual framework. That is why just these participants were asked to provide a feedback about the tool. 
+        Participants authorised the publication of project results to Zenodo library. Although they found usability evaluations necessary for a \gls{dsl} deployment in practice, they did not find the  modelling activity interesting. One of the main reason was that the modelled evaluation was not to be executed, making it less interesting for their project purpose. The Gesture Kinect group found that it was easy to understand the \gls{useme} conceptual framework. The Peddy Paper group found it on another hand not to be so easy, pointing out there were too many steps to follow. The Smart House and Spreadsheets groups found conceptual framework more or less easy, pointing the lack of a guided cycle and highlighting a usefulness of the Visualino example for understanding an conceptual framework.
+        All of them reported to be able to discover environmental elements which they did not consider before in development, and found easy to create a user hierarchy and more or less easy to specify other context model elements. However, they found the modelling of usability goals they found a bit harder but still manageable. Two groups found useful to reuse context model elements in goal specifications, or during the evaluation modelling. They found it to be easy to creating test model specifications for evaluation. 
+        
+        In general, they did not feel very confident while using a \gls{useme} tool, however, they find a tool expressive enough for purpose of specifying usability evaluation, and also suitable for another kind of software products. However, none of the participants is familiar with any other tool which supports usability evaluation. 

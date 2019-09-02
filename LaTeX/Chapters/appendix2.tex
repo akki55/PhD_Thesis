@@ -1,0 +1,848 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% appendix2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with example of appendix with a short dummy text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Patterns for DSL usability evaluation}
+\label{app:patterns}
+
+           
+The \gls{dsl} developed through the \gls{pheasant} project (Section \ref{sec:Pheasant}) is a good example of known-use of the pattern language to be illustrated in this section, as it is a complete exercise for a \gls{dsl} development and is designed with strong user feedback, focusing on understanding how the language is perceived, learned, and mastered. It also gives classification of users, categorizing them by identification of their specific requirements. The case study of the language validation through Usability evaluation tests is included \cite{Barisic2012plateu} (Annex \ref{ann:Pheasant}).
+
+\section{Agile development process}
+
+    \subsection{[Pattern] User And Context Model Extraction}
+    \label{sec:Patt1.1}
+        The main goal of designing a \gls{dsl}, or any other language or software system, is to satisfy the user’s requirements. We need to design the language in a way that the number of user profiles covered by Usability evaluation of a \gls{dsl} should be significant in relation to the actual number of intended \gls{dsl} End User profiles. This means that, in the majority of cases, the number of user profiles and contexts of use characteristics will also be relevant.
+        
+        \subsubsection{PROBLEM}
+            How to distinguish for which user profiles and contexts of use we have validated the \gls{dsl}'s usability level?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{On-Budget Completeness.} The language developers need to balance the number of features that need to be incorporated in the language and evaluation design with the time and effort required to complete said design.
+                    \item  \textit{User Coverage.} It is sometimes easy to forget that, in general, a \gls{dsl} is intended to be useful for only a relatively small set of users and not a wide range of them. When designing a language we must pay close attention not to place too much effort in satisfying requirements of non-target users.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+            Before building a new \gls{dsl} we should identify all intended user profiles and target context of use. These user groups should be characterized by their background profiles and domain expertise, as well as different stakeholder positions in solving problem groups. These general user characteristics should be weighted according to its relevance, which will influence the relevance level of each chosen test user group.
+        
+            Also, in the same way we should define a complete context model that will contain all technology variations that will be possible to use, equipment availability, additional software support and its compliance to new system, as well as intended working environments and its effect on using a system.
+            
+            By building a complete user and context model we are able to control for which extent of targeted user population, as well as environmental and technical range, Usability is reached. However, this is hard to achieve on a strict budget and the development team should be aware that some requirements might only be identified at later stages.
+            
+            As the new domain concepts are identified for the \gls{dsl}, potential users of those concepts, and contexts of use should be defined. This introduces the problem of knowing if all user groups are represented and how those user groups relate with the others and with the overall context and domain.
+            Moreover, if usability is to be validated iteratively, the Expert Evaluator need to be able to manage and extract feedback from a large number of users on a regular basis.
+
+            For that extent, building the context and user model should be done within the domain analysis phase of the \gls{dsl} development.
+        
+        \subsubsection{EXAMPLE}
+        
+            The user model is obtained by identifying the list of main characteristics based on which categorization of user groups is accomplished. For the case of \gls{pheasant} (see Figure \ref{fig:Patt_UserChar}) these characteristics are prioritized with a Likert scale representing an evaluation importance weight ranging from 1 to 5, where 1 means ‘unimportant’ and 5 means ‘very important’. After indicating these weights, it becomes trivial to extract important user models that need to be evaluated.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_UserChar.png}
+                    \caption{List of user characteristics (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_UserChar}
+            \end{figure}
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_UserEq.png}
+                    \caption{Users working equipment and environment (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_UserEq}
+            \end{figure}
+            
+            This weight hierarchy will become increasingly detailed with each new iteration. For instance, if the main profile observed is that of a physicist, we need to find details which help to isolate specific characteristics, thus creating sub profiles. In the case of \gls{pheasant}, we are interested in physicists who 1) have knowledge of \gls{hep} experiments and particle physics, and 2) have knowledge of programming and querying. The context model details the user’s working equipment. As \gls{pheasant} is meant to be used from computers, it is essential to describe the scope of computer characteristics (see Figure \ref{fig:Patt_UserEq}). This allows us to reason about whether any usability issues detected in the language can be traced to inappropriate equipment or working environment. Working environment can also cause user to obtain lower results during use of language, so it is important to describe and control main environment equipment.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_LangEq.png}
+                    \caption{Language operating equipment and environment (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_LangEq}
+            \end{figure}
+            
+            Also, it is important to characterize the language operating environment to which we target the desired usability levels (see Figure \ref{fig:Patt_LangEq}). As it may be too expensive to perform testing with all language operating environments configurations, one should assign different priorities for different configurations, so that at least the most important configurations are tested.
+        
+        \subsubsection{RELATED PATTERNS}
+                \begin{itemize}
+                    \item \emph{ITERATIVE USER-CENTERED \gls{dsl} DESIGN} (Section \ref{sec:Patt1.3}). To begin the development process, it is required that the USER AND CONTEXT MODEL EXTRACTION is featured.
+                    \item \emph{EVALUATION PROCESS AND DESIGN PLANNING} (Section \ref{sec:Patt1.2}). While the resources for the user and context model are gathered, a plan for evaluation should also be considered.
+                \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            In usability testing one of the main problems for achieving usable products is that development focuses mainly on the machine or system, not considering the human aspects of software. There are three major components that should be considered in any type of human performance situation: Activity, Context and Human. Designers should focus on all three elements during development \cite{rubin2008handbook}. Benefits of user and context modeling on management and final product are confirmed in areas of service and interface development.
+    
+    \subsection{[Pattern] Evaluation Process And Design Planning}
+    \label{sec:Patt1.2}
+         During the development of a software artifact such as a \gls{dsl}, the development team needs to carefully plan how the development stages should proceed and what are the required features that are to be developed in each step of development. In this case, the same attention must be given to Usability evaluations and experimental designs.
+                
+        \subsubsection{PROBLEM}
+        
+        How to plan the processes of evaluation experiments and control the adequacy of the produced solutions to the intended users and respective context models?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Planning and Control.} Through good and careful planning the engineering team becomes more able to control and validate results, and to know the scope of their impact. Planning is a time consuming task and if not done carefully induces the risk of spending resources on evaluations with questionable validity and usefulness.
+                    \item  \textit{Reusability.} Results, if packaged correctly, can be reused or replicated on another solution or similar context as long as adequate measures for each context are controlled and validated. However, it becomes easier to reason about the impact of recommendations that resulted from each experiment and reuse these conclusions for another evaluation session.
+                    \item  \textit{Balance user need validity and budget.} From the users’ stand point all wished features and requirements are valid and essential. However, not all features fall within budget and not all users have the same amount of influence in the outcome and features of the \gls{dsl}.
+                    \item  \textit{Experimental evaluation cost.} There is a tension between the cost of a full-blown experimental evaluation and the need to make short delivery sprints.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+            When planning the evaluation process and experimental designs, the Expert Evaluator must document the main problem statements and their relations with intended experiments. The documentation should include initial sample modeling (considering all possible samples, groups, subgroups, disjoint characteristics, etc.), context modeling, instrumentation (e.g. type of usability tests and when to use them), the instrumentation perspectives (e.g. cognitive dimensions fundamental to assessing usability) and their relation with metrics acquired through data analysis and testing techniques.
+
+            To assess the validity of results that will lead us to reason about Usability of the domain-specific solution, Domain Experts and Language Engineers should list goals and system requirements that are basis for successful process and extent of experiments. The main problem statements and intended usability experiments should be designed with care, to ensure replicability, and to control the result of alterations.
+            
+        \subsubsection{EXAMPLE}
+        
+            
+            In this pattern we need to identify and prioritize all goals of the language, as well as the goal of the evaluation. The goals for \gls{pheasant} are described in Figure \ref{fig:Patt_Goals}.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_Goals.png}
+                    \caption{Goal lists (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Goals}
+            \end{figure}
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_Tasks.png}
+                    \caption{Task list (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Tasks}
+            \end{figure}
+            
+            These goals will later be used to control which goals were addressed by the problem statements of experiments and the heuristic evaluations.
+
+            Goals are fulfilled by executing tasks, therefore we need to list and prioritize them to further decide how to design instrumentation and metrics to capture these tasks (see Figure \ref{fig:Patt_Tasks})
+
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_Comparison.png}
+                    \caption{List of comparison elements (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Comparison}
+            \end{figure}
+
+            As the goal of \gls{pheasant} is to obtain better querying than in the previous approaches, it is important to list comparison elements that should be addressed during evaluation (see Figure \ref{fig:Patt_Comparison}).
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{ITERATIVE USER-CENTERED \gls{dsl} DESIGN} (Section \ref{sec:Patt1.3}). Developing an evaluation plan of action with goal and requirement analysis is an important starting point for iterative development.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+        
+        Identifying and controlling evaluation process and design trough set of tasks, evaluation goals, and different test approaches is a common approach for evaluating experience in using any product or service. Examples of its use can be found in assessments of customer satisfaction, evaluation of public
+        opinion, evaluation of psychological capabilities in human resources, as well as in evaluation of user interfaces. Detailed example of practical application to query languages can be seen in \cite{reisner1981human}.
+
+    \subsection{[Pattern] Iterative User-Centered DSL Design}
+    \label{sec:Patt1.3}
+        When developing a new \gls{dsl}, the development cycle is intertwined with scheduled deliveries of incremental versions of the \gls{dsl}. Since the focus of development is usually on the delivery time and functionality, rather than the user’s needs, it is usual to attain a solution which did not reached desired level of quality in use and quality of experience.
+        
+        \subsubsection{PROBLEM}
+
+        How to ensure that the domain-specific solution will result in increased level of users’ productivity when compared to the existing baseline?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Cost of Usability Control vs. Cost of Future Modifications.} If we do not control usability tests during the several development stages, essential evaluation failures may lead us to meta-level changes that are equivalent to language development from scratch.
+                    \item  \textit{Development Cost.} Developing any language is a very expensive endeavor, more so because of the need to ensure that we will produce highly usable language that provides qualitative experience.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+        As we discussed previously in EVALUATION PROCESS AND DESIGN PLANNING (Section \ref{sec:Patt1.2}) , Productivity is related to the level of achieved Usability. Therefore, to prove the long claimed productivity increase provided by introducing \gls{dsl}s, Expert Evaluator need to introduce User-Centered methods to \gls{dsl} life-cycle.
+        
+        On other hand, in order to increase the chances of adoption by End Users within the domain, the Language Engineers should embed User-Centered design activities within the \gls{dsl} development process itself. It is important to involve Domain Experts and End Users in the development process, empowering them to drive the project and specify their use case scenarios. However, executives and users of the language models should be involved but not overly committed to it, as users will quickly become afraid of being accountable for eventual project mishaps.
+        
+        Each iteration of the development cycle should be combined with a User-Centered design activity where usability requirements are defined and validated through constant interaction with target user groups. This means that the user becomes an invaluable part of the development process and receives some measure of responsibility over the outcome of language design and development.
+        
+        \subsubsection{EXAMPLE}
+        
+        Like the pattern explains, we should build a schedule of all iterations at the beginning, clearly identifying participants and what features are to be tested. At each passing iteration we can then re-prioritize the remaining iterations according to what was accomplished.
+        
+        These schedules should also include careful approximations of how much time and how many participants will be involved in active work on the usability evaluation. This includes the time that is required to make guidelines, list requirements, choose metrics, and implement focused workshops to discuss the results, analysis of results and so on. An example of a one such schedules is shown in Figure \ref{fig:Patt_Iterations}.
+        
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_Iterations.png}
+                    \caption{Evaluation iteration description (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Iterations}
+            \end{figure}
+            
+        In this case, the set of \gls{pheasant} iterations can be seen as a single development cycle step after which, if additional development was required, we would have similar usability iterations inside a new cycle with the new product in use. On this next cycle, the schedule would be easier to predict since they would be based on the numbers from the previous cycle. This gives the development team the means to control the cost of evaluation.
+        
+        As expected, the 200 hours requirement of the first iteration includes the time needed to prepare and estimate the first evaluations. The following iterations require considerably less time as they are based on the previous ones.
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{USER AND CONTEXT MODEL EXTRACTION} (Section \ref{sec:Patt1.1}). User and context model need to be extracted so that is possible to plan which of them will have impact on iteration.
+                \item \emph{EVALUATION PROCESS AND DESIGN PLANNING} (Section \ref{sec:Patt1.2}). Goals need to be explicitly expressed in order to plan each iteration.
+                \item \emph{ITERATION VALIDATION} (Section \ref{sec:Patt1.4}). Each iteration should be followed by a validation stage where the output of the iteration is validated against expectations.
+                \item \emph{CONTEXT SCOPE TRADING} (Section \ref{sec:Patt1.5}). Allows the analysis of what should be done in the next iteration.
+                %\item \emph{ITERATIVE USER-CENTERED DESIGN} (Section \ref{sec:Patt1.6}). At the level of this pattern all patterns within the ITERATIVE USER-CENTERED DESIGN (Section \ref{sec:Patt1.3}) design space should be considered.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+        The Usability engineering lifecycle is iterative by itself and should be merged with development of any product \cite{mayhew1999usability}. Involvement of user-centered techniques in iterative development of software product is becoming common, and examples vary from user interfaces to data oriented applications \cite{catarci2000happened}.
+        
+    \subsection{[Pattern] Iteration Validation}
+    \label{sec:Patt1.4}
+       
+       Developing any form of complex software artifact, the professionals in charge of development need to constantly reevaluate priorities of features and requirements according to the way the project is developing, its goals, schedules and budget.         
+        \subsubsection{PROBLEM}
+        How to control which usability problems were solved, and analyze their possible relation with new ones that may arise?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{New features vs. fixes.} During development, it is frequent to discover new requirements that the user considers of importance. It is up to the development team to decide if these are considered new features or fixes to improve quality of solution. The latter should have top priority while the former should be carefully analyzed and sized.
+                    \item  \textit{Featurism vs. usability.} The Expert Evaluator should clearly define the line where the number of features begins to jeopardize usability rather than promoting it.
+                    \item  \textit{Loss of focus.} As the \gls{dsl} development process progresses and the number of features increases, it is easy to lose track of intermediary goals. It then becomes increasingly important to validate what has been accomplished at each iteration and measure how far we are to our true goal of a usable \gls{dsl}.
+                    \item  \textit{Iteration Validation schedule.} The validation itself should be short and concise, so as to not overstep the boundaries of the current iteration’s development schedule. However it should be dense enough to allow the least amount of work to be postponed for additional iterations.
+                    \item  \textit{Regression Testing.} At each iteration evaluation is focused mainly on new features of the language but, as the language is growing incrementally, it ends up re-covering language details addressed in previous iterations. This is essential to ensure that new features don’t deem previous features unusable, however there is also a cost associated with re-testing every previously tested feature. In this case the requirement is that at key iterations, when a new stable major version of the language is developed, testing and validation is performed on the full set of language features and not only on those newly added.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+        Although \gls{dsl}s are developed in constant interaction with Domain Experts, by validating the iterations in time-box fixed intervals we can monitor progress and check if it is going in the desirable direction. If it is not, developers are able to react to possible problems on time. At any point during language development, new requirements may arise and it is the job of the Language Engineer to evaluate them from a language point-of-view, while the Expert Evaluator is required to analyze and frame the new requirements into the time-box. The length of the project itself should not be allowed to extend over the intended deadline or to surpass the original budget except in very specific cases when the new requirements translate into make-or-break features that cannot fit into the original project scope. Nonetheless, every change in the project has to be carefully analyzed and a compromise must be reached with the decision-maker stakeholders.
+        
+        If ITERATION VALIDATION is not completed at least every few iterations, when the number of features developed is enough to warrant user tests, then there is a higher risk of failure of iterative development.
+        
+        Time-boxing is concluded with a progress report and with documenting results of the validations in an iteration assessment that consists of:
+        \begin{itemize}
+            \item [-] A list of features that obtained the required level of usability
+            \item [-] A list of usability requirements that were not addressed
+            \item [-] A list of usability requirements that need to be reevaluated or that represent new requirement items
+        \end{itemize}
+
+        This should be done through explicit communication with all relevant stakeholders of the validated iteration.
+        
+        \subsubsection{EXAMPLE}
+        
+        Picking up \gls{pheasant}’s 5th iteration from Figure \ref{fig:Patt_Iterations}, validation of the iteration is accomplished by defining what features were successfully implemented and which still require some work (see Figure \ref{fig:Patt_IterValid}). Understanding the status of usability evaluation for the current iteration allows us to redesign the schedule for the next few iterations.
+        
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_IterValid.png}
+                    \caption{Iteration validation (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_IterValid}
+            \end{figure}
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{VALIDATE ITERATIONS} (\cite{volter2004}). More than understanding if iterations are on track and re-working the following iterations accordingly, as the VALIDATE ITERATIONS pattern which Völter et. all. suggests, ITERATION VALIDATION requires the project team to validate if usability remains a concern throughout every iteration.
+                \item \emph{ITERATIVE USER-CENTERED \gls{dsl} DESIGN} (Section \ref{sec:Patt1.3}). Validation is a part of the iterative design and development process of a \gls{dsl}.
+                \item \emph{CONTEXT SCOPE TRADING} (Section \ref{sec:Patt1.5}). The output of ITERATION VALIDATION  is fed into CONTEXT SCOPE TRADING to allow the analysis of future iterations.
+                \item \emph{FIXED BUDGET USABILITY EVALUATION} (Section \ref{sec:Patt1.6}). Validation controls how the budget was spent to accommodate usability questions.
+                \item \emph{USABILITY REQUIREMENTS TESTING} (Section \ref{sec:Patt2.4}). Based on requirements test results we have means to perform iteration validation.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+        
+        Validating iterations of product development cycle is beneficial for controlling development of any end product. It makes clear what issues are addressed and reviles new requirements that are overseen in planning of first cycle, and keeps track of validated approaches. This methodology helps to justify new specifications for project management and involves their decisions trough project \cite{volter2004}.
+        
+    \subsection{[Pattern] Context Scope Trading}
+    \label{sec:Patt1.5}
+    During the development of the \gls{dsl}, the development team needs to maintain both the focus of the development and the timeline and budget set by the project owners.
+                
+        \subsubsection{PROBLEM}
+        How to ensure that each development iteration remains focused on the user’s needs while maintaining a short time frame?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{In-loco user.} Working directly with representative user groups, will allow detecting early the majority of usability defects so that they can be fixed at a minimum cost.
+                    \item  \textit{Following Recommendations.} Following guidelines and recommendations for the most relevant quality characteristics can be a time-consuming task. However this will result in early adoption of best practices that will eventually contribute to a usable solution.
+                    \item  \textit{User Needs vs. Project Management.} Sometimes defining requirement priorities according to user needs goes against project management best practices. It is up to the development team to ensure that both goals are achieved within the same package.
+                    \item  \textit{Sustainable focus.} When working within a budget and time limit, it is hard to focus on all usability requirements at each iteration and continue to ensure a successful iteration outcome. Some requirements are bound to receive more attention than others and lengthy requirements tend to always get pushed to future iterations \cite{jones1996}.
+                    \item  \textit{Spread thin.} Although tempting, in medium/large projects it is impossible to take into account all intended user profiles, environmental dependencies and domain concepts in a single iteration. It is up to the engineering team to decide the iteration scope and to recognize how to profit from short iterations bursts.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+            Short iterations require short and well scoped contexts. Each iteration needs to precisely characterize the context that specific iteration will capture from the set of global context, intended users and domain solution.
+        
+            To keep the user as the focus of each agile iteration, the results of usability tests should be used to ensure that development prioritizes the most significant features, with focus on prioritized quality attributes and on the most representative user groups for the relevant context.
+        
+            In order to effectively achieve this, each iteration should be preceded by a \emph{Scope Trading Workshop} where all relevant stakeholders should come to an agreement on the context scope of the iteration. They should also agree on how the captured outcome of usability tests and experimental evaluations is to be handled.
+            
+            The workshop should be used to:
+            \begin{itemize}
+                \item [-] Assign a strict sequence of priorities to items in usability requirements list, depending on relevance of the domain concept’s use-case;
+                \item [-] Identify the most relevant items from the backlog that should be solved in the next iteration;
+                \item [-] Reanalyze priorities of usability problems according to intended scope of user and context model;
+            \end{itemize}
+
+            This workshop should take place in the domain analysis phase, after validating iterations. Prior to the first iteration of the development process, identification of scope is achieved according to the extracted user and context model from the initial project plan. The intended scope of user and context model is analyzed more in depth after its definition during the workshop.
+        
+        \subsubsection{EXAMPLE}
+            Following the scope model defined in the USER AND CONTEXT MODEL EXTRACTION (Section \ref{sec:Patt1.1}) pattern, we define the User and Context scope as given in Figure \ref{fig:Patt_Scope}.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.26]{Chapters/Figures/Patt_Scope.png}
+                    \caption{Language Use Scope (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Scope}
+            \end{figure}
+            
+            This scope is a subset of the scope defined in Figure \ref{fig:Patt_UserChar} and Figure \ref{fig:Patt_UserEq}, accounting for the fact that changes occurred in the set of available user groups and environment throughout the iterations. Using this new reduced scope and with the definition of evaluation for the iterations of the first cycle, as defined in Figure \ref{fig:Patt_Iterations}, we define the current evaluation scope as is shown in Figure \ref{fig:Patt_EvaluationScope}.
+            
+            Having defined this scope, it is easier to calculate the budget of the evaluation, and to design experimental evaluation focusing just on the given goals.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.26]{Chapters/Figures/Patt_EvaluationScope.png}
+                    \caption{Language Use Scope (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_EvaluationScope}
+            \end{figure}
+        
+        
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{SCOPE TRADING} (\cite{volter2004}).These patterns are very similar in idea, however it relates more to strict requirements. CONTEXT SCOPE TRADING can be seen as an extension of the original pattern to allow context trading considerations, which are valuable for \gls{dsl}s.
+                \item \emph{ITERATIVE USER-CENTERED \gls{dsl} DESIGN} (Section \ref{sec:Patt1.3}). CONTEXT SCOPE TRADING is a mandatory development strategy of ITERATIVE USER-CENTERED \gls{dsl} DESIGN.
+                \item \emph{FIXED BUDGET USABILITY EVALUATION} (Section \ref{sec:Patt1.6}). The iteration scope defined within CONTEXT SCOPE TRADING constrains what can and can’t be done within budget limits.
+                \item \emph{ITERATION VALIDATION} (Section \ref{sec:Patt1.4}). The output of each validation stage is used to define what went wrong and if its solution is within budget.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+        Scope trading on any product development method gives input means to its budget definition \cite{volter2004}. Any evaluation requires precise definition of its scope, in order to be able to validate its results and indicates trade-offs in design decisions \cite{rubin2008handbook}.
+        
+    \subsection{[Pattern] Fixed Budget Usability Evaluation}
+    \label{sec:Patt1.6}
+        We need to develop a usable \gls{dsl} for a fixed budget. The abstract nature of the language and complexity of the domain knowledge prevents contractual details from capturing every aspect that needs to be considered for a language design and implementation that leads to a system that optimally supports users in their work.
+        
+        \subsubsection{PROBLEM}
+            How to maintain the budget within planned limits and ensure development results in a language with satisfying level of usability?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Scope vs. Cost.} Evaluation, its scope and context, should be wisely planned in order to minimize its cost but provide valid usability assurance.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+            The engineering team should regularly validate iterations to user-drive the language under construction. However, in order to reduce the cost of Usability validation in each iteration the development team should focus on:
+            \begin{itemize}
+                \item [-] Using short time-board iterations that concentrate on implementing main features first and drafts of additional ones.
+                \item [-] Producing shippable \gls{dsl}s in short iterations sprints. Since only a few features will be addressed in each iteration, the end result might have features which are left obviously unfinished and ambiguous. These unfinished features should act as motivators for user feedback.
+                \item [-] Getting ‘live’ feedback about unfinished features through brainstorming of possible solutions.
+                \item [-] Producing first level applications and evaluate them with users, focusing to capture usability validations related to the language design.
+            \end{itemize}
+
+            After each usability evaluation, Usability requirements that have failed validation must be annotated with clarifications, and listed alongside any new usability requirement that may have emerged during the last iteration. Subsequently the development team re-calculates realistic costs for all open usability requirements to enable scope trading and iteration sizing.
+        
+            After a few such iterations, the work can be packaged and made available in the form of intermediary release. At this stage usability evaluation can/should be performed in real context of use with representative user groups, and language artifacts can be fully validated.
+        
+        \subsubsection{EXAMPLE}
+        
+            Having defined the evaluation iterations of the first evaluation cycle, presented in Figure \ref{fig:Patt_Iterations}, we can calculate and fix the budget for our evaluation cycles. This budget is recalculated after each ITERATION VALIDATION (Section \ref{sec:Patt1.4}). Cost estimation is made easier by having detailed cost diagrams. This enables the development team to compare the cost of each independent evaluation against the achieved result. Keeping this budget accounting also allows a more precise prediction of future costs.
+        
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.5]{Chapters/Figures/Patt_Budget.png}
+                    \caption{Budget evolution for Pheasant (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Budget}
+            \end{figure}
+        
+            Figure \ref{fig:Patt_Budget} shows, for the first iteration cycle of \gls{pheasant}, how the budget evolved to encompass changes in iteration duration and cost estimation. At each passing iteration, the actual cost of the iteration was checked against the expected cost and budget corrections were made to the following iterations so that the project can be globally balanced. Having a well-balanced budget means that it becomes easier to know if the project is going according to what is expected.
+        
+            One thing that must be noted in the budget of the successive iterations is that the number of expected work days also changes. This is an important fact as this indirectly influences both the monetary cost of the iteration and the scope of the following iterations.
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{FIXED BUDGET SHOPPING BASKET} (\cite{volter2004}). It is never enough to stress that it is important to keep a fixed budget for whichever iteration style. Fixed Budget Shopping Basket details how to split the overall project development budget over all iterations.
+                \item \emph{CONTEXT SCOPE TRADING} (Section \ref{sec:Patt1.5}). The iteration scope that is defined in turn constrains what can and cannot be done within budget limits.
+                \item \emph{ITERATION VALIDATION.} (Section \ref{sec:Patt1.4}). The output of FIXED BUDGET USABILITY EVALUATION is used by ITERATION VALIDATION to understand if iterations are going according to plan.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            This pattern represents a concrete application of a method from risk management and analysis. It is used for lowering the risks that result from big project investments and provides various advantages such as requiring the contractor to be responsible for project design and development, as well as for legacy of the projects. Applicability of these models in scheduling and cost estimation of a fixed budget that is built in construction projects is shown to be very beneficial \cite{oztas2004}.
+
+\section{Iterative User-Centered Design}
+    
+
+    \subsection{[Pattern] Usability Requirements Definition}
+    \label{sec:Patt2.1}
+        Understanding what is within the agreed budget for some project development is a skill that requires both a focus on the project and on the users’ expectations by which the project’s success is measured. When the main goal of the project is to achieve a usable solution, managing the users’ expectations becomes much more important and can define the entire development strategy.
+        
+        \subsubsection{PROBLEM}
+        How to define expectations and desired usability of the intended \gls{dsl}?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Independent perspectives on quality.} Language Engineers are able to reason about quality during development process. However, their perspective on quality does not necessarily match the perspective of other stakeholders, namely the \gls{dsl}s End Users. These users originate from potentially different cultural backgrounds and have different responsibilities and motivations within the domain. That means that the perspective with which each End User of the language can look at it varies. By looking to the same language artifact, different stakeholders will mainly focus on a partial view of it, but all those partial views should be kept consistent. Features will have different importance to different stakeholders, shifting his interest to different measures of quality. Failing to identify this mismatch may lead to a solution that does not meet the expectations of the \gls{dsl} users.
+                    \item  \textit{Conceptual model.} Analysis of usability requirements can bring us closer to building a correct conceptual model of solution and complete requirements model from the End Users point of view.
+                    \item  \textit{Language Choice.} When surveying commonly used software tools in the domain it is very easy to end up comparing apples with oranges. Systematic studies of the tools of the trade need to be performed, placing careful consideration with the intended use of the different tools. Tools with slightly different applicability, even if used in the same context of use should not be compared, unless the comparison takes into account these application dissimilarities. For instance, Microsoft Excel and the statistical software R can both be used to perform statistical analysis. However these are two very different tools and each excels in its own specific niche.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+            While building domain concepts, through direct interaction with Domain Experts it is valuable to collect background information of the intended users of each language concepts, to find what usability means to them. We essentially need to have a way to keep all target user groups’ needs in mind when developing the language.
+            
+            The Expert Evaluator should formulate a survey, questionnaire or interview with intended user groups about their knowledge background and experience with previous approaches. This will help the engineering team to define precise user scenarios that should be the focus of the iteration cycle. While electing domain concepts, critical features that the user is concerned with should be identified and their relation with appropriate quality dimensions and attributes should be modeled. This model will later be used during experiment design to construct correct instruments, like questionnaires, to measure the distance between wished and achieved quality in use of provided solution.
+
+            In addition it is necessary to collect all data relating to the work environment and software products that are already in use to solve the problems inherent to the domain. It is important to identify characteristics that the users find that are useful, frustrating or lacking while using those products. In this way engineering team can find what quality means in the specific context of use for each user profile.
+
+            The solution provided intends to provide the basis by which the engineering team will define requirements and domain-specific goals that need to be considered. For a more in-depth explanation of this solution, we advise the reader to scan through the following example.
+            
+             % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Pheasant usability requirements for Understandability}
+            \label{tbl:ReqUnderstand}
+            \begin{tabular}{|p{0.18\columnwidth}|p{0.85\columnwidth}|}
+            \hline
+            \multicolumn{2}{|l|}{\textbf{Understandability}}                                                                                                   \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ1: The language features should be easy to understand, represented with familiar notation to user} \\ \hline
+            \textit{Internal Quality}               & Check consistency with physics notation                                                                  \\ \hline
+            \textit{External Quality}                & Validate ambiguous feature design decisions with Domain Expert                                           \\ \hline
+            \textit{Quality in Use}                 & Give simple tasks to users and capture time and eye movement in order to find required features          \\ \hline
+            \textit{Quality of Experience}          & Capture user opinion about features that take a longer time to be assessed by user                       \\ \hline
+            \end{tabular}
+            \end{table}
+            
+            % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Pheasant usability requirements for Expressiveness}
+            \label{tbl:ReqExpress}
+            \begin{tabular}{|p{0.18\columnwidth}|p{0.85\columnwidth}|}
+            \hline
+            \multicolumn{2}{|l|}{\textbf{Expressiveness}}                                                                                                                                    \\ \hline
+            \multicolumn{2}{|l|}{\cellcolor[HTML]{C0C0C0}REQ2: Provide simple way to present complex queries}                                                                                \\ \hline
+            \textit{Internal Quality}      & Repetitive construct flows of solving complex queries should be represented near each other                                                     \\ \hline
+            \textit{External Quality}       & Comparison tests on effort needed to solve the same queries with different designs                                                              \\ \hline
+            \textit{Quality in Use}        & Measuring time needed by expert users to solve complex queries                                                                                  \\ \hline
+            \textit{Quality of Experience} & Feedback on logical flows of provided solution                                                                                                  \\ \hline
+            \multicolumn{2}{|l|}{\cellcolor[HTML]{C0C0C0}REQ3: Improved readability of queries}                                                                                              \\ \hline
+            \textit{Internal Quality}      & Check query representations of baseline approach and its problems                                                                               \\ \hline
+            \textit{External Quality}       & Comparison tests on effort needed to solve the same queries with different designs                                                              \\ \hline
+            \textit{Quality in Use}        & Correctness of query interpretation by end users                                                                                                \\ \hline
+            \textit{Quality of Experience} & Capture user suggestions of improvements for contracts that are not interpreted correctly, likability and confusions of solution representation \\ \hline
+            \end{tabular}
+            \end{table}
+            
+            % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Pheasant usability requirements for Learnability}
+            \label{tbl:ReqLearm}
+            \begin{tabular}{|p{0.18\columnwidth}|p{0.85\columnwidth}|}
+            \hline
+            \multicolumn{2}{|l|}{\textbf{Learnability}}                                                                                                                                                                               \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ4: The user documentation and help should be complete}                                                                                                                    \\ \hline
+            \textit{Internal Quality}      & All syntactic elements of language should be well documented and consistent with metamodel change                                                                                        \\ \hline
+            \textit{External Quality}       & All given language functionalities should be explained in documentation and followed by example                                                                                          \\ \hline
+            \textit{Quality in Use}        & Check how fast is user able to perform querying using help                                                                                                                               \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ5: The help should be context sensitive and explain how to achieve common tasks for different types of users}                                                             \\ \hline
+            \textit{Internal Quality}      & Check that provided description of use for each syntactic element covers all use cases that include that element                                                                         \\ \hline
+            \textit{External Quality}       & For given use cases, check coverage of the examples provided for given language functionalities                                                                                          \\ \hline
+            \textit{Quality in Use}        & Check if the user is able to reuse same concepts in different context.                                                                                                                   \\ \hline
+            \textit{Quality of Experience} & (Usually contextual help will present simple example. These should be checked with more complex examples)                                                                                \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ6: Language syntax elements should be easy to remember by the user}                                                                                                       \\ \hline
+            \textit{Internal Quality}      & For each syntax element, ask the user to give it a meaning, and if it is confused to ask for other suggestion                                                                            \\ \hline
+            \textit{External Quality}       & Provide examples on how to solve problems and ask users to solve a similar problem for which solution requires the same constructs (without consulting teaching materials).              \\ \hline
+            \textit{Quality in Use}        & Follow how frequently users ask for help to find same concepts (operators, relation symbols)                                                                                             \\ \hline
+            \textit{Quality of Experience} & Capture repetitive misinterpretations of language elements by novice users and provide quick test to experienced users for that element and collect feedback with additional suggestions \\ \hline
+            \end{tabular}
+            \end{table}
+        
+        \subsubsection{EXAMPLE}
+            In the case of \gls{pheasant}, one of the main requirements that motivated the project was the need to provide a more efficient and easier to learn query language, thus overcoming the problems of the previous approach. However, the new \gls{pheasant} queries needed to remain consistent with the underlying system framework, so that would not be necessary to change previously existing queries or future queries developed in other systems. The \gls{pheasant} language needed to be developed aiming to raise the level of abstraction in such a way that the End Users could ignore individual query implementations of the different frameworks and in fact share their queries (i.e. have a way to talk about the specification of their queries without having to go deeply into the details of the programming environment).
+            
+             Usability can be assessed at levels of Internal/External Quality, Quality in Use and Quality of Experience \cite{isoiec9126}. As follow, we present the partial list of Usability requirements and tasks for Understandability (Table \ref{tbl:ReqUnderstand}), Expressiveness (Table \ref{tbl:ReqExpress}), Learnability (Table \ref{tbl:ReqLearm}), Functionality (Table \ref{tbl:ReqFunc}) and Operability (Table \ref{tbl:ReqOper}).
+             
+             
+            
+            
+            
+            % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Pheasant usability requirements for Functionality}
+            \label{tbl:ReqFunc}
+            \begin{tabular}{|p{0.18\columnwidth}|p{0.85\columnwidth}|}
+            \hline
+            \multicolumn{2}{|l|}{\textbf{Functionality}}                                                                                                    \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ7: Most frequent Querying task should be easy to do}                                            \\ \hline
+            \textit{Internal Quality}                 & Build concept element from most frequent tasks which have common logic                              \\ \hline
+            \textit{External Quality}                  & Count number of steps required to perform task                                                      \\ \hline
+            \textit{Quality in Use}                   & Measure time and number of mouse clicks/keystrokes to perform the task                              \\ \hline
+            \textit{Quality of Experience}            & Collecting feedback about likeability and pleasure that provided solution given to users            \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ8: Concepts that are parts of same task should be presented sequentially, following same logic} \\ \hline
+            \textit{Internal Quality}                 & Sequence of domain concept relations should be analyzed against the tasks they belong to            \\ \hline
+            \textit{External Quality}                  & Make sequence diagrams with domain concepts                                                         \\ \hline
+            \textit{Quality in Use}                   & Focus on repetitive operations of tasks and make sure they have the same use process                \\ \hline
+            \textit{Quality of Experience}            & Collecting feedback about likeability and pleasure that provided solution given to users            \\ \hline
+            \end{tabular}
+            \end{table}
+            
+            % Please add the following required packages to your document preamble:
+            % \usepackage[table,xcdraw]{xcolor}
+            % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+            \begin{table}[]
+            \centering
+            \caption{Pheasant usability requirements for Operability}
+            \label{tbl:ReqOper}
+            \begin{tabular}{|p{0.18\columnwidth}|p{0.85\columnwidth}|}
+            \hline
+            \multicolumn{2}{|l|}{\textbf{Operability}}                                                                                                                                                                \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ9: Language actions and elements should be consistent}                                                                                                    \\ \hline
+            \textit{Internal Quality}      & Feature and behavior diagram validation with Domain Experts                                                                                                              \\ \hline
+            \textit{External Quality}       & Testing if all diagram relations and rules are implemented correctly                                                                                                     \\ \hline
+            \textit{Quality in Use}        & Correctness of solving tasks that are constructed based on scenarios from which diagrams were extracted                                                                  \\ \hline
+            \textit{Quality of Experience} & User opinion on improving consistency for tasks that have low level of correct solutions                                                                                 \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ10: Error messages should explain how to recover from the error}                                                                                          \\ \hline
+            \textit{Internal Quality}      & Specifying language constructs where error recovery should be implemented                                                                                                \\ \hline
+            \textit{External Quality}       & Testing error recovery by specification                                                                                                                                  \\ \hline
+            \textit{Quality in Use}        & Giving tasks that lead users to error messages and asking them for feedback about them                                                                                   \\ \hline
+            \textit{Quality of Experience} & Collecting feedback about missing, misleading and incorrect error messages                                                                                               \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ11: Undo should be available for most actions}                                                                                                            \\ \hline
+            \textit{Internal Quality}      & specifying undo construct                                                                                                                                                \\ \hline
+            \textit{External Quality}       & Testing of undo construct                                                                                                                                                \\ \hline
+            \textit{Quality in Use}        & Capturing use of undo construct while solving tasks                                                                                                                      \\ \hline
+            \textit{Quality of Experience} & Collecting feedback about missing, misleading and incorrect undo options                                                                                                 \\ \hline
+            
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ12: Prevent users from producing syntax errors (e.g. misspelling)}                                                                                        \\ \hline
+            \textit{Internal Quality}      & Specifying model checkers inside the language                                                                                                                            \\ \hline
+            \textit{External Quality}       & Implementing and testing model checkers                                                                                                                                  \\ \hline
+            \textit{Quality in Use}        & Capturing user’s repetitive intent to produce same syntactic errors, and asking their opinion on how they can be more intuitive                                          \\ \hline
+            \textit{Quality of Experience} & Collecting syntax errors that may be produced by use of language in log files                                                                                            \\ \hline
+            \multicolumn{2}{|p{1.06\columnwidth}|}{\cellcolor[HTML]{C0C0C0}REQ13: Prevent users from producing semantic errors}                                                                                                         \\ \hline
+            \textit{Internal Quality}      & Specifying model checkers inside the language                                                                                                                            \\ \hline
+            \textit{External Quality}       & Implementing and testing model checkers                                                                                                                                  \\ \hline
+            \textit{Quality in Use}        & Capturing incorrect query implementations and interviewing expert users about the given meaning (to identify cognitive problem solution or implemented meaning problems) \\ \hline
+            \textit{Quality of Experience} & Capture user’s frustrations of repetitive semantic errors                                                                                                                \\ \hline
+            \end{tabular}
+            \end{table}
+            
+            
+            The diagram given by Figure \ref{fig:Patt_KiviatDiagram} shows how different internal and external quality characteristics from ISO standards influence \gls{pheasant}’s Usability.
+        
+             \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.26]{Chapters/Figures/Patt_KiviatDiagram.png}
+                    \caption{Kiviat diagram of Internal/External Qualities for Pheasant (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_KiviatDiagram}
+            \end{figure}
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{CONCEPTUAL DISTANCE ASSESSMENT} (Section \ref{sec:Patt2.2}). The requirements identified in USABILITY REQUIREMENTS DEFINITION are prioritized based on the quality attributes they impact.
+                \item \emph{USABILITY REQUIREMENTS TESTING} (Section \ref{sec:Patt2.4}). Usability tests performed at each iteration are evaluated against the usability requirements so as to allow a definition that encompasses the current usability status of the language.
+                \item \emph{EXPERIMENTAL \gls{dsl} EVALUATION DESIGN} (Section \ref{sec:Patt2.5}). The usability requirements defined at the level of this are specified in QUALITY DESIGN MODEL that is part of EXPERIMENTAL EVALUATION MODEL.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            Usability is seen as a special aspect in requirement engineering, of which the main phase is requirements definition \cite{carlshamre2001usability}. Benefits of requirement engineering for MDD approach can be seen in examples of software product lines, supporting traceability and contributing to flexibility and simplicity in development \cite{alferez2008model}.
+        
+    \subsection{[Pattern] Conceptual Distance Assessment}
+    \label{sec:Patt2.2}
+        Extracting information from the users is a valuable source of data by which to measure the current status of our solutions. However, to be able to analyze how each requirement impacts the \gls{dsl}, we need to find a way to extract influential quality attributes.
+        
+        \subsubsection{PROBLEM}
+            How to measure conceptual distance between the user point of view to solve the problem and the provided solution?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Quality Impact on Usability.} More than defining what quality attributes are important, it is essential to identify the quality attributes whose lack of actually impacts usability. That information should enable developers to produce pertinent usability metrics.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+            In order to understand how the design of the language’s architecture impacts the usability requirements, the engineering team is required to elect quality attributes and connect them with domain concepts, creating a two-way relationship of <influences/is influenced by>.
+            
+            Furthermore, for each domain concept and related usability requirement, we should identify both its frequency and relevance within the domain. Weights should be assigned between the quality attributes and the domain concepts according to their influence on the final usability of the language.
+
+            Next, it is necessary to identify the frequency of different tasks that are covered by the iteration scenario. Tasks should be divided into subtasks that can be directly related with the domain concepts that will be tested.
+
+            This process will allow the Expert Evaluator to decide which usability tests are most pertinent in the current development stage and for a specific usage context. Controlling iteration priorities in turn enables a higher level of management over the usability process, by defining which usability aspects and features are to be tested iteration-wise.
+        
+        \subsubsection{EXAMPLE}
+            For \gls{pheasant}, considering only query writing tasks, the list of subtasks that the user is required to cope with and respective frequency is as described in Figure \ref{fig:Patt_TaskFreq}.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_TaskFreq.png}
+                    \caption{Task frequency use table (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_TaskFreq}
+            \end{figure}
+            
+            Writing query task consist of four subtasks: (i) Selecting Collections, (ii) Selecting Events, (iii) Selecting the Decay and (iv) Selecting the Result. These subtasks are capturing the domain concepts presented as the metamodel elements (see Figure \ref{fig:Patt_Query}).
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_Query.png}
+                    \caption{Query subtask connection with metamodel elements (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_Query}
+            \end{figure}
+            
+            After having this analysis, it makes it easier to connect the metamodel elements with usability requirements and produce concrete metrics in the terms of combination of subtasks that user need to perform.
+            
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{USABILITY REQUIREMENTS DEFINITION} (Section \ref{sec:Patt2.1}). In order to consider the impact of Domain Concepts on the development, a clearly defined list of usability requirements is essential.
+                \item \emph{DOMAIN CONCEPT USABILITY EVALUATION} (Section \ref{sec:Patt2.3}). The impact of the domain concept on the quality of the end product influences evaluation priority and importance.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            Conceptual distance has its roots in cognitive psychology. The concept of modularity that is involved in MDD allows us to measure this distance using cognitive maps \cite{Monteiro2011}. Application of this approach is visible in terms of analysis of physical notations and cognitive effectiveness \cite{moody2009evaluating, Blackwell2003NotationalFramework}.
+        
+    \subsection{[Pattern] Domain Concept Usability Evaluation}
+    \label{sec:Patt2.3}
+            There are many advantages of determining the required quality characteristics of a \gls{dsl} before it is developed and used. Metrics are a common way to determine whether a software development project is within the parameters that were defined for its execution, i.e. budget and timeline. They are also useful to analyze whether some functional goals are being accomplished. For \gls{dsl} development, the focus of metric-based analysis is the language metamodel.
+            
+        \subsubsection{PROBLEM}
+            How to capture domain concept related with usability problems using metrics?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Metamodel evaluation.} The level by which a metamodel is analyzed for usability issues has a direct relation to future failures in implementation. Performing some measure of qualitative analysis of initial language metamodel, which contains the domain concepts mapping at their initially stages, is an important step in language engineering, since problems identified at earlier phases would not be propagated onto the following phases of development.
+                    \item  \textit{Agile development.} The domain concepts defined in the language metamodel should not be considered final and can/should be analyzed at fixed stages during development in order to evaluate the ability of the metamodel to apprehend all needed domain concepts and to allow for the agile inclusion of usability requirements.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+            During the metamodel implementation phase, which is usually complex as the Language Engineer needs to model all the domain concepts into the metamodel, it is also the time when all domain concepts are fresher and can thus be analyzed from a top-down perspective.
+            
+            Using metrics to analyze metamodel concept’s representation allows the engineering team to reason on how different concept modeling will impact the Usability of the \gls{dsl}. Applying internal and external quality metrics we can reason about syntax dependences (i.e. metamodel’s features) and their relation (i.e. meaning that they give).
+            
+            Ideally the engineering team should be able to understand how changes and variations in the metamodel’s design influence functionality, operability and overall usability of the language. With this knowledge he can measure and decide the importance of quality attributes to achieve the end goal and therefore which ones should be targeted and subsequently validated.
+            
+            Not all metrics and measurements contribute to this end as they might not provide important feedback regarding quality improvement. The most significant metrics analyze direct \gls{dsl} usage by \gls{dsl} users and extract information from the gathered \gls{dsl} corpus. Examples of these metrics include:
+            \begin{itemize}
+                \item [-] \textit{Clone Analysis.} Like in \gls{gpl}s, duplicated code is a very well-known code smell that indicates modularization problems \cite{beck1999bad}. In \gls{dsl}s corpus, more than a need to modularize, the existence of several clones, consistently showing up with a given pattern, should trigger our attention.
+                \item [-] \textit{Cluster Analysis.} Identifying clusters of domain concepts in the language corpus allows the Language Engineer to evaluate if related concepts or concepts that are often used together represent a sub-language within the \gls{dsl}, i.e. how the changes in the corpus are reflecting in the usability of the \gls{dsl}. This is again a modularity issue, as clusters should be, as much as possible, modularly independent from other clusters, thus usability issues in one cluster should not influence other clusters.
+                \item [-] \textit{Semantics-based Analysis.} Performing language analysis on the metamodel might help identify variations of the same meaning.
+                \item [-] \textit{Usage Analysis.} Metamodel elements with a high level of use by the users require more thought and consideration according to usability than less used concepts.
+                \item [-] \textit{Metamodel Design Pattern.} Specification of a metamodel is dependent on the designer’s domain knowledge and language expertise. Thus, it is advisable to follow existing designs patterns for metamodels \cite{cho2012creating}.
+            \end{itemize}
+            
+            Careful consideration of these and other available heuristics of actual usage of the \gls{dsl} will allow the development team to direct project resources to the most critical language features.
+
+        \subsubsection{EXAMPLE}
+            Evaluating \gls{pheasant} is not a trivial task. Nonetheless, the physicist, who takes the role of the query modeler, is immediately aware of the changes in the instances of the meta-Metamodel just by using the visual operators when modeling his query (see Figure \ref{fig:Patt_CororaAmaral}). This picture represents the direct mapping that exists from the user actions in the model to the metamodel of language.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_CorporaAmaral.png}
+                    \caption{Corpora relation to the metamodel tasks (taken from \cite{Amaral2005Thesis})}
+                    \label{fig:Patt_CororaAmaral}
+            \end{figure}
+            
+            For the first cycles, the influence of quality characteristics of the language corpora on the user should be determined from user tasks. From these, and after the first quality assessment of the metamodel, the engineering team identifies potential need for clones and clusters. For instance, consider that the user identifies the need for two ways to accomplish the same thing, i.e. two distinct processes leading to the same outcome. The Language Engineer needs to design this in the metamodel. In this case the metamodel element representing the action needs sub-elements representing the different variations of the same task. This need should then be validated by discussing the true impact of these clusters and clones on the language’s usability. In later validations of quality in use these agreements should be tracked, so as to understand if the existing metamodel analysis premises are needed in the new version or if the scope changed.
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{CONCEPTUAL DISTANCE ASSESSMENT} (Section \ref{sec:Patt2.2}). The true impact of domains concepts in the quality in use of the \gls{dsl} is measured by DOMAIN CONCEPT USABILITY EVALUATION.
+                \item \emph{USABILITY REQUIREMENTS TESTING} (Section \ref{sec:Patt2.4}). DOMAIN CONCEPT USABILITY EVALUATION will also help reduce the budget for usability testing by directing tests to the most essential language features.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            Evaluation of concepts is performed using a conceptual dimensions framework \cite{Kosar2010}. This approach is also used in user interfaces evaluation by building a conceptual models \cite{johnson2002conceptual}.
+        
+    \subsection{[Pattern] Usability Requirements Testing}
+    \label{sec:Patt2.4}
+        Satisfying the user’s needs should be the primary goal of a \gls{dsl}. Therefore all \gls{dsl}s have a strong consideration for quality in use, i.e. usability. It is important not only to define what are the principles by which the language is to be measured, i.e. which usability requirements and quality attributes define if a specific language is usable or not, but also what tests can be performed to ensure that the desired level of quality is achieved.
+                
+        \subsubsection{PROBLEM}
+        How to analyze if the goal usability requirements are being met by the \gls{dsl}?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Cost of Heuristic Validation.} Heuristic validation can be a very time consuming task. However, performing non-expensive heuristic validation, we can reveal lots of relevant information about achieved level of usability.
+                    \item  \textit{Cost of User Evaluation with small number of participants.} Validation of usability with a small number of users between release cycles can identify lots of usability failures.
+                    \item  \textit{Iterative Feedback.} All feedback collected can be used to create mean values for the indicators of the next iteration cycles.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+        
+            At the end of each iteration, a USABILITY REQUIREMENTS TESTING stage is required to evaluate if the current implemented features go towards the usability goals previously defined \cite{dumas1999practical, mayhew1999usability, Nielsen1993}.
+            
+            When considering which tests to perform it is useful to consider the current state of the end product. There are usually three different levels of usability testing, depending on the current iteration:
+            \begin{itemize}
+                \item [-] Initial developments or non-stable product versions should be tested by a reduced set of users, and test should be strictly focused on the features under development. Feedback can be direct, e.g. through workshops and meetings, or through small questionnaires.
+                \item [-] Intermediate stable versions should be tested with a group of users that are expected to interact with provided stable features. It is important to test changes and variations between stable versions and also to test if previously validated features continue to achieve the intended goal. Feedback can be collected through workshops and small questionnaires, and reused for next iterations by extensions related to additional features. At this stage it is useful to observe and analyze user’s usage processes to detect small scale usability problems related to automatic tasks and cognitive processes that usually are not reported.
+                \item [-] Release candidates are the most important focus of usability tests. The Expert Evaluator should ensure that the users are allowed to perform the tests with a minimum of interference and constrains. If a user cannot test due to a bug in the beginning of an activity, the entire test process is undermined.
+
+            \end{itemize}
+            
+            Additionally the Expert Evaluator should define, with the assistance of key stakeholders, a set of heuristic based validation methodology that will allow validation of the \gls{dsl} without direct user intervention. These can be for instance a measure of user clicks to achieve a certain use case, product performance and responsiveness, ability to roll back on user errors, content placement, etc.
+            
+            There are a few guidelines that should be followed to successfully perform usability tests:
+            \begin{itemize}
+                \item [-] Test usability with real \gls{dsl} users.
+                \item [-] Ideally use real usage test cases rather than dummy examples. For the final stages of development, a beta testing of a stable version of the \gls{dsl} in real life usage environment should be considered.
+                \item [-] Tasks and features being tested should be directly related to the goals and concerns of the current iteration.
+                \item [-] All user feedback should be accounted for, even if no measure of importance can be given to the feedback, it might serve to provide feedback on the user’s state of mind and motivations.
+                \item [-] If possible allow for discussion. Users usually have different views of a same subject and it is useful to allow them to debate these views in order to reach a common understanding.
+            \end{itemize}
+        
+        \subsubsection{EXAMPLE}
+            Falling back to the Goal of the 5th iteration (Figure \ref{fig:Patt_UsabilityTest}), i.e. knowing how easy the language is to learn and use, usability tests are constructed following the next table.
+            
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_UsabilityTest.png}
+                    \caption{Pheasant Usability testing (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_UsabilityTest}
+            \end{figure}
+            
+            The testing instruments were developed as evaluation queries and feedback questionnaires.
+            
+            Evaluation Queries are given in four levels of complexity. Queries are given in natural language English to be rewritten in the previously learned language (i.e. \gls{pheasant}). For each of the queries, time taken to reply them is taken. In the \gls{pheasant} project, queries were evaluated according to an error rate scale (0-5) and correctness was measured according to a self-assessment by the subject of his reply, essentially rating his feeling of the correctness of the answer. The rates were: totally correct (TC), almost correct (AC), totally incorrect (TI), not attempted (NA).
+
+            After each session, the participants were asked to judge the intuitiveness, suitability and effectiveness of the query language. After the tests are completed, the participants were asked to compare specific aspects of query languages. They rated which query language they preferred and to what extent. After the evaluation session the participants were asked to write down informal comments and suggestions for improving the language.
+
+            Example of result analysis of confidence with using the language constructs is given in Figure \ref{fig:Patt_LangConstruct}.
+
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.45]{Chapters/Figures/Patt_LangConstruct.png}
+                    \caption{Language constructs analysis (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_LangConstruct}
+            \end{figure}
+            
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{ITERATION VALIDATION} (Section \ref{sec:Patt1.4}). Tests performed in USABILITY REQUIREMENTS TESTING are used to supply feedback to each ITERATION VALIDATION.
+                \item \emph{USABILITY REQUIREMENTS DEFINITION} (Section \ref{sec:Patt2.1}). Feedback data collected can help define next iteration usability requirements.
+                \item \emph{DOMAIN CONCEPT USABILITY EVALUATION} (Section \ref{sec:Patt2.3}). The users’ feedback provides a good starting point to define which domain concepts are correctly mapped and which pose problems.
+                \item \emph{EXPERIMENTAL \gls{dsl} EVALUATION DESIGN.} (Section \ref{sec:Patt2.5}). USABILITY REQUIREMENTS TESTING is a complementary activity to EXPERIMENTAL LANGUAGE EVALUATION DESIGN as the goals and test methodology differs.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            This approach originates from usability engineering \cite{rubin2008handbook}. Its application can be seen in existing usability evaluation \gls{dsl} examples, for instance  \cite{Barisic2012plateu, murray2000kaleidoquery, kosar2011program}, for longer list consult Chapter \ref{cha:related}.
+        
+    \subsection{[Pattern] Experimental DSL Evaluation Design}
+    \label{sec:Patt2.5}
+        Using ITERATIVE USER-CENTERED \gls{dsl} DESIGN, the Expert Evaluator needs to define how to evaluate by which measure the language, or a prototype of the language, is in accordance with the elicited requirements.
+                
+        \subsubsection{PROBLEM}
+            How to design and control the process of empirical experimentation to get sound results?
+        
+        \subsubsection{FORCES}
+            \begin{itemize}
+                    \item \textit{Experimentation definition.} The definition of the experimentation expresses something about why a particular language evaluation was performed and may help justify the budget assigned to this type of validation \cite{Basili1996ICSE}.
+                    \item  \textit{User Expectations.} The expectations of users need to be managed and evened out prior to the experiment; otherwise there is a high chance of impact in the end result: an extremely good result, if expectations are low or a poor result in case of high expectations.
+                    \item  \textit{User Distribution.} Ensuring that experimental evaluation is performed with an equitable distribution of users representative of the most influential groups will reduce selection bias and ensure the end results will be representative of the goal real life usage.
+                    \item  \textit{Hypothesis Guessing.} The development team through experience usually has a pre-conceived idea of the hypothesis result. This can influence the behavior of the experiment’s participant.
+                    \item  \textit{Evaluation Scarcity.} Not all iterations require full-fledged evaluation in order for the requirements to be considered successfully achieved. However, presenting to the \gls{dsl} user a final version of the language without it being thoroughly and extensively tested by \gls{dsl} users in a real-life use case is not an ideal solution. Nonetheless option is used many times due to the complexities of performing experimental evaluation with \gls{dsl} users.
+                \end{itemize}
+        
+        \subsubsection{SOLUTION}
+            When a release candidate version of the \gls{dsl} for a specific target user group seems to be ready for deployment, an experimental usability validation should be performed with real users and real test case scenarios.
+        
+            Experiment planning expresses something about how it will be performed. Before starting the experiment, some considerations and decisions have to be made concerning the context of the experiment. 
+            
+            Only after all these details are sorted out should the experiment be performed. The outcome of planning is the EXPERIMENTAL EVALUATION MODEL (see Section \ref{sec:exModel}), which should encompass enough details in order to be replicable by and independent source.
+            
+            Experimental evaluation is based on quantitative evaluation of measurable properties collected from real scenarios. In this case, the aim of the experiment is to support or refute the hypothesis that the end result \gls{dsl} has a direct and positive impact on usability and user performance.
+        
+        \subsubsection{EXAMPLE}
+            The example of instantiation of EXPERIMENTAL EVALUATION MODEL is detailed in Section \ref{sec:exEvalModel}.
+        
+        \subsubsection{RELATED PATTERNS}
+            \begin{itemize}
+                \item \emph{USABILITY REQUIREMENTS DEFINITION.} (Section \ref{sec:Patt2.1}). The requirements defined will be validated at this stage. Also, if the development cycle is not yet complete, the feedback from EXPERIMENTAL \gls{dsl} EVALUATION DESIGN is fed back into USABILITY REQUIREMENTS DEFINITION to redefine the goals of the next iteration evaluation.
+                \item \emph{USABILITY REQUIREMENTS TESTING.} (Section \ref{sec:Patt2.4}). EXPERIMENTAL \gls{dsl} EVALUATION DESIGN is a complementary activity to USABILITY REQUIREMENTS TESTING as the goals and test methodology differs.
+                \item \emph{EXPERIMENTAL EVALUATION MODEL.} (Section \ref{sec:exEvalModel}). Through this pattern we are setting the processes and scope of the EXPERIMENTAL EVALUATION MODEL, OF which example pattern applications are given.
+            \end{itemize}
+        
+        \subsubsection{KNOWN USES}
+            Detailed evaluation design is used in both usability engineering and experimental software engineering. This approach is modeled from the language comparison from  \cite{Goulao2008PhD} and discussed in Section \ref{sec:experiment}.
+
+\section{Experimental Evaluation Model}
+\label{sec:exEvalModel}
+
+    \subsection{[Model Instance] Problem Statement Design}
+    \label{sec:Patt3.1}
+        
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_PheasantProblemStatement.png}
+                    \caption{Pheasant experimental Problem Statement instantiation model (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_PheasantProblemStatement}
+            \end{figure}
+            
+    Following with the example of \gls{pheasant}, we define the problem statement as a confluence of the academic context in which \gls{pheasant} is to be used. Therefore usability objectives and the experiments to measure these objectives have to take into account this context, i.e. academic level of the users, purpose, objectives and goals. This will help model a problem statement that encompasses all contextual aspects (Figure \ref{fig:Patt_PheasantProblemStatement}).
+    
+    \subsection{[Model Instance] Context Design}
+    \label{sec:Patt3.2}
+    
+            \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_PheasantContext.png}
+                    \caption{Pheasant experimental Context instantiation model (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_PheasantContext}
+            \end{figure}
+    
+        The context of an experiment determines our ability to generalize from the experimental results to a wider context (Figure \ref{fig:Patt_PheasantContext}). However, regardless of the specific context of the experiment, there are a number of context parameters that remain stable and their value is the same for all the subjects in the experiment.
+    
+    \subsection{[Model Instance] Instrument Design}
+    \label{sec:Patt3.3}
+    
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_PheasantInstruments.png}
+                    \caption{Pheasant experimental Instrumental design instantiation model (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_PheasantInstruments}
+            \end{figure}
+    
+        Thus, having an instrument design model (Figure \ref{fig:Patt_PheasantInstruments}) definition makes the task of analyzing the feedback received for target features across different iterations and users a much easier task. Modeling instruments is also useful to measure the independent tasks that directly impact usability. Experimenters in human factors have developed a list of tasks to capture particular usability aspects (Sentence writing; Sentence reading, Sentence interpretation, Comprehension, Memorization and Problem solving).
+        
+        For \gls{pheasant}, the Expert Evaluator defined two types of instruments for the experimentation: Task Questionnaires, designed to capture Sentence Writing, Memorization and Problem Solving, and Feedback Questionnaires, which are used to get better insight in users satisfaction, and additional recommendations.
+    
+    \subsection{[Model Instance] Sample Design}
+    \label{sec:Patt3.4}
+        
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_PheasantSample.png}
+                    \caption{Pheasant experimental Sample design instantiation model (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_PheasantSample}
+            \end{figure}
+            
+    The Expert Evaluator should clearly define the profile of the participants and the artifacts that are involved in the experiment (Figure \ref{fig:Patt_PheasantSample}).
+    
+    \subsection{[Model Instance] Quality Design}
+    \label{sec:Patt3.5}
+    
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_ProblemQuality.png}
+                    \caption{Pheasant experimental Quality Design class diagram (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_ProblemQuality}
+            \end{figure}
+            
+        Quality focus needs to be defined through criteria, which can be recursively decomposed into sub criteria (Figure \ref{fig:Patt_ProblemQuality}). For each criterion we should specify different recommendations, i.e. positive assessments that characterize criteria. We should specify a weight for each recommendation to define which of them are more important than others for the subjects involved in the experimental evaluation.
+        
+        Evaluations of each quality criteria should be performed through methods that are specified by metrics and/or practices. Metrics gives us numerical results that can be comprised between some limits when defined, while practice can be either a pattern or an anti-pattern, applied at the process level, or on a language. Both are directly evaluated on the experiment subjects’ trough recommendations \cite{garcia2011}.
+    
+    \subsection{[Model Instance] Hypothesis and Variables Design}
+    \label{sec:Patt3.6}
+    
+        \begin{figure}[h]
+                \centering
+                    \includegraphics[scale=0.25]{Chapters/Figures/Patt_PheasantHypothesis.png}
+                    \caption{Pheasant experimental Hypothesis and Variable design instantiation model (taken from \cite{Barisic2012patterns})}
+                    \label{fig:Patt_PheasantHypothesis}
+            \end{figure}
+
+        When a result of the evaluation does not satisfy the expected level of quality in use, the designer will need to increase the quality by setting a transformations or set of transformations. These transformations are related to language artifacts on which the evaluation was performed. Iterations can be done in same experimental settings until the desired quality is reached.
+        
+        The analysis techniques chosen for the language evaluation experiment depend on the adopted language evaluation design, the variables defined earlier, and the research hypotheses being tested (Figure \ref{fig:Patt_PheasantHypothesis}). More than one technique may be assigned to each of the research hypotheses, if necessary, so that the analysis results can be cross-checked later. Furthermore, each of the hypotheses may be analyzed with a different technique. This may be required if the set of variables involved in that hypothesis differs from the set being used in the other hypotheses under tested.
+

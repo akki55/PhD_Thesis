@@ -1,0 +1,350 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter.tex
+%% NOVA thesis document file
+%%
+%% Chapter with solution proposal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{The Usability Software Engineering Modelling Environment (USE-ME)}
+\label{cha:useme}
+
+%(source: Annex 2 Section 4)
+
+    As already mentioned in Section \ref{sec:Usability}, usability engineering aims to increase the awareness and acceptance of established usability methods among software practitioners. Knowledge of the basic usability methods is expected to enhance the ease of use and acceptability of a system for a particular class of users carrying out specific tasks in a specific environment. It is claimed to affect the user's performance and satisfaction. 
+    %Further, the software engineering supports the systematic development and is concerned with all aspects of software production. 
+    In Chapter \ref{cha:approach} we introduced a systematic approach for usability evaluation of \gls{dsl}s as a pattern language, and defined the experimental model for \gls{dsl}s evaluation. In this Chapter
+    we introduce usability engineering methods into the \gls{dsl} life-cycle (presented in Section \ref{sec:DSL}) by following an \gls{mdd} \gls{sle} process.
+    
+    
+    
+    The main concepts supporting the modelling approach are introduced as  \gls{uml} class diagrams. The flow of activities is described by  \gls{uml} activity diagrams. While discussing the proposed conceptual framework which is based on our systematic approach, we will use the following symbols: 
+    
+    
+    \begin{itemize}
+        \item[-] [] -  main concepts i.e. classes in diagrams; 
+        \item[-] <<>> - attributes and relations of the introduced concepts that are part of the diagram presented in a section, 
+        \item[-] \textit{<Italic>} - attributes and relations that are part of diagrams from other sections, 
+        \item[-] \{\} - instantiation of the concept i.e. instance object;
+        \item[-] '' - activity in a diagram
+        \item[-] \textit{'Italic'} - decision in activity diagram
+    \end{itemize}
+
+%\section {The Usability Software Engineering Modelling Environment (USE-ME)}
+%\label{sec:useme}
+
+    Similarly to other software qualities, usability evaluation should not be just added at the end of the development process. Following the discussion in Section \ref{cha:context}, we argue that it has to be included in the development process from the beginning by accurately profiling the end-user and finding the right definition of the problem. The approach is to support usability evaluations, expressed as regular Expert Evaluator activities, in the \gls{sle}, backed by a conceptual framework that promotes the iterative \gls{ucd} evaluation approach (proposed in Chapter \ref{cha:approach}). 
+    
+    
+    \begin{figure} [h]
+    \centering
+        \includegraphics[scale=0.3]{Chapters/Figures/UseMeCycle.png}
+        \caption{USE-ME life-cycle (taken from \cite{barisic2017UseMeJournal})}
+        \label{fig:usemeCycle}
+    \end{figure}
+    
+    The Usability Software Engineering Modelling Environment (\gls{useme}) presents implementation of our systematic approach from previous Chapter and consists of the following modelling activities that are expected to be performed by the Expert Evaluator (see Figure \ref{fig:usemeCycle}):
+    
+    
+    \begin{enumerate}
+        \item[-] the \textbf{Context Modelling} to define the context of use for the \gls{dsl};
+        \item[-] the \textbf{Goal Modelling} that sets the objectives for the \gls{dsl}; 
+        \item[-] the \textbf{Evaluation Modelling} that instructs the usability experiments;
+        \item[-] the \textbf{Survey Modelling}  that provides the support for survey/feedback collection;
+        \item[-] the \textbf{Interaction Modelling} that defines the interaction task under study;
+        \item[-] the \textbf{Report Modelling} that supports management of the collected data.
+    \end{enumerate}
+    
+    
+    
+    The goal specifications for the \gls{dsl} under evaluation are underpinned by the \textbf{Catalogue of Usability Metrics} that describes usability goals and its possible measurements and treatments. This Catalogue helps to specify the relevant metrics and interpretation of the results. Finally, the \textbf{Goal Coverage Engine} versions the iterative evaluations and defines context coverage for the validated goals.
+    The Expert Evaluator in certain modelling activities is supported by artefacts and feedback provided by other \gls{dsl} stakeholders.
+
+    In Figure \ref{fig:evaluationProcess} we introduced the usability evaluation process during the \gls{dsl} development. The \textit{domain engineering} phase of the process is supported by \gls{useme} Context and Goal Modelling activity. Further, during \textit{design the language} phase Expert Evaluator is finalizing Goal Modelling and starting the Evaluation Modelling activity. Finally, \textit{implementation and testing} phases are supported by Evaluation and Result Modelling activities. 
+    
+    We specified a supporting pattern language for our systematic approach in three design spaces in Section \ref{sec:iterativeUCD} (Figure \ref{fig:patternLang}). The \gls{useme} conceptual framework support the \textit{Agile development process} within Context Modelling activity, which helps in prioritizing relevant context for the development cycle, therefore illustrating a scope and associated cost for intended  evaluation process. The \gls{useme} Goal Modelling activity is essential in supporting the \textit{Iterative User-Centered Design} space, as it supports the definition of usability goals, associated requirements, context dependent metrics and calculation of success, which is correlated with a scope for which it was validated. The Goal Coverage Engine supports the iterations by merging the obtained results of evaluation, produced by Report Modelling activity, and illustrates their impact on new goal model, by taking into account specified context. Finally, the Evaluation Modelling supports the \textit{Experimental Evaluation Model} design space. 
+    
+    
+    
+    \begin{figure}[h]
+    \centering
+        \includegraphics[scale=2.18]{Chapters/Figures/UseMeActivity.png}
+        \caption{USE-ME activity diagram (taken from \cite{barisic2017UseMeJournal})}
+        \label{fig:usemeActivity}
+    \end{figure}
+    
+    We present the process of usability evaluation using a \gls{useme} conceptual framework as an activity diagram (see Figure \ref{fig:usemeActivity}). First, it is necessary to produce a [Context Model (CM)], which supports the description of language context, based on which is possible to describe the usability goals as a [Goal Model (GM)]. The Language Engineer and the Domain Expert are involved in the 'Context Modelling' and 'Goal Modelling' activities, as they are expected to contribute to the interpretation of development artefacts (i.e. domain model, feature model, abstract syntax, etc.) and review of produced specifications. While specifying the goals and their scope, it is likely that new context elements which are relevant for the use of the \gls{dsl} are found. In this case, it is necessary to \textit{'update a CM'} and proceed with specifying a [GM] until we have at least one usability goal for which only actor representing Expert Evaluator is responsible. Further, it is possible to define an [Evaluation Model (EM)], which highlights evaluation goals and their corresponding evaluation steps. The Language Engineer provides the developed artefacts (i.e. \gls{dsl}, documentation, validation tests) and helps to prepare the evaluation. There is a \textit{'need to specify a [Test Model]'} or reuse an existing one. The [Test Model] is crucial for the assessment process and can be defined as an [Interaction Model (IM)] or/and a [Survey Model (SM)]. These two modelling activities depend on the same [EM] and should be performed in parallel to complement each other. However, for certain types of evaluations, it is not necessary to develop both models. For instance, when performing a heuristic evaluation, a checklist implemented as an [SM] can be sufficient. When the [EM] is ready, we can proceed with the 'Evaluation execution' in which Domain Users are included as subjects, while the Language Engineers and Domain Experts help in the evaluation execution. The next step is to analyse the stored results of the test models and to create the [Report Model (RM)], that recommends a [GM] extensions and calculate a success factor of the evaluated usability goal. Finally, it is up to all \gls{dsl} stakeholders to decide to continue to \textit{'new evaluation cycle'} or finalise the assessment period. Ideally, this decision will eventually indicate the end of the development cycle.
+    
+    
+    \section{Utility}
+        In this section, we introduce the Utility package, which contains artefacts that are reused from the existing development process of \gls{dsl}. It includes the following concepts (see Figure \ref{fig:utility}):
+        
+        - \textbf{DSL} - represents a language artefact, which can have associated to it an \emph{Abstract Syntax} and a \emph{Concrete Syntax}. This can be seen as a reference object of the \gls{dsl} under development and its progressive design implementations.
+        
+        - \textbf{Existing GM} - goal model is a standard development artefact in \gls{mdd}. If the \gls{dsl} is evolving from the previous state, or usability analysis is performed in later phases of they development cycle like implementation or testing, we already may have an existing GM from which we should reuse the knowledge. We will not focus during this analysis on \emph{Functional} and \emph{non-functional} goals and requirements. They are seen as a part of an existing goal model. Instead, we are addressing usability goals and requirements which are often dependent on the satisfaction of existing goals and requirements.
+        
+        - \textbf{Profile Template} - is a classification artefact for a user profile. It is used for categorization of user profiles and specifying their features as a \emph{Logical Expression} (e.g. regex, ocl expression, Boolean). These expressions contain a list of concrete (e.g. 'age'>7) or abstract (e.g. 'age'=int) specifications. Expected background experience for profile can be specified by required skills, which sometimes are predefined for certain working/study position.    %Often we may find sources which can be used to import these values which describe potential users, for example, client human resources. 
+        
+        
+        
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.2]{Chapters/Figures/Utility.png}
+            \caption{Utility package (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:utility}
+        \end{figure}
+        
+        - \textbf{CEVariable} - is a variable describing the environment of the language under development. Their elements are parts of the architectural design (e.g. feature diagrams), or the specifications of language supporting equipment and dependent tools (e.g. sensors, operating systems, interaction equipment).
+        
+        - \textbf{Process Model} - is an artefact which refers to business process models designed during \gls{dsl} development. Additionally, specifies the experiment processes designed as a part of \gls{useme} conceptual framework.
+        
+        - \textbf{Survey Engine} - represents an artefact which is connected to existing survey platform (e.g. Google Forms, Survey Monkey, etc.).
+        
+        - \textbf{Priority Value} - represents predefined priority values, which are set to be 3-scaled with values [High], [Medium] and [Low].
+    
+    \section{Context modelling}
+        As pointed in the previous chapter, the evaluations are context dependent. In consequence, the \gls{dsl}'s intended Context of Use should be specified when answering the following questions:
+        \begin{enumerate}
+            \item Who will use the \gls{dsl}?
+            \item Where will the \gls{dsl} be used?
+            \item How is the \gls{dsl} expected to be used?
+        \end{enumerate}
+        We argue that it is sufficient to describe the \textbf{Context Model (CM)} with the following concepts (see Figure \ref{fig:CMA}):
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.4]{Chapters/Figures/ContextModel.png}
+            \caption{Context Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:CMA}
+        \end{figure}
+        
+        - \textbf{User Profile} - helps us to define \textbf{who} will use the \gls{dsl}. The user modelling activity \cite{kobsa2001generic} customises and adapts the language to the user's specific needs. Each profile can be instantiated as a subcategory of the main stakeholders during the \gls{dsl} evaluation, namely \{Language Engineer\}, \{Domain Expert\}, \{Domain User\} and \{Expert Evaluator\}. Also, it stores the <<priority>> regarding the current evaluation needs (in the ongoing development cycle) expressed as an enumerated <\textit{Priority Value}>. 
+         Any additional [User Profile] is justified by a <<classifier>>, presenting any   <\textit{Logical Expression}>, which justifies new <<subProfiles>>. Usually, during this classification, we categorise new profiles by particular <<parent>> characteristics into at least two distinct sets.
+        
+        - \textbf{User Hierarchy} -  is the prioritised categorization of the [User Profile]  presented by the diagram in which each <<subProfile>> inherits the properties of its <<parent>>. These properties are documented using <\textit{Profile Templates}>, and they describe characteristics such as the expected background information (e.g. demographic data, education, special needs/disabilities) and relevant experience with computing and domain activities (e.g. expected knowledge sets, ontology). The [User Hierarchy] represents the user-centered meta-knowledge which categorises profiles and identifies shared semantics.
+        
+        
+        
+        - \textbf{Context Environment} - describes \textbf{where} the \gls{dsl} is to be used. Namely, it can be defined as:
+        
+        - \textit{Technical Environment} - specifies the information about the user's system usage. In other words, software, hardware and network environment that describe the users': i) working equipment (e.g. interacting device specification); ii) \gls{dsl} operating equipment (e.g. storage, calculation libraries); iii) operation systems; iv) supported platforms; v) frameworks; vi) dependent software tools; vii) and, technical usage conditions (such as display capabilities, connection bandwidth, etc.).
+        
+        - \textit{Social Environment} - expresses the relation of the \gls{dsl} to the users' working environment concerning the social context i.e. situational environment \cite{halliday1978language}. The referred situations are used to model a conceptual framework for representing a given the social context of the semiotic environment in which the users exchange meaning. This model recognises the fact that technology is not developed in isolation but as a part of the wider organisational environment.
+        
+        - \textit{Physical Environment} - describes the working equipment and organisation of the physical environment in which the user interacts with the system, as well as the models of the physical systems and their natural environment that are being affected by the use of the \gls{dsl}.
+        
+        
+        The specification of the technical, social or physical elements is stored as a <<cEElement>> which is represented as an environmental variable <\textit{CEVariable}>. The definition of the [Context Environment] instances can be supported by the integration of existing requirement engineering approaches that support traceability of the environmental variables during the software development \cite{lempia2009requirements}.
+        
+        - \textbf{Workflow} - describes \textbf{how} the \gls{dsl} is to be used by documenting prioritised user workflows, which reflect a group of tasks relevant for specific <<userProfiles>> or environment elements i.e, <<cElements>>. The [Workflow] can be defined by using the existing tools for modelling processes (e.g. BPMN \cite{allweyer2010bpmn},  \gls{uml} diagrams \cite{fowler2004uml}, or by the user requirements notation ITU standard \cite{amyot2012towards}). These models are referred by the <<process>> attribute, which reflects the <\textit{ProcessModel}>
+        
+        - \textbf{Scenario} - represents a concrete task, i.e. use case, that produces the possible paths and outcomes. Each [Scenario] describes the user interaction activities, executed by the specific [User Profile] or <<cEElement>> from [Context Environment]. The [Scenario] can be further decomposed in more basic functional actions inside of the system that can be connected to a \gls{dsl}s domain model, preferably to its concrete or abstract syntax features. 
+        
+        
+        The Context Modelling activity, specified by the diagram in Figure \ref{fig:CMActivity}, engages all stakeholders included in the development. It starts with 'User Hierarchy prioritising', for which initial [User Hierarchy] is represented by \gls{dsl} stakeholders, if not specified differently. This prioritisation helps stakeholders to decide the usability evaluation is necessary, and also to indicate from which stakeholder's perspective. Usually, the high priority for the {End User} profile justifies the investment in a reactive experimental approach during the evaluation. Furthermore, it is necessary to perform 'User Profile classification' during which the relevant <<classifiers>> are identified, resulting a new [User Profiles] in the hierarchy. The parallel activity to this user identification is a 'Context Environment definition', during which the physical, social and technical environmental elements, i.e. <<cEElements>>, are specified. Finally, after knowing who will use the \gls{dsl} and where it is going to be used, the expert evaluator can describe why the \gls{dsl} will be utilised by [Workflows] created during the 'Workflow definition'. It is likely that the evaluation expert will identify at this point missing context element specifications, or the need for a new [User Profile] classification. In this case, when the process reaches the decision point \textit{'Need to extend CM?'} it is possible to return and extend associated models. Finally, when there are no new insights after the Workflow specification, the Expert Evaluator is ready to finalise this activity.
+        
+         \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.8]{Chapters/Figures/ContextModeling.png}
+            \caption{Context Modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:CMActivity}
+        \end{figure}
+        
+    \section{Goal modelling} 
+    
+        The \textbf{Goal Model (GM)} specifies objectives that a user may have while using the \gls{dsl}. This model describes '\textbf{why} is the new language being developed?', and this makes it a central part of the \gls{useme} conceptual framework through which we are expected to model context dependent goals and trace the success of the \gls{dsl} under development (see Figure \ref{fig:GM}).
+        
+        Goals capture, at different levels of abstraction, the various objectives the system under consideration should achieve \cite{van2000requirements}. A goal model is a well-known element of requirements engineering that is also widely used in business analysis. They have been used in \gls{sle} to model non-functional requirements \cite{chung2012non} and early requirements for software systems. There are already several approaches for goal modelling; namely, KAOS \cite{van2001goal}, i* \cite{yu1997towards}  and Tropos method \cite{giorgini2005goal}.
+        These approaches already support the core concepts of goal modelling, i.e., goal hierarchy and quantitative and qualitative relations. However, they should be specialised and, in some way extended to serve our research objectives. Usability is found in these approaches as a non-functional requirement or a soft goal. In our approach usability is meant to be highest level objective (i.e. goal) for the developed \gls{dsl}.
+        
+        The [GM] of \gls{useme} can represent extensions to <\textit{Existing GM}> of the language, or can be built from scratch. It is described by \textbf{Usability Goal} using a GOMS (Goal, Operators, Methods, Selection) \cite{dix2004human} and/or GQM (Goal, Question, Metric) analysis \cite{van2002goal}.  The root [Usability Goal] of the [GM] is the {Quality in Use}, and represents <<parentGoal>> of any newly defined <<subGoal>>. Goals are characterised by:
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.4]{Chapters/Figures/GoalModel.png}
+            \caption{Goal Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:GM}
+        \end{figure}
+        
+        - \textbf{Actor} - is a specialisation of \gls{dsl} stakeholder, namely an instantiation of a [User Profile] from the [CM], to which are assigned the responsibilities (<<responsible For>>) for the associated [Usability Goal]. The resulting responsibility model clearly distinguishes stakeholders to which a [Usability Goal] is related (i.e. [Scope]) from the ones that are responsible for achieving it (i.e. [Actor], <<responsibleActor>>).
+        
+        - \textbf{Scope} - that is described by the instance of [CM] for which [Usability Goal] applies. By default, each goal of [GM] applies for the complete [CM], if it is not specified differently (e.g. specific <\textit{User Profile}>, \textit{Workflow}> or \textit{Context Environment}>). The priority level of [Usability Goal] can be inherited from the [Scope] to which it is related to.
+        
+        - \textbf{Method} - defines the measurable requirements (i.e. \emph{Usability Requirement}s) that contribute to the achievement of the goal. It consists of <<testCase>>s taken as individual <\textit{Scenario}>s from [Scope]). These <<testCase>>s can be used to evaluate the requirement. A [Method] is often dependent on the development stage of a \gls{dsl} and the context of the planned evaluation. For instance, during early evaluations without a functional prototype, we can evaluate the readability and understandability of the design; when assessing early ideas, the focus can be to evaluate the feasibility of the language construction or usage process, and finally, when functional prototypes become available, we can perform experiments with using a \gls{dsl}. 
+        A [Method] is associated with <<functionalGoal>> that should be tested by Language Engineer. The <\textit{Functional Goal}> represents the functionalities that are to be provided to support the execution of a <<testCase>>.
+        
+        \textbf{Success Coverage} - reflects the evaluated context coverage and can be represented by the percentage of the [CM] (i.e. [Scope]) to which each success factor applies. As we are evaluating usability, we find that the metric representing the score for the evaluated scope can also rate on the scale from -1 to 1, where the (1) indicates that measured experience was positive, while (-1) indicates a negative experience while using the given \gls{dsl}. Further, the representation of success can use Kiviat diagrams \cite{Barisic2011INFORUM} reflecting different requirements that were taken into consideration, or by a single project dependent indicator predefined by stakeholder \cite{vallecillo2016expressing}.
+        
+        The  Goal Modelling activity, specified by the diagram in Figure \ref{fig:GMActivity}, starts with identifying if there is an \textit{'Existing [GM]?'}. In case there is a [GM], previously created within \gls{useme} or another context, the Expert Evaluator performs '[GM refactoring]' regarding the evaluation Priority and a structure and identifies if there is a need to 'Change or introduce a new [Usability Goal]'. Further, the [Usability Goal] is changed/introduced during 'Goal specification' activity during which Expert Evaluator consults Usability Catalogue (Section \ref{sec:catal}). In parallel, a [Scope] is associated with the goals during 'Context selection' and an [Actor] during 'Responsible actor selection'. Next, it is necessary to verify if the \textit{'Single [Actor] is responsible?'}, meaning that the goal is decomposed into a <<subGoals>> for which only one [Actor] is <<responsibleFor>>, and by this making it ready for evaluation. This is followed by 'Functional Goal association' during which all the functional prerequisites that need to be verified for evaluation are provided by the Language Engineer and associated with [Method] justifying [Usability Goal] evaluation. In parallel, the Expert Evaluator defines an evaluation [Method] during 'Measurable method specification', which aggregates [Usability Requirements] and <<testCases>>. This activity requires consultation of the Usability Catalogue, to reuse the existing metrics if possible. Finally, if the \textit{'[Usability Goal] is evaluated'}, then it is feasible to perform a 'Success Coverage calculation' that indicates the scope for which the goal was evaluated, as well as the evaluation results. 
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.7]{Chapters/Figures/GoalModeling.png}
+            \caption{Goal Modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:GMActivity}
+        \end{figure}
+        
+    \section{Evaluation modelling}
+        Although \gls{dsl}s' development process is not the same as the one of the \gls{ui}s, typically \gls{dsl}s have an explicit underlying model (thanks to meta-models or grammars), while \gls{ui}s models are usually implicit in their implementation. In general, there is no distinction between \gls{dsl}s and \gls{ui}s from the end users point of view, so their evaluation should essentially validate \gls{hci} \cite{Barisic2012plateu}. 
+        
+        Therefore, we can reuse the common techniques used for \gls{ui} usability evaluation; e.g. UCA (Usability Context analysis) \cite{bevan1997quality}, MUSiC (Metrics for Usability Standards in Computing) \cite{binucci1995software} and MAGICA \cite{alva2003comparison} methods and tools. UCA ensures that the user-based evaluation produces valid results, by specifying how important factors are to be handled in the assessment. MUSiC and MAGICA provide modules that can be used for measuring user satisfaction, user performance, cognitive workload, task completion time and analytic measurement.
+        
+        
+        The evaluation modelling activity is expected to support the application of techniques mentioned above that are represented by the \textbf{Evaluation Model [EM]} (see Figure \ref{fig:EM}). [EM] expresses the purpose of evaluating a certain objective (an instance of [GM]) for a \gls{dsl} in the particular context (an instance of [CM]). Therefore, the prerequisites for the evaluation modelling are to have a [GM] and [CM] for a \gls{dsl} under evaluation. This activity is supported by modelling of:
+        
+        
+        - \textbf{Evaluation Goal} - defines the experimental <<hypothesis>> and <<researchQuestions>>. It is related to <<goal>>s specified in [GM] and inherits its <\textit{Methods}> which can be introduced as <<measurements>>.
+        
+        - \textbf{Language} of experimental study - is the <\textit{DSL}> under evaluation. The experimental modelling  supports more than one [Language] to enable comparative evaluations (e.g. with the baseline that can be an alternative system or previous \gls{dsl} version).
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.1]{Chapters/Figures/EvaluationModel.png}
+            \caption{Evaluation Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:EM}
+        \end{figure}
+        
+        - \textbf{Evaluation Context} - specialisation of the [CM] that describes the <\textit{User Profiles}>, <\textit{Workflows}>, and <\textit{Context Environments}> taken into consideration during execution of the experiment. This model preferably should reflect the intersection of the [CMs] that specify [Languages] of the evaluation study, in which each [CM] reflects the <\textit{Scope}> of [Evaluation Goals].
+        
+        - \textbf{Participant} - refers to the actual participants of the study, which are expected to match the [User Profile]  included in the [Evaluation Context]. It also stores contact information of experiment subject.
+        
+        - \textbf{Documentation} - presents teaching materials for the [Language] under study, e.g. videos, guided examples with image annotations, presentations. These materials can be stored in a shared document repository with version support (such as a Wiki). 
+        
+        - \textbf{Test Model} - describes the usability testing activities that are not learning treatments, i.e. questionnaires, interviews, and observations. The creation and execution of these models are supported by the \gls{useme} sub-activities of survey modelling and interaction modelling, described in the following sections. 
+        
+        -\textbf{Process} - defines the concrete design for evaluation by modelling the activities that should be performed with specific [User Profile] that is described by the [Evaluation Context]. The choice of appropriate treatment is guided by its probability to evaluate the [Evaluation Goal]. These activities are represented by [Documentation] and [Test Models]. They specify the flow of learning treatment activities that are modelled in the evaluation [Process].
+        
+        Evaluation modelling activity instantiate experimental model of our systematic approach, defined in Section \ref{sec:exModel}. \textit{Problem Statement Design} (Figure \ref{fig:probStatement}) and \textit{Hypothesis and Variables Design} (Figure \ref{fig:hypothesisDesign}) are encapsulated in the [Evaluation Goal]. \textit{Context Design} (Figure \ref{fig:contextDesign}) definition is supported by [Evaluation Context] and [Process]. \textit{Instrument Design} is supported by [Test Model], or namely [Survey Model] or/and [Interaction Model]. Finally, \textit{Sample Design} (Figure \ref{fig:sampleDesign}) of experimental model is supported by [Participant] and [Language] concepts.
+        
+        
+        
+        When preparing an evaluation (see Figure \ref{fig:EMActivity}), the evaluation expert performs an 'Evaluation language selection' where the \gls{dsl} under development is chosen to be an evaluation object. Next, he defines the experimental objective and participants during 'Evaluation Goal definition' and 'Participant selection' activities. He also decides if he will perform a 'Comparative evaluation?' and, if so, which other language he will use ('Baseline selection'). The 'Evaluation Context specification' activity defines the context that is considered during evaluation, taking into consideration <<profile>> of selected [Participants] and the <<scope>> of the [Evaluation Goal]. This activity can be extended by the context modelling activity if the existing [CM] is missing relevant information.  Before the 'Evaluation execution', it is necessary to produce [Documentation] during the 'Teaching Material creation', define evaluation [Process] by 'Process specification' and prepare the [Test Model] during 'Test Model creation'. The 'Test Model creation' activity selects a previously created [Test Model] or calls the Interaction Modelling or Survey Modelling to produce the new or refined [Test Models].
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.6]{Chapters/Figures/EvaluationModeling.png}
+            \caption{Evaluation Modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:EMActivity}
+        \end{figure}
+        
+    \section{Interaction modelling}
+        The [Test models] that are defined as \textbf{Interaction model [IM]} (see Figure \ref{fig:IM}) encapsulate summative methods for measuring usability over concrete tasks that involve interaction with at least one [Language] (i.e. \gls{dsl} under evaluation or its alternative). The [IM] supports capturing of the predefined events and providing statistics about their occurrences. It is described by:
+        
+        
+        - \textbf{Interaction Syntax} - reflects the interaction elements from the version of the [Language] of experiment study (for instance \gls{dsl}s abstract and/or concrete syntax model, or feature model).
+        
+        - \textbf{Task} -  <<useCase>> taken from the <<scope>> of [Evaluation Context]. It is documented in [Documentation] and represents a concrete task for which the interaction will be analysed.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3]{Chapters/Figures/InteractionModel.png}
+            \caption{Interaction Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:IM}
+        \end{figure}
+        
+        - \textbf{Event} - accounts for the type of data (<<subEvents>>) that will be captured from different interaction devices. It describes how it will be recorded and can refer to single events (e.g. eye movement, mouse click, biosignal, gesture), or to the particular sequence of interaction and/or the sequence of reactions (themselves or as a consequence of interaction sequence). Also, events can be associated with the <<requirement>>. 
+        
+        - \textbf{Interaction Result} - includes the statistical analysis and results of the executed interaction model, where participants use the [Language] of experiment study to perform a [Task].
+        
+        
+        
+        Interaction Modelling (see Figure \ref{fig:IMActivity}) starts with 'Interaction Task definition', that is interdependent on 'Interaction Syntax analysis', as the task is to be solved by the use of the analysed syntax, following the [Workflow] that is included in the [Evaluation Context].  Based on the [Task], the evaluation expert is ready to perform 'Events specification' during which [Event]s are defined, as well as the way to capture them. Further, he performs the 'Interaction Participant assessment' activity where the experiment [Participants] are assigned to the [IM]. In parallel, the scheme for [Interaction Result] is prepared by 'Interaction Result formatting' activity. Finally, when the [SM] is complete, it is sent to 'Interaction execution' during which results are automatically stored in the [Interaction Result] model.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.7]{Chapters/Figures/InteractionModeling.png}
+            \caption{Interaction Modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:IMActivity}
+        \end{figure}
+        
+    \section{Survey modelling}
+        The survey methodology is a field of applied statistics that studies the sampling of individual units from a population and the associated survey data collection techniques, such as questionnaire construction and methods for improving the number and accuracy of the response to the inquiry. A survey is not just the instrument (the questionnaire or checklist) for gathering information. It is a comprehensive system for collecting information to describe, compare or explain knowledge, attitudes, and behaviour \cite{kitchenham2008personal}.
+        
+        
+        In the case of \gls{useme}, the Survey Modelling activity supports formative methods for measuring usability. The \textbf{Survey Model [SM]} (see Figure \ref{fig:SM}) can correlate to any existing [Survey Engine] that automates response collection (e.g. Google Forms, Survey Monkey, mySurveyLab, etc.). It is described by the following concepts:
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.1]{Chapters/Figures/SurveyModel.png}
+            \caption{Survey Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:SM}
+        \end{figure}
+        
+        
+        - \textbf{Questionnaire} - defines a particular set of \textbf{Question}s (inquiries) that can be provided in different forms; on-line, by phone or personal interview, pen and paper, and in advanced interaction environment (a testing environment that supports additional interaction equipment that can capture eye movements, gesture, biosignals). Generally, [Question] has an associated concrete <<scale>>, represented as a list of String values. It can also have a defined <<indicator>> that helps to get fine-grained variables that can help during the results analysis. The [Question] can be defined as:
+        
+        - \textbf{Background Qs} - designed to collect the information about the participant (e.g. demographic data, education, special needs/disabilities). Each question is related to at least one <\textit{Logical Expression} of participant's <\textit{User Profile}>. 
+        
+        
+        - \textbf{Feedback Qs} - collects the opinions and reactions about what is being tested i.e. the \gls{dsl}, its baseline or alternative. In our case it would be expected to support existing appropriate methods such as inspections (usability heuristics \cite{nielsen1990heuristic}, quality requirements for \gls{dsl}s \cite{kolovos2006requirements}, Framework for Qualitative assessment of \gls{dsl} \cite{kahraman2013framework}) and notation assessments (Cognitive dimensions of notations framework \cite{Blackwell2003NotationalFramework}, Physics of Notations \cite{moody2009evaluating}). Each question, or a checkpoint, can refer to concrete <<useCase>> and/or <<requirement>>.
+        
+        - \textbf{Survey Result} - includes the statistical analysis and results of a survey, that can be generated automatically if  <\textit{Survey Engine}> was used, and further customised (e.g. merged results from different questionnaires, formatted, statistically analysed, etc.).
+        
+        
+        
+        
+        The creation of [SM] (see Figure \ref{fig:SMActivity}) starts with asking if  \textit{'New questions?'} are needed to be defined for the survey. In the case they are needed, the evaluation expert decides if the questions to be defined are '[Background]', leading to 'Background question definition', or '[Feedback]', leading to 'Feedback question definition'. When there are no \textit{'New questions?'}, the expert evaluator is performing 'Survey participant assessment' where the experiment [Participants] are assigned to the [SM]. In the same time, the scheme for [Survey Result] is prepared in the 'Survey result formatting' activity. Finally, when the [SM] is complete, it is sent to 'Survey execution' during which results are automatically stored in the [Survey Result] model.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.7]{Chapters/Figures/SurveyModeling.png}
+            \caption{Survey Modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:SMActivity}
+        \end{figure}
+        
+    \section{Report modelling}
+        The report modelling activity helps on the construction of final reports for experimental assessment specified by the [EM] and encapsulate the results and improvement suggestions into the \textbf{Report Model (RM)} (see Figure \ref{fig:RM}). It consists of:
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=3.5]{Chapters/Figures/ReportModel.png}
+            \caption{Report Model class diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:RM}
+        \end{figure}
+        
+        
+        \textbf{Evaluation Result} - is created based on analysis of the result models from different <\textit{Test Models}> (i.e. <\textit{Survey Result}> and <\textit{Interaction Result}>). It represents the interpretation of results over a predefined <<context>> that is related to the evaluated goal. 
+        
+        \textbf{RecommendGM} - is a recommended [GM], which include updates (changes over or new goals or context elements) to previous [GM] of the evaluated \gls{dsl}, referred with <<applyTo>>. 
+        
+        
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=2.7]{Chapters/Figures/ReportModeling.png}
+            \caption{Report modelling activity diagram (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:RMActivity}
+        \end{figure}
+        
+        In Figure \ref{fig:RMActivity} we describe the report modelling activities. The first activity is to perform the 'Evaluation result analysis'. This includes reasoning about the correlations among different factors assessed by experimental instruments (namely, [SM] and [IM]). Based on these results, the expert evaluator performs a 'Recommendation specification', by designing a [RecommendGM]. At the same time, the evaluator can calculate a [Success Coverage] for the recommended [GM], which helps in making decisions how to redesign goals. Finally, when the recommendation and results are ready, all stakeholders should decide if they should enter \textit{'New evaluation cycle'}. When starting a following cycle, the expert evaluator should 'Run Goal Coverage Engine' which validate that all rules are preserved and support a merge of recommended [GM] with the initial [GM]. Finally, during 'Goal modelling update' recommendations are accepted or rejected.
+    
+    \section{Catalogue of usability metrics}
+    \label{sec:catal}
+    
+        This catalogue is seen as a structured knowledge base about the \gls{dsl}s usability evaluations. It has the purpose to help during two crucial activities of the \gls{useme} conceptual framework:
+        
+        \begin{itemize}
+            \item \textbf{Goal modelling}, where it is used to find existing specifications of the usability goals and requirements. These specifications can be based on standards \cite{isoiec25010}, or existing frameworks which address the evaluations in general \cite{green1996usability, moody2009evaluating, kahraman2013framework}). On the other hand, catalogue is intended to store examples of methods and  metrics which were used to test usability requirements for existing \gls{dsl} evaluations. 
+            
+            \item \textbf{Evaluation modelling}, where it is expected to support the choice of treatments for evaluation process activities based on a diversity of goals and the number of available participants, technology, etc. Further, it is meant to register the instantiation of quality in use metrics \cite{iso25022} for selected evaluation objectives and enhance a metric reuse and improvement.
+        
+        \end{itemize}
+        
+        To obtain the first structure of this knowledge base will be necessary to summarise the state-of-the-art research trends, as well as to categorize the proposed approaches, techniques, tools and methods for domain analysis and evaluation phases. Further, it is necessary to obtain \gls{useme} model instantiations for several evaluation assessments. The structure of different instantiations is expected to fit into \textit{Quality Design} model (see Figure \ref{fig:Patt_ProblemQuality}) from the experimental model of our systematic approach. 
+        
+        %we are performing an extensive Systematic Literature Review (SLR) whose protocol can be found in \cite{barisicDSLSLR2015}. The SLR is extended from previously performed work of Gabriel \cite{Gabriel2010CIBSE}. The selected publications should report on the human-machine \gls{dsl}s (excluding the machine-machine languages). The SLR should report on the involvement of domain users in the \gls{dsl} development process and the evaluation of \gls{dsl}s usability. The goal is to identify domain analysis and/or evaluation techniques for developed \gls{dsl}s.
+        %The next step is to summarise the state-of-the-art research trends, as well as to categorise the proposed approaches, techniques, tools and methods for domain analysis and evaluation phases. 
+        %We are concerned about how selected reports identify the \gls{dsl} objectives, and how they are evaluated. 
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.5]{Chapters/Figures/GoalCoveregeEngine.png}
+            \caption{Model to model transformations supported by Goal Coverage Engine (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:GoalEngine}
+        \end{figure}
+        
+    \section{Goal coverage engine}
+        This engine should provide version support of the \gls{useme} project models and support their updates by using model merge approaches (see Section \ref{sec:DSEMerge}, Annex \ref{ann:DSEMerge}), while checking the predefined rules. The Goal Coverage Engine supports all \gls{dsl} stakeholders to trace different states of models for different versions of the \gls{dsl} or their assessments, as well as a knowledge base.
+        For each new iteration cycle of the \gls{dsl} development, the stakeholders need to confirm that the context and goals are still the same, or update them if they have changed. This engine should also check the validity of specific rules for removing/merging/updating \gls{useme} models. Finally, this engine can be seen as a transformation engine that performs the updates of GMs based on the recommendations of the Report Model and finds the scope coverage for which the goals are validated based on a context instance (see Figure \ref{fig:GoalEngine}). 
+        
+        

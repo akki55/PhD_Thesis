@@ -1,0 +1,355 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter.tex
+%% NOVA thesis document file
+%%
+%% Chapter with solution proposal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Case studies}
+\label{cha:cases}
+
+
+We conducted several case studies (see Figure \ref{fig:research}) to illustrate the proposed \gls{useme} conceptual framework; 
+\begin{itemize}
+    \item We introduce in Section \ref{sec:Pheasant}, \ref{sec:RPG} and \ref{sec:DSEMerge} three academic case studies \cite{Barisic2012plateu, marques2012rpg, barisic2016stsm} which 
+    were used to put into practice both the evaluation model and experiment design, proposed in Chapter \ref{cha:approach}, and served to get introduced with \gls{dsl}s' development life cycle. 
+    \item In Sections \ref{sec:flowsl} and \ref{sec:visualino}, we introduce two industrial case studies which were used to apply the approach during their iterative development (FlowSL and Visualino \gls{dsl}). 
+    In both cases, the researcher did not take part of the \gls{dsl} development, but was taking a role of expert evaluator. 
+    More particularly, it was possible to observe with FlowSL that early evaluations were beneficial and easy to integrate with the agile development process. On the other hand, the experience with Visualino, where the controlled experiments were carried on each release, put into evidence the reuse of the evaluation model instances, besides significant improvements in usability.
+    %Early evaluations showed to be beneficial and integrable with an agile development process of FlowSL. The controlled experiments on several releases of a Visualino showed reuse of the evaluation model instances and significant improvements in usability.
+    \item In Section \ref{sec:RDAL} we introduce work done to integrate Requirements Engineering tools in the \gls{dsl} development process in articulation  with the \gls{useme} implementation prototype \cite{barisic2017RDAL}.
+\end{itemize}
+
+
+    \section{Pheasant}%	(source: [11])
+    \label{sec:Pheasant}
+          To illustrate the experimental model for usability evaluation referred in Chapter \ref{cha:approach}, we took an existing \gls{dsl} for \gls{hep} called \gls{pheasant}. \gls{pheasant} 
+          is a project held in the context of \gls{hep} Physics. It aimed at developing a Domain Specific Visual Query Language to provide the end users (Physicists) with a tool for mining Physics Data stored by the large detectors during the provoked the particle collisions \cite{Amaral2005Thesis}.
+          
+          The \gls{dsl} on this case study published in \cite{Barisic2012plateu} (see Annex \ref{ann:Pheasant}) was used as a first usability evaluation example during the problem investigation phase of our research process (Figure \ref{fig:research}). It also served as illustration example for patterns (Appendix \ref{app:patterns}) of pattern language which instantiates our design model (Section \ref{sec:iterativeUCD}). 
+          
+          \subsection{Purpose of Pheasant development}
+         
+        % In the context of \gls{hep}, physicists try to discover new short-lived particles and their properties or the properties of their interactions, in order to develop a model of the real world at a subatomic level. Large accelerators accelerate subatomic particles to induce collisions. These collision events are recorded by sub-detectors that measure and analyze the results. Afterwards, the large volume of data collected by detectors is mined and used to try to infer statistical physics results, validating them against currently proposed physics models. The physicists' analysis systems are composed of a visualization tool, a set of scientific calculation libraries, and a storage manager. Traditionally, in the first step of his analysis, the user selects a subset of data from the storage manager. Then, several reconstruction algorithms with scientific calculations filter out data and compute new values that are stored in private collections. Finally, the new data collection is visualized in the appropriate tools (for instance by histograms).
+         
+        % The reconstruction and investigation of decays and decay chains of short-lived particles are the main computationally demanding tasks of the data analysis, which starts after the data acquisition. Roughly speaking, in this phase, physicists have to select those kinds of decays and particles they are interested in. For this selection, it is usually necessary to reconstruct parts of the particles' trajectories (also called segments), to match them with other segments in order to reproduce the full particle trajectories (called tracks), to extract further properties, and to deduce the complete decay chain.
+         
+         The \gls{pheasant} project was developed to mitigate users productivity problems in the context of \gls{hep} domain. It aimed to develop reusable engineering methodologies through \gls{mdd} techniques. A declarative Domain-Specific Visual Query Language was used to raise the abstraction level in the existing query systems and give room to new optimization of different levels. The goal of \gls{pheasant} was to automate this process as much as possible, as well as to provide the physicists (with profiles ranging from the ones without programming expertise to high-level programmers) appropriate abstractions that hide the complexity of programming error-prone algorithms in languages (e.g. C, C++ or Fortran), by using a wide plethora of libraries and frameworks to achieve their goals.
+         
+         The \gls{pheasant} development and detailed data analysis were part of the before-mentioned PhD thesis \cite{Amaral2005Thesis}, while we performed the statistical analysis and used this detailed data for illustration purpose of usability evaluation of \gls{dsl}s. 
+        The performed work served to confirm that the proposed query \gls{dsl} tailored to the specific domain was beneficial to the End User. The physicists, non-experts in programming, no longer were required to cope with different \gls{gpl}s and adapt to the intricacies supporting database infrastructure.
+        
+        \subsection{Pheasant usability evaluation}
+        
+        The evaluation process followed in this case study is presented
+        in Figure \ref{fig:pheasantEvaluation}. The process starts with the Participants Recruitment, where the users are analyzed and grouped into clear categories. This way, the variables concerning the user profile that lead to different results for different groups are controlled. This step is followed by the Task Preparation. The aim here is to organize the evaluation by determining which tasks have to be done and which tests are elaborated in order to provide the proper results. This will generate the information required to be analyzed afterwards. The next step is the Pilot Session, which is meant to simulate the exam and test that the material for the training and the evaluation procedures is well organized. The main advantage of this rehearsal is to check that the time constraints and other possible external variables like proper equipment are controlled, and do not interfere with the results. Once everything is tested, we proceed to on the assessment, which we call Evaluation Session, for each group and language being compared. A Training Session is used to introduce the language. At this stage, Immediate Comprehension and Review tests are conducted with participants, while introducing the language features. The final exams, in the Exam Session, involve sentence writing activities. During the exam session, participants’ activities are observed and recorded, so that information such as completion times and error rates can be collected. The goal is to determine the ease of learning. After each group has been evaluated in the different languages, the participants are asked for a debriefing in the form of a Final Questionnaire Session. The goal is to obtain the user’s qualitative perspective of the comparison between the languages. In order to evaluate unbiasedly, the users should test the same environment and as realistically as possible. Evaluation process terminates with the Analysis of Results.
+
+        \begin{figure}
+        	\centering
+        	\includegraphics[scale=0.45]{Chapters/Figures/PheasantEvaluation.png}
+        	\caption{Evaluation process for Pheasant (taken from \cite{Barisic2012plateu}, based on \cite{Amaral2005Thesis})}
+        	\label{fig:pheasantEvaluation}
+        \end{figure}
+        
+        Our usability assessment includes Physicists with programming experience with two profiles: the ones with no experience with the previous framework used and the experienced ones. The goal was to analyse the performance of \gls{pheasant} programmers compared to the baseline alternative with respect to the efficiency, effectiveness and confidence in defining queries in \gls{pheasant}. The assessment was done from the point of view of a researcher trying to assess the \gls{pheasant} \gls{dsl}, in the context of a case study on selected queries.
+
+        Introducing one language to the whole group of participants and only afterwards the other language would bias the evaluation, as the knowledge acquired while learning the first language could be partially reused while using the second language. To mitigate this threat to the validity of the results we had to split the group in two. This way, it reduced the influence of the first language while presenting the second. Mixing the two groups might lead to new variables in the evaluation that are hard to track. Therefore, it was necessary to organise four sessions, with each group taking part in two sessions (one for each language). Following the scientific method, the participants' performance in the query writing was evaluated. Every participant had four queries, specified in English, to be rewritten in the previously learned language.
+        
+         Using \gls{pheasant}, the users increased effectiveness during their query specification. The \gls{dsl} was less error-prone than the alternative; it allowed non-programmers to define their queries correctly. The evaluation also showed a considerable speedup in the query definition by all the groups of users that were using \gls{pheasant}. In general, the feedback obtained from the users was that it is more comfortable to use \gls{pheasant} with the alternative. The preliminary pilot study was fundamental to ensure that the subject's time was well spent. 
+        
+        \subsection{Conclusion of the case study}
+       
+        
+        This work's contribution illustrates how an experimental process (Section \ref{sec:experiment}) can be used in the context of a \gls{dsl} evaluation, with respect to its impact on Quality in Use characteristics (Section \ref{sec:Usability}), namely effectiveness and efficiency. The valuable feedback from users concerning the tool support for the language, as well as their fears concerning language expressiveness, support the idea of an iterative evaluation process where improvements to the language and its tool support are to be performed and then assessed in a new round of evaluation.  
+        
+                  
+
+    \section{RPG DSL}	
+    \label{sec:RPG}
+    
+        In this case study, an \gls{rpg} \gls{dsl} for  product lines was developed, which was completely built using \gls{mdd} software development techniques \cite{marques2012rpg} (see Annex \ref{ann:RPGDSL}) and served as DSL development example during the problem investigation phase of our research process (Figure \ref{fig:research}). We have shown several benefits of applying \gls{mdd} to \gls{dsl} development regarding prototyping of cross-platform games, and their evaluation by means of static and dynamic verification techniques of the game's logic properties.
+        
+        \subsection{RPG DSL development}
+        
+        In the Domain Analysis phase, we worked on two different levels: at the problem level (i.e., expressing the concepts and logic of \gls{rpg} Games), and at the solution level (i.e., how those concepts can be realised in a computational platform). At the level of the problem of \gls{rpg}s' design, we tried to express and define what would be the common characteristics of all \gls{rpg} games, regardless of what are the requirements of their implementation on an underlying computation infrastructure. 
+        At the solution (computational) level, we had to choose platforms to deploy the generated games and to analyse them. We chose a game developing platform and built our framework on top of it. The criteria to select the target framework from the existing game engines were: fast development; provided abstraction level relatively to system calls and hardware dependencies (e.g., graphical primitives, input modalities, etc.); and, need to previous knowledge in the area of game engines.
+        
+        We chose Corona SDK 2 from a set of three promising candidate frameworks because it supports the possibility to compile the game for different mobile platforms. The game is programmed using the Lua language: a scripting language, which is preferred for rapid development. 
+        The creation of an \gls{api} over the framework allowed a model to model transformation that was easily produced between \gls{rpg} and U-Framework meta-models, which consists mostly of 1 to 1 relationships. This strategy of bottom-up modelling in the framework allowed the focusing on the \gls{rpg} entities and the restriction of the power of the framework which was very low-level. The mapping of the \gls{rpg} meta-model to \gls{apn} \cite{lakos1995} is too much complex to simply perform it in just one step, therefore we created an intermediate meta-model  U-\gls{rpg} that allowed a simpler mapping between both. We believe that the use of intermediate languages really help in this process since we do not have to map complex entities directly to an \gls{apn} .
+        
+         \begin{figure}[h]
+        	\centering
+        	\includegraphics[scale=0.4]{Chapters/Figures/RPGEditor.png}
+        	\caption{RPG DSL editor (taken from \cite{marques2012rpg})}
+        	\label{fig:rpgEditor}
+        \end{figure}
+
+        
+        To complete the MDD cycle, we use a model checker to analyse and validate properties on \gls{rpg} games, giving us a certain level of confidence about its implementation, since it passed verification phase. Regarding the \gls{rpg} meta-model evolution, the addition of a new feature should not affect the existing ones if its concept does not interfere with existing features. However, if it does interfere, we have to analyze the impact of that interference in the U-\gls{rpg} Meta-model, which may lead to a partial redefinition of these model.
+
+       
+        The choice of the DSL concrete syntax (textual or graphical) impacted the process of game development. A textual DSL may lead to a more readable solution than a graphical one in the development of big games since a visual one will have problems displaying all the information about the game. However, a graphical DSL (Figure \ref{fig:rpgEditor}) allows the developer to get a preview how the things will be mapped, allowing the game developer detect errors faster.
+        
+        \subsection{Conclusion of the case study}
+        
+        This study contributed to our decision to use the \gls{mdd} approach for \gls{useme} development, as it showed to be beneficial in lowering the complexity of the underneath domain. For the domain of digital games, it showed to contribute to code reuse and facilitates game’s verification. Application of the \gls{mdd} is expected to increase productivity in the development (evolution and maintenance) of our engineering solution. 
+        
+        
+
+    \section{FlowSL}	%(source: [16])
+    \label{sec:flowsl}
+    
+    We applied action research to the development of a \gls{dsl}, named FlowSL, designed to support managers when specifying and controlling the business processes supporting humanitarian campaigns \cite{barisic2014flows} (see Annex \ref{ann:FlowSL}). 
+     Work was developed under the collaboration of the Engineering Faculty of Porto (FEUP) and \gls{psi}.
+    This case study help us validate solution design which address the engineering problem of this thesis and is proposed in Chapter \ref{cha:approach} as a part of our research process (Figure \ref{fig:research}). Final report of this project can be downloaded from public repository \footnote{goo.gl/gQzX7B (accessed September 19, 2017)}.
+
+    \subsection{FlowSL development}
+        
+         FlowSL is a \gls{dsl} for specifying humanitarian campaigns to be conducted by a non-governmental organization \gls{psi} and is integrated into \gls{mvc} platform\footnote{https://movercado.wordpress.com/ (accessed September 19, 2017)}.
+        This project consists of a mobile-based messaging platform at the core of an ecosystem that enables real-time and a more efficient impact, by facilitating interactions among beneficiaries, health workers and facilities, e-money and mobile operators.
+        A first version of the system (MVC1) was developed as a proof-of-concept to validate the key underlying principles. The second version of the system (MVC2) was developed in the form of a platform easily customizable by managers and extensible by developers of the organization's team. An important goal was to develop a language, FlowSL, to empower the Campaign Managers to define new kinds of campaign flows taking advantage of their domain knowledge.
+        
+        To balance the development effort with effective reusability (e.g. while envisioning new marketing solutions),  MVC2 was developed in a fast-paced way, iteratively, along six two-weeks sprints, following an agile development process based on Scrum \footnote{http://www.scrum.org/ (accessed September 19, 2017)} and best practices of evolving reusable software systems. In the process of development, the Domain Experts were part of the Product Owners team, while the Language Engineers were part of the Scrum Team. The \gls{dsl} evaluation process was guided by the FlowSL development stages, as a different effort was estimated in each sprint for its development.
+        The problem analysis was performed by mutual interaction and brainstorming between Domain Experts and Language Engineers in each sprint planning. We had the role of observing and guiding the analysis outputs, while preparing the evaluation plan, without being directly involved in the language specification.  
+        
+        To better understand and define the problem, the required functionalities were described in terms of small user stories. Also, the new description of the user roles was introduced as the FlowSL is expected to change existing organisational workflows. To improve interaction between the development team and the users, all the produced results from the analysis were continuously documented in a Wiki\footnote{https://www.mediawiki.org/wiki/MediaWiki (accessed September 19, 2017)}. As Scrum suggests, the project management was based on a product backlog maintained and shared online.
+        
+        The relationship between the MVC system, FlowSL development, and relevant language users and expected workflow is presented in Figure \ref{fig:FLOWSLinMVC}. The original MVC1 system was developed in a \gls{gpl} (Ruby\footnote{http://rubyonrails.org/ (accessed September 19, 2017)}), and naturally, FlowSL was first developed as a Ruby-based internal \gls{dsl}. This approach allowed an optimal use of resources while keeping the existing system running. The second phase of language development was intended to support the managers to design the campaign flow specifications by themselves, using simple and understandable visual language constructs. In the third phase, the focus was on evolving the language's editor to be collaborative and web-based.
+        
+        \begin{figure}[h]
+             \centering
+            \includegraphics[scale=0.35]{Chapters/Figures/FlowSLwithWorkFLOW.png}
+            \caption{FlowSL workflow (Taken from:\cite{barisic2014flows})}
+            \label{fig:FLOWSLinMVC}
+        \end{figure}
+        
+        
+        
+        \subsection{FlowSL usability assessment}
+        
+        FlowSL is targeted to non-programmers.  Their ability to use this language was identified as one of the highest concerns, so discovering usability issues in early development iterations facilitated the achievement of an acceptable usability, while tracking the design decisions and their impact. Usability has two complementary roles in design: as an attribute that must be designed into the product, and as the highest level quality objective which should be the overall objective of design.
+        
+        Internal Ruby based FlowSL was defined as a first step to making distinction between the campaign implementations and a flow underneath, which helps to define the first draft of the concrete visual syntax of FlowSL, but was based on textual syntax. It helped to place initial definitions of flow concepts as well as target users. 
+        Evaluation goal was to assess whether this representation would be good enough to enhance the \emph{understandability} and \emph{readability} of flows from the perspective of Campaign Managers. It was expected that with the flow abstraction, the Domain Experts could describe more concrete requirements for the visual flow concepts. 
+        The \emph{evaluation intervention} was conducted as a continuous interview with the Domain Expert with the role of Campaign Manager that was involved in specifying flows using the MVC1 system and who was also involved in the MVC2 Scrum development assuming, in that case, the role of Product Owner.
+        The performed evaluation helped the DSL developers to adjust the level of
+        abstraction to the needs of the DSL end users.
+        The language at this phase could be used by the System Managers (knowledgeable of the concepts of the baseline system), but not by Campaign Managers.
+        %This solution was found too close to technical programming concepts, and even its graphical representations were found to be difficult to be understood by managers. 
+        
+        \begin{figure}[h]
+             \centering
+            \includegraphics[scale=0.35]{Chapters/Figures/FlowSLight.pdf}
+            \caption{FlowSLLight interface integrated in MVC online platform}
+            \label{fig:FLOWSLight}
+        \end{figure}
+        
+         
+        The of the second iteration was to develop a visual FlowSL prototype using the MetaEdit\footnote{http://www.metacase.com/ (accessed September 19, 2017)}  language workbench, that was selected for its support to top-down development. 
+        The \emph{evaluation's goal} was to assess whether both the campaign managers and novice system managers were able to validate the specified flows using the newly proposed visual language and editor. These evaluations covered also the {effectiveness} and {expressiveness} of the target language. The \emph{First evaluation intervention} was organized very quickly and involved interviewing two \emph{subjects}: the campaign manager and the system manager, both were involved in the DSL development. The \emph{second evaluation intervention} involved the same subjects and focused in assessing the \emph{understandability} and \emph{expressiveness} of the individual symbols and to measure the \emph{readability} and \emph{efficiency} of the designed solution of the simple and complex flow. For the \emph{third evaluation intervention} the usability engineer introduced the design improvements motivated by the feedback obtained the previous evaluation. 
+        The new notations were designed and implemented, to be again compared. The tasks were similar to the previous intervention, although more elaborated. 
+        Here, the same subjects from the previous interventions were involved, as well as a member of the Scrum team. 
+        
+        It became clear that the evaluation materials prepared earlier helped to speed up the following evaluation phases and reduced their implementation costs. Besides, they became templates for the corresponding learning materials. Also, it was possible to abstract the language one level further, so that an online visual editor was built to support rapid high-level specifications of flows. To better deal with the increasing complexity of the specified models, rather than presenting all the concepts related to the flow definition visually, a better option would be to present just high-level concepts that are reused often, while others are hidden and based on predefined rules that can be eventually reconfigured textually. This approach empowered both the domain experts and the product owners to better control the design decisions.
+        
+        
+        
+        We integrated top-down usability engineering practices into a bottom-up agile development of the FlowSL from its beginning. While playing the role of Evaluation Expert that is expected to be introduced into \gls{dsl} development, we experienced that the small iterations involving other project stakeholders than Language Engineers, namely Domain Experts, Product Owners and End Users, can help us to clarify the meaning and the definition of the relevant language concepts. This enables an early identification of possible language usability shortcomings and helps to reshape the \gls{dsl} accordingly. Early evaluations can be executed with a relatively low-cost thanks to model-driven tools (i.e. language workbenches) that support the production of rapid prototypes and presenting the idea. These evaluations support well-informed trade-offs among the strategy and design of the \gls{dsl} under development, and its technical implementation, by improving communication. Besides, they improve the traceability of decisions, and of the solution progress. These iterations also help to capture and clarify contractual details of the most relevant language aspects that need to be considered during \gls{dsl} development and are an essential element to improve the End Users experience while working with FlowSL. 
+        
+        Finally, FlowSLLight was developed using GOJS tool as a web editor that is to be integrated into MVC platform web interface. This solution, as recommended, was built to support just light specifications and changes on the campaign flow. It was found to be good enough to enable also visual campaign instantiations and simulations. Its purpose was to enable collaborative approach in specifying and validating the flows. The design ideas were evaluated and discussed with managers, regarding its use and integration into the platform. The final design of the editor in the MVC web interfaced was proposed and accepted (see Figure \ref{fig:FLOWSLight}).
+        
+        
+        \subsection{Conclusion of case study}
+        
+        This study helped us to apply our preliminary usability evaluation approach described in a form of pattern language (Chapter \ref{cha:approach}, Appendix \ref{app:patterns}) and to perform the different usability evaluation methods (e.g. interviews, observations, heuristics) (Appendix \ref{app:usaMethods}) on unfinished \gls{dsl}.
+        Weaving usability concerns into the agile development process helped to continuously evolve FlowSL, improving the cost-effectiveness of \gls{dsl} usage in specifying campaigns, and supporting a clearer assessment of which language concepts are more relevant to the different kinds of language users, which in turn helps to find the right level of abstraction and granularity of concepts. All these benefits come with the cost of adding usability skills and of introducing new practices in the agile process, namely the introduction of lightweight meta-modelling tools. 
+
+    \section{Visualino}	%(source: Annex 1)
+    \label{sec:visualino}
+    
+    
+        In this Section we include the unpublished article about the evaluation of the \gls{dsl} Visualino \cite{barisic2018Visualino} (see Annex \ref{ann:Visualino}), for the programming low-cost robots. The work was developed under the collaboration between the group ASE NOVA/LINCS and Artica\footnote{http://artica.cc/ (accessed September 19, 2017)}, a company that specialises in the development of robotic and audio-visual solutions. 
+
+        The first language design was developed in 2013 in the context of the master thesis \cite{PedroMiguel2013}, where language was named Farrusco. Later, the language continued to evolve and was renamed to Visualino after the second release in 2015, and recently Gyro, after the third release in 2016. We managed to show that the usability of the Gyro significantly improved in terms of efficiency and satisfaction when compared to an earlier version which detailed in experiment repository\footnote{https://sites.google.com/view/vl-empiricalstudy/home (accessed September 19, 2017)}. 
+        
+        This study presents the application of our usability evaluation approach (Section \ref{sec:iterativeUCD}) to the industrial case study during several development iterations. Also, it served as a design validation example of our research process (Figure \ref{fig:research}). Further, it was used to validate feasibility of our conceptual framework (Chapter \ref{cha:useme}) as a \gls{useme} model instantiation example (Section \ref{sec:visualinoPrototype}).
+        Further, it served as a running example for our integration study (Section \ref{sec:RDAL}, Annex \ref{ann:RDAL}).
+        
+        \subsection{Visualino development}
+    
+        The focus of the Visualino development was to build a dedicated \gls{dsl} that removes the programming details, to control a low-cost Arduino rover robot\footnote{http://www.arduino.cc/ (accessed September 19, 2017)}, and at the same time allows children to easily get acquainted with it and preserve the possibility to program complex behaviour. A visual programming language allows the user to implement programs, through the manipulation of visual elements or objects. This manipulation is deduced in a visual way, allowing the user to understand programming mechanisms quickly, increasing their accessibility to new systems. Users with no programming background may implement programs in a simpler form. Visual languages introduce programming concepts to children, while robots perform the developed code in the real world. Children have the opportunity to observe their own developed program, running on a physical robot. 
+         
+        The chosen meta-modelling workbench for the \gls{dsl} implementation was Eugenia for Eclipse. Its first development iteration was a part of the master thesis, where its abstract syntax and initial concrete syntax was proposed \cite{PedroMiguel2013}. The \gls{dsl} implementation started with domain analysis that brought concepts and details, so it was possible to develop the \gls{dsl} meta-model. Among different behaviour paradigms for visual language, after extended analysis, it was chosen to represent a language through behaviour trees. This last paradigm is an alternative to the state machines and comprehends a hierarchy of behaviours, with an objective to fulfil. Each node may have a specification that determines how the actions of its children will be executed, which may be in parallel or sequentially.
+        
+        Visualinos visual syntax is based on the behaviour tree paradigm \cite{liu2005intuitive}, a mathematical model of plan execution, used for a diversity of areas including robotics, control systems and software games. A complex behaviour is mapped into smaller and simpler behaviours through its branches. This descending order of complexity provides a structured way of defining complex behaviours (which are used to define objectives) through simple tasks defined hierarchically. Each node may have a specification that determines how the actions of its children will be executed (in parallel, or sequentially). The child node returns its status to the parent node, and this successively happens until the root of the tree. 
+
+        Fig. \ref{fig:ex1_visualino} illustrates how to program the robot to move back and forth. The root node is decomposed into a single sequential node (highlighted with a red circle). The sequential node runs all its children (in this case, the leaf nodes) in depth-first traversal order. Leaf nodes represent the most primitive actions that could be taken by an agent. In Fig. \ref{fig:ex1_visualino} the nodes represented by arrows pointing downwards are outputs actions. In this case, they are left and right motors command. The outputs can also be visual using LEDs or audio using a buzzer. Both nodes displayed by 2 round timer shapes are wait commands in which the execution of the next node is delayed by the duration determined by the end user for each node. 
+        
+        \begin{figure}[h]
+                \begin{minipage}[t]{.48\textwidth}
+                    \centering
+                    \includegraphics[scale=0.4]{Chapters/Figures/visualinoex1.png}
+                    \caption{VL1 - Back and Foward}
+                    \label{fig:ex1_visualino}
+                \end{minipage}\hfill
+                \begin{minipage}[t]{.48\textwidth}
+                    \centering
+                    \includegraphics[scale=0.53]{Chapters/Figures/ex1-front-back-rez.png}
+                    \caption{VL2 - Back and Foward with bumpers}
+                    \label{fig:gyro}
+                \end{minipage}
+            \end{figure}
+            
+        %\subsubsection{From VL0 to VL1}
+        The first development iteration of \textit{Visualino} VL0 started with a domain analysis, followed by the design, implementation, and evaluation, in order to quickly deploy an early prototype. The last phase involved 22 (10+12) children, with the age range from 8 to 12, as subjects included in an exploratory study \cite{PedroMiguel2013}.
+        Children under 10 had a hard time learning \textit{Visualino}. 
+        Further development resulted in the next release VL1 (Fig. \ref{fig:ex1_visualino}), which improved the interaction model and provided a web-based solution. 
+
+
+        %\subsubsection{From VL1 to VL2}
+        VL1 was evaluated experimentally and compared to the one of the most popular commercial competitors in the market, \textit{LegoMS}. Based on the results of this empirical study, some improvements were suggested and applied to Visualino development.
+        The focus was on improving the user interface providing better readability of the programs being developed and improving error prevention. 
+        
+        
+        \subsection{Visualino usability evaluation}
+        
+        Visualino is developed iteratively reusing \gls{ucd} methods. Programming technologies of rover robots for children still are excluding the children as target audience as it is hard for them to program in a textual language with a complex syntax full of technical concepts. To design an appropriate \gls{dsl} for children is far from being a trivial task. There is no unique profile, and several factors related mostly to age, like the maturity level, that can influence widely in the design.
+        
+        The children feedback is used to help to steer the Visualino evolution through the identification of several improvement opportunities in the language.This evaluation stage in each iteration is often not reported in the context of developing DSLs but is key to our development effort. In this assessment, we contrast Visualino with two popular DSLs that are used to control rover-like robots: a commercial competitor (Lego) and an open source initiative (Scratch). 
+
+        We reported on the design and results of the empirical studies used in this evaluation that helped us identify the language's strengths and weaknesses. To help to achieve this higher level goal, we answered following two research questions:
+
+        \begin{itemize}
+            \item \textit{\textbf{RQ1:} How does the current Visualino (VL2) compared to baselines (a previous version of Visualino (VL1), Lego and Scratch) regarding the \textbf{Effectiveness} of the teenagers when programming a robot?}
+            \item \textit{\textbf{RQ2:} How does the current Visualino (VL2) compared to baselines (a previous version of Visualino (VL1), Lego and Scratch) regarding the \textbf{Satisfaction} of the teenagers when programming a robot?} 
+        \end{itemize}
+        
+                
+        After the second development cycle,  we organized empirical study to compare a second Visualino release (V1) with the well-known  Lego\footnote{https://www.lego.com/en-us/mindstorms/ (accessed September 19, 2017)}  commercial \gls{dsl} which paradigm is based on the building blocks composition.  This evaluation helped to understand which features are missing or can be improved to make Visualino competitive to the best product in the market with the same purpose. After the third development cycle, compared the third Visualino release (V2) to the existing low-cost alternative MBlock\footnote{http://www.mblock.cc/ (accessed September 19, 2017)}.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/VExperimentFlow.png}
+            \caption{Experiment Flow}
+            \label{fig:VExpFlow}
+        \end{figure}
+        
+        During the experimental studies, we used survey forms, video recordings and a competition arena to collect data for further analysis in different experimental sessions (see Figure \ref{fig:VExpFlow}). 
+        The survey forms were composed of \textit{``Smileyometers''} which are found to be appropriate for teenagers questionnaires \cite{sim2012investigating}. 
+        While answering to forms, children were assisted by an adult (one of the experiment assistants), to ensure that there were no misinterpretations of questions and answers and to confirm that participants did not experience reading problems. As we grouped the participants into teams, the participants' individual answers to questionnaires were merged. 
+        
+         \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.43]{Chapters/Figures/VResultsExperiment.png}
+            \caption{Experiment Results}
+            \label{fig:VExpResult}
+        \end{figure}
+        
+        We captured participants \textbf{Profile} as a measure influenced by \emph{Experience} factors on Computer Games, Programming or Programming a robot, and \emph{Tendency} factors reflecting the children tendency to Mathematics, Physics or to Learn programming. 
+        We used the recorded videos to evaluate the \textbf{Effectiveness}. The challenge could be solved by composing elements of the training exercises, which are marked as Success (S) or Failure (F). Effectiveness measures the percentage of modelling elements correctly built and composed to achieve the solution. 
+        \textbf{Satisfaction} was characterized by a \emph{Confidence} factor which indicates tells how confident participants were about their solution; \emph{Likeability} factor, that tells how interesting and enjoyable they found the challenge itself; and, \emph{Learnability} factor which tells how useful they found what was taught during the learning session which helped them to face the final challenge. 
+                
+        After the second experimental evaluation, we used a Games-Howell post-hoc test to determine which languages were significantly different from which languages, according to our set of characteristics under scrutiny. Figure \ref{fig:VExpResult} summarises this test's result, for the comparisons involving either VL1 or VL2, or both. We observe that VL1 lead to a significantly lower \textit{Satisfaction} and \textit{Effectiveness} when compared to Scratch, VL2 and Lego. VL1 was also significantly harder to learn than Scratch and VL2, but not significantly different when compared to Lego. In contrast, VL2 was consistently as good as Lego and Scratch, while superior to VL1 in terms of Satisfaction, Learnability and Effectiveness.
+        We also manage to show that the usability of the Visualino (V2) significantly improved in terms of efficiency and satisfaction when compared to earlier version of the Visualino language (V1).
+                
+        \subsection{Conclusion of the case study}        
+                
+        We reported how we involved teenagers, the end users, in several iterations of the engineering process of a programming language for low-cost robots and performed usability studies using empirical experiments. The preliminary evaluations helped in timely detecting crucial usability problems of Visualino, as well as detecting the audience that can comprehend the given paradigm. The provided feedback helped in improving the language to support the intended user's needs. 
+        A fundamental difference in this work is that the language evaluation was conducted as several empirical experiments introduced early in the \gls{dsl} development process. Application of iterative usability assessments helped us to observed the convergence of the visual language to the degree of usability (regarding satisfaction and effectiveness) achieved by existing mature and commercial languages. We manage to reuse the same experiment's designs, which lower the cost of usability assessment in each cycle (e.g. time needed for specification, and result analysis). Finally, we managed to obtain almost automatically the precise comparison between different Visualino versions  (V1 and V2).
+        
+        \section{DSE Merge}	%(source: [9])
+        \label{sec:DSEMerge}
+    
+        We evaluated the tool support developed within this project at Budapest University of Technology and Economics, named DSE Merge \cite{barisic2016stsm} (Annex \ref{ann:DSEMerge}), which presents a novel search-based automated model merge \cite{kessentini2013search}. Final report of this project can be downloaded from public repository \footnote{goo.gl/Kq3R1G}.
+
+
+        \subsection{DSE Merge purpose}
+
+        The DSE Merge was built on top of tools for model comparison 
+        and it uses guided rule-based \gls{dse} for merging models. Rule-based \gls{dse} aims to search and identify various design candidates which can fill in certain structural and numeric constraints. 
+        End user can specify operators which identify operations based on which exploration will travers paths from initial models.
+        %The exploration starts with initial models and systematically traverses paths according to specific operations properly identified by operators chosen by the end user. In this context, the results of model comparison will be the initial model, while a target design candidates will represent the conflict-free merged models'.
+        Many existing model merge approaches detect conflicts statically in a
+        preprocessed phase. On other hand, \gls{dse}  performs conflict detection dynamically,
+        during exploration time. 
+        % thanks to the highlight of conflicting rules and constraint violations. 
+        Further, it presents to the domain experts multiple consistent resolutions of conflicts, by allowing
+        %are presented to the domain experts. 
+        incorporation of domain-specific knowledge
+        into the merge process by additional constraints, goals and operations. This approach is expected to provide
+        better solutions.
+        The alternative, i.e. baseline support for the model merge problem that is suitable for experimental comparison was found to have two possibilities:  Diff Merge\footnote{http://www.eclipse.org/diffmerge/ (accessed September 19, 2017)} and EMF Compare\footnote{https://www.eclipse.org/emf/compare/ (accessed September 19, 2017)}.
+        
+        \subsection{DSE Merge usability evaluation}
+        
+        The experiment took place on 11th December at the Budapest University of Technology and Economics. 
+        The general experimental process is presented in  Fig.\ref{fig:ExTreatmans}, starting by Learning session, during which the subjects filled the Background questionnaire. After this they continue by to solve the exercises during Task session, that was video recorded. Finally, during Feedback session participants filled final questionnaire rating tools that they have used. The Figure \ref{fig:ExTreatmans} except reflecting the flow of activities during the experiment, explicitly shows documents and treatments that were provided to participants, as well as the instruments that were used to collect the data. 
+        
+         \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.53]{Chapters/Figures/DSEExperimenttreatmants.jpg}
+            \caption{DSE Experiment Treatments (taken from \cite{barisic2016stsm})}
+            \label{fig:ExTreatmans}
+        \end{figure}
+        
+        During the pilot session, the cognitive effort for each task was estimated to be similar, the TLX scale \footnote{https://humansystems.arc.nasa.gov/groups/TLX/ (accessed September 19, 2017)} is decided to be used just once for each tool that is being evaluated, at the end of Video Session. 
+        Based on the results and opinions of the participants during the Pilot Session, it was found that Diff Merge is rated as a more competitive alternative for DSE Merge. The experimental groups were divided in two. One group started the Tool Session by learning about DiffMerge and than DSE Merge, while the second group had learned the other way around. 
+        %receiving first \emph{Tool Session} for Diff Merge and then DSE Merge, while other in opposite sequence. 
+        
+        In regard to both groups, DSE Merge scored with lower time indicating a slightly better efficiency. Also, DSE Merge indicated slightly higher success rate (0.92 for DSE Merge, and 0.85 for Diff Merge) and explicit preference by 11/15 participants. 
+        
+         \begin{figure}
+        \centering
+            \includegraphics[scale=0.55]{Chapters/Figures/CEChart.png}
+            \caption{Cognitive Effort (taken from \cite{barisic2016stsm})}
+            \label{fig:CEChart}
+        \end{figure}
+        
+
+        Concerning cognitive effort (see Figure \ref{fig:CEChart}), in total subjects rated with higher workload for Diff Merge regarding all factors, observing significantly higher Mental Demand and Frustration in comparison to which they experienced with DSE Merge. 
+
+        Finally, related the Satisfaction, DSE Merge scored very high regarding easiness of use, expressiveness and learnability. Confidence was positive and better than with Diff Merge, while suitability to solve the given tasks even rated negatively for Diff Merge. User Interface, namely its readability and understandability, seems to be most important factor to be improved in order to provide better usability of the DSE Merge. 
+        
+        \subsubsection{Conclusion of case study}
+        
+         Main contribution of this case study in a context of thesis was illustration of our experiment design proposed in Section \ref{sec:experiment} as a part of our research process (Figure \ref{fig:research}). The case study contributes with the experiment design, instrumentation and metrics that can be easily repeated and reused for similar evaluations of new techniques. This experiment design took a deeper analysis of the subject's profiles, technology, social and physical environment and targeted workflow scenarios, which are defined explicitly and incorporated in a data collection instruments.
+        
+        \section{RDAL USE-ME requirement engineering approach}	%(source: [9])
+        \label{sec:RDAL}
+        
+        This case study, published in Software Language Engineering conference \cite{barisic2017RDAL} (see Annex \ref{ann:RDAL}), was used as a part of \gls{useme} implementation validation of our research process (Figure \ref{fig:research}). It served as illustration of integration of \gls{useme} conceptual framework (Chapter \ref{cha:useme}) with RDAL requirement approach \cite{Blouin2011DefiningSupportMODRE}. This combination of existing languages and tools provides a comprehensive requirement engineering approach for \gls{dsl} development and an interesting case study of languages composition allowing the reuse of the assets of the existing languages. The approach was illustrated with the development of the Visualino (Section \ref{sec:visualino}, Annex \ref{ann:Visualino}).
+
+        \subsection{Motivation for requirement engineering approach}        
+        
+        As opposed to software and systems products for which several model-based Requirements Engineering approaches have been developed showing several benefits, DSLs nowadays is, to our knowledge, mostly developed informally without such support. A more formal and iterative approach is required to develop DSLs and track all requirements including the usability ones. As for other software products, the approach should include the context of use of the DSL in its environment, as well as the impact of recommendations with well-planned evaluation processes. Such an approach can be supported by modelling all these aspects using appropriate languages and tools.
+        
+        The Requirements Definition and Analysis Language (RDAL) \cite{Blouin2011DefiningSupportMODRE, Blouin2016CombiningDesignSEAA} was developed as a fragmented language to be combined with other modelling languages in support of well-known requirement engineering best practices such as those recommended by the Requirements Engineering Management Handbook (REMH) \cite{lempia2009requirementsb} and those of GORE (Goal-Oriented Requirements Engineering) \cite{van2001goal}. RDAL was originally planned to become a standard annexe of the Architecture Analysis and Design Language (AADL, SAE AS5506B standard) \footnote{http://standards.sae.org/as5506b/ accessed September 19, 2017} for supporting requirements capture, analysis and verification. In the end, it led to the development of the ReqSpec language and ALISA (Architecture-Led Incremental System Assurance) approach \cite{DelangeALISA2016}, which are however strongly coupled with the AADL. In contrast, the modularity of RDAL allows its reuse with other Architecture Description Languages not necessarily targeting the safety-critical embedded systems domain. Although the REMH has been written for the domain of safety-critical embedded systems, a large majority of its practices that are supported by RDAL are generic enough to be applicable to the development of many other types of systems. As a matter of fact, the concepts of the RDAL-REMH approach share many similarities with the concepts required by USE-ME.
+        The USE-ME focuses on usability and actually can benefit from a complete requirement engineering process on which it can base its evaluation. 
+        
+        \subsection{Integration of RDAL and USE-ME}
+        We first studied the concepts of both the RDAL-REMH and USE-ME approaches and compared them in order to evaluate the required effort and potential benefits of extending RDAL-REMH to support USE-ME. We showed that many RDAL-REMH  concepts are also partially supported by USE-ME. However, in RDAL, there is no specific focus on usability and usability elements can only be identified by using the RDAL user-defined category system. Nevertheless, the modelling of all other requirement engineering concerns with RDAL can provide an essential basis for the USE-ME viewpoint on usability.
+        Features provided by RDAL-REMH can be beneficial for USE-ME as it avoids redeveloping these constructs within USE-ME. A major issue that was found is the lack of language for representing the architecture design of a DSL in a similar fashion provided by AADL for embedded systems. Reusing AADL for modelling a DSL and its environment would not be appropriate due to the difference between the domains. This triggered the development of a language for the specification of DSL-based systems, namely the DSL-based Systems Specification Language (DSSL).
+
+%\section{DSSL}\label{sec:dssl}
+
+        The purpose of the DSSL language is to model the design of a DSL being developed and the way it is used in its environment. Goals, requirements and environmental assumptions can then be assigned to elements of this representation of the DSL under development. Furthermore, DSSL can integrate descriptions of the syntaxes of the DSL implemented as an Ecore meta-model and potentially include graphical and/or textual concrete syntax(es) respectively represented as Sirius or/and Xtext grammar models.
+
+        The RDAL-REMH approach lacks the support of context-aware goal evaluation, which is necessary for usability evaluation. Usability evaluation is performed in a concrete context of use, e.g. with particular users, in a specific environment and performing selected scenarios. This means that after the validation of a usability goal and associated requirements, the results reflect only a partial scope. This is because it would be too expensive to perform evaluations taking all different combinations of the context model instances (e.g. using all possible robot configurations, testing all possible scenarios with participants, and having a significant number of participants having all possible combination of demographic and knowledge characteristics). Therefore, the USE-ME conceptual framework suggests a calculation of a \textit{Success Coverage} of the usability goal, which will reflect the percentage of the scope which was taken into consideration during a validation, when compared to the complete context specification of the usability goal.
+
+        
+        \begin{figure*}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{Chapters/Figures/mapping.png}
+        \caption{Integration points between RDAL, DSSL and USE-ME (taken from \cite{barisic2017RDAL})}
+        \label{fig:mapping}
+        \end{figure*}
+
+
+        By integrating two approaches we enable usability evaluation to reuse and refer to the RDAL artefacts while performing context and goal modelling activities suggested by the USE-ME conceptual framework. 
+        On another hand, while applying the USE-ME activities it is likely that context and goal elements will be extended, or new ones discovered therefore directly contributing to the requirements refinement and DSL artefacts specification. 
+        We highlight interaction points and information flow between the RDAL-REMH and USE-ME approaches (see figure~\ref{fig:mapping}). The idea was to connect the RDAL non-functional goals referring to usability with a 'Quality in Use' root goal of the USE-ME Goal Model. This root goal represents the highest objective of the USE-ME conceptual framework (usability for all possible workflows, environment combinations and profiles).
+        
+        \subsection{Conclusion of case study}
+
+        Our case study presented a usability-driven requirements engineering approach for DSL development. The RDAL-REMH approach used for embedded systems development with the AADL language for system architectures has been adapted to DSL development by replacing the AADL with the DSSL language, a new DSL that we developed for modelling the DSL under development and its environment. We then provided a mapping between the USE-ME language and the combined RDAL-REMH languages for integrating the USE-ME usability driven development into the RDAL-REMH general requirement engineering approach. 
+        %Our approach primarily concerns the language itself (consisting of an abstract syntax and associated concrete syntax) with minimal consideration of the user interface to be considered in a second step. Our proposition is to first focus on developing a high quality language, which later on will ease the development of the required user interfaces. Bad languages often make the development of user interfaces more complex as the interfaces need to compensate for the lacks of the language. %

@@ -1,0 +1,311 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter4.tex
+%% NOVA thesis document file
+%%
+%% Chapter with approach idea
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Usability evaluation approach for DSLs}
+\label{cha:approach}
+
+Evaluation with users,  known as Empirical Evaluation, is recommended  at all stages of development, if possible, or at least in the final stage of development \cite{nielsen1990heuristic}.  Each type of measure is usually regarded as a separate factor with a relative importance that depends on the Context of Use. Iterative testing with small numbers of participants is usually preferable, starting early in the design and development process.
+
+
+
+\section{Experimental model}		%(source: [13])
+    \label{sec:experiment}
+    
+   We argue that the quality in use of a \gls{dsl} should be assessed experimentally. In Software Engineering, a controlled experiment can be defined as \emph{'a randomized experiment or quasi-experiment in which individuals or teams (the experimental units) conduct one or more Software Engineering tasks for the sake of comparing different populations, processes, methods, techniques, languages or tools (the treatments)'} \cite{Sjoberg2005TSE}. For our purposes, this can be instantiated with developers typically conducting software construction, or evolution tasks, for the sake of comparing different languages – including the \gls{dsl} under evaluation and any existing baseline alternatives to that \gls{dsl}. 
+    
+    \subsection{Experiment activity model}
+    
+    Figure \ref{fig:exActivity} outlines the activities needed to perform an experimental evaluation of a software engineering claim, following the scientific method. During \emph{requirements definition}, the problem statement (i.e. research questions), experimental objectives and context are defined. The next step is to perform \emph{design planning}, where context parameters and hypotheses are refined, subjects are identified, a grouping strategy for subjects is selected, and a sequence and synchronization of observations and treatments for each of the experimental groups is planned. The sequencing and synchronization of such interventions, their nature (observations or treatments) and the group definition policy, define the \emph{experimental design}. The data collection activities plan is also set during design planning. This is followed with \emph{data collection}, which often includes a pilot session, to correct any remaining issues, and the evaluation itself, following the designed plan. This step is followed by \emph{data analysis} where data is described in the form of statistical tables and graphs, and, if necessary, the data set is reduced. Hypotheses are then tested. Finally, during \emph{results packaging}, the results are interpreted and possible validity threats and lessons learned are identified. A detailed discussion on how this process can be followed in a software engineering experimentation context can be found in \cite{Goulao2008PhD, Goulao2007QUATIC}. Experimental reporting guidelines, generally followed by the experimental software engineering community, are also available \cite{Jedlitschka2008}. By reporting a given language’s quality in use, and the evaluations adhering to such guidelines, the overall ability to make study replications (for independent validation and validity threats mitigation) and its meta-analysis (for building a body of knowledge supported by the evidence collected in different contexts) is expected to increase.
+    
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.96]{Chapters/Figures/Chapter14Figure1.png}
+            \caption{Experiment Activity Model Overview (taken from \cite{barisic2012book})}
+            \label{fig:exActivity}
+    \end{figure}
+    
+    
+    \subsection{Experiment design model}
+    \label{sec:exModel}
+    
+    In order to contrast the selected \gls{dsl} experimental validations, we start by modelling their relevant information. This is captured in the class diagrams, adapted and extended from \cite{Goulao2008PhD}. In a nutshell, this model partially captures some of the essential information of an experimental language evaluation, namely the details on evaluation requirements and planning. 
+    
+    \subsubsection{Problem Statement design model}
+    Before conducting an experimental language evaluation, one should start by clearly defining the problem that the evaluation will address as modelled in Figure \ref{fig:probStatement}. This includes identifying where this problem can be observed (i.e., its context, typically where the language will be used), and by whom (i.e., the stakeholder who is affected by the problem – e.g., the language user). It is also important to state how solving the identified problem is expected to impact on those who observe it, and which quality attributes will be affected. The class \emph{QualityAttribute} can take values that are defined in Quality model from ISO Standards (see Figure \ref{fig:qualityInUse}).
+    
+    When conducting language evaluation experiments, one should clearly define the experiments’ objectives. Building upon Basili’s earlier work \cite{Basili1996ICSE}, Wohlin et. al. proposed a framework to guide the experiment definition \cite{Wohlin1999}. The framework is to be mapped into a template with the following elements: the object of study under analysis, the purpose of the experiment, its quality focus, the perspective from which the experiment results are being interpreted, and the context under which the experiment is run. 
+    
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.97]{Chapters/Figures/Chapter14Figure2.png}
+            \caption{Problem Statement design model (taken from \cite{barisic2012book})}
+            \label{fig:probStatement}
+    \end{figure}
+    
+    While the experiment definition expresses something about why a particular language evaluation was performed, the experiment planning expresses something about how it will be performed. Before starting the experiment, decisions have to be made concerning the context of the experiment, the hypotheses under study, the set of independent and dependent variables that will be used to evaluate the hypotheses, the selection of subjects participating in the experiment, the experiment’s design and instrumentation, and also an evaluation of the experiment’s validity. Only after all these details are sorted out should the experiment be performed. The outcome of planning is the experimental language evaluation design, which should encompass enough details in order to be independently replicable.
+    
+    A example of instantiation of Problem Statement model is given in Figure \ref{fig:Patt_PheasantProblemStatement}.
+    
+    \subsubsection{Context design model}
+    
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.97]{Chapters/Figures/Chapter14Figure3.png}
+            \caption{Context design model (taken from \cite{barisic2012book})}
+            \label{fig:contextDesign}
+    \end{figure}
+    
+    Figure \ref{fig:contextDesign} includes information on the context, including where the experimental language evaluation will take place. The context of an experiment determines our ability to generalize from the experimental results to a wider context. Experiments can be conducted in different contexts, each of them with their own benefits, costs, and risks. These constraints have to be made explicit, in order to ensure the comparability among different studies and to allow practitioners to evaluate the extent to which the results obtained in a study, or set of studies, are applicable to their own particular needs. Throughout the experiment, there are a number of context parameters that remain stable and their value is the same for all the subjects in the experiment during the whole process. Therefore, we can safely assume that differences observed in the results cannot be attributed to these parameters, while the actual parameters to be reported may vary \cite{Wohlin1999}. Concerning their integration within the language development process, experiments can be conducted either \emph{online}, or \emph{offline}. The former, carried as part of the software process in a professional environment, involves an element of risk, since experiments may become intrusive in the underlying development activity. This intrusiveness may even manifest itself through resources and time overheads on a real project. A common alternative is to carry out the experiment offline. 
+    
+    
+    An experimental language evaluation design prescribes the division of our sample into a set of groups, according to a given strategy. Each of those groups receives a set of \textbf{interventions}, which may be either \textbf{observations} where data is collected or \textbf{treatments}, where the groups receive some sort of input (e.g., training in using a language). The association class with the time stamp allows this data to be ordered in time so that a sequence of observations and treatments can be established. The sequencing and synchronization of such interventions, their nature, and the group definition policy, define the \textbf{experimental design}. 
+    
+    A example of instantiation of Context model is given in Figure \ref{fig:Patt_PheasantContext}.
+    
+    \subsubsection{Instrument design model}
+    
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=1]{Chapters/Figures/Chapter14Figure4.png}
+            \caption{Instrument design model (taken from \cite{barisic2012book})}
+            \label{fig:instrumentDesign}
+    \end{figure}
+    
+    The \textbf{instrument design} presented in Figure \ref{fig:instrumentDesign} includes the definition of the artifacts that will be used in the experiment. For instance, in a language evaluation experiment, the syntactical problem instantiation specified with a language can be used as an artefact that will then be changed by the evaluation participants. These changes could be monitored, using collection instruments such as those depicted in Figure \ref{fig:instrumentDesign} – e.g., a combination of a test with a post-test questionnaire. This kind of evaluation allows addressing the instrument perspectives as cognitive activities that are fundamental to assessing the usability of a language, and the quality of instantiation, especially during modification (see, for instance, the usage of cognitive dimensions in \cite{Kosar2010}). The instrumentation also concerns the production of guidelines and tools (not necessarily computer-based ones) that will support the measurements performed in the experiment. The rationale is to foster the comparability of the collected data by streamlining data collection in a consistent way. Note that instrumentation may also include any training material distributed to the participants, before their participation in the experiment.
+    
+    A example of instantiation of Instrument model is given in Figure \ref{fig:Patt_PheasantInstruments}.
+    
+    \subsubsection{Sample design model}
+    
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.96]{Chapters/Figures/Chapter14Figure5.png}
+            \caption{Sample design model (taken from \cite{barisic2012book})}
+            \label{fig:sampleDesign}
+    \end{figure}
+    
+    In Figure \ref{fig:sampleDesign}, we can see the \textbf{sample design} model that includes the participants’ profile and the artefacts used in the language evaluation. An orthogonal classification of context concerns the people involved in the language evaluation. One may choose among performing the language evaluation with professional practitioners, or with surrogates for those practitioners (e.g., students). The first option leads to results that are more easily comparable to others obtained in a professional context, but care must be taken to reduce potential overheads to practitioners’ activities. Using students as surrogates for professional practitioners is less expensive, but makes the experimental results harder to extrapolate for a professional community. In order to reduce this gap between the students and the practitioners, the researcher should prefer using graduate students, whose expertise is closer to that of novice practitioners.
+    
+    It is common to use a frame of the population, if it is not feasible to identify all the population’s members. In contrast, all members of the chosen population frame are identified. For example, rather than considering all the language components available, one can use a frame that considers only the selected language components as the population. Often, it is not possible to perform the evaluation using all the relevant framed population as evolution subjects. Instead, a sample of that framed population is chosen using a selected sampling technique, with the objective of being as much representative of the framed population as possible, considering the available resources of the experimenter.
+    
+    Yet another dimension constraining the language evaluation is the usage of toy vs. real problems. There are at least two issues that motivate the usage of toy problems: the resources available for the language evaluation and the risks concerned with the outcome of the evaluation. The former results from the often very limited amount of time that the subjects can devote to the evaluation. The latter relates to the potential harm caused by the outcome of the evaluation (e.g. while experimenting with using different languages on a real problem, a language that leads to worse productivity can lead to additional costs to a customer). The question, here, is whether the results obtained with a toy problem will scale up to real problems, or not. Toy problems are often used in early evaluations, as their usage is less expensive. If the results of evaluations conducted with toy examples are satisfactory, the risk of scaling up the problem to a real one may be mitigated to a certain extent, although it will not be completely eradicated.
+    
+    The artefacts used in these evaluations can be generic or domain-specific. When comparing programming languages it is common for these artefacts to be domain-specific, regardless of the original language they were built with. This means, that we can use this model, taking into consideration this attribute specification, to compare \gls{gpl}s, \gls{dsl}s, or \gls{gpl}s vs. \gls{dsl}s.
+    
+    A example of instantiation of Context model is given in Figure \ref{fig:Patt_PheasantSample}.
+
+    
+    \subsubsection{Hypothesis and Variables design model}
+
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.97]{Chapters/Figures/Chapter14Figure6.png}
+            \caption{Hypothesis and Variables design model (taken from \cite{barisic2012book})}
+            \label{fig:hypothesisDesign}
+    \end{figure}
+    
+    Figure \ref{fig:hypothesisDesign} includes the hypotheses tested and the variables used with their characteristics, such as type, scale, and level. The hypothesis formulation should be stated as clearly as possible and presented in the context of the theoretical background it is derived from. The \emph{null hypothesis} states that there is no observable pattern in the experimental evaluation setting, so any variations found are resulting from coincidence. This is the hypothesis that the researcher is trying to reject. The alternative is that the variations observed are not resulting from coincidence. When the null hypothesis is rejected, we can conclude that the null hypothesis is false. However, if we cannot reject the null hypothesis, we can only say that there is no statistical evidence to reject it. Conversely, if we reject the null hypothesis, we can accept its alternative. If we cannot reject the null hypothesis, we cannot accept the alternative.
+    
+     \begin{figure}
+        \centering
+            \includegraphics[scale=0.9]{Chapters/Figures/Chapter14Figure7.png}
+            \caption{Experiment design model instantiation, from info in \cite{kosar2011program} (taken from \cite{barisic2012book})}
+            \label{fig:expInstantiation}
+    \end{figure}
+    
+    Hypothesis testing always assumes a given level of significance denoted by alpha, which represents a fixed probability of wrongly rejecting the null hypothesis, if it is in fact true. The probability value (p-value) of a statistical hypothesis test is the probability of getting a value of the test statistic as extreme as or more extreme than that observed by chance alone, if the null hypothesis is true. Figure 6 presents the relationships between the main concepts involved in hypotheses definitions, starting from the overall objectives of the research, through the specific goals of the experiment, and the questions that will allow assessing the achievement of the goals. The hypotheses are then assessed using metrics.
+    
+    The language evaluator selects both dependent and independent variables. Dependent variables should be explicitly tied to the research goals (in the context of this chapter, these typically involve evaluating \gls{dsl}s), and chosen for their relevance with respect to those goals. When it is not feasible to collect direct measures of the level of achievement of the research goals, surrogates can be used, although such replacement is to be avoided, when possible, and clearly justified. When not – e.g. when assessing the usability of a \gls{dsl} – we may use effectiveness in specifying a system with it as a surrogate for the \gls{dsl}’s usability. Similarly, independent variables are chosen according to their relevance to the research goals.
+    
+    The analysis techniques chosen for the language evaluation experiment depend on the adopted language evaluation design, the variables defined earlier, and the research hypotheses being tested. More than one technique may be assigned to each of the research hypotheses, if necessary so that the analysis results can be cross-checked later. Furthermore, each of the hypotheses may be analyzed with a different technique. This may be required if the set of variables involved in that hypothesis differs from the set being used in the other hypotheses under test. Discussions relating statistical tests (in particular, parametric vs. non-parametric ones) with variable types can be found in statistics text books, such as \cite{Maroco2003}.
+    
+    A example of instantiation of Hypothesis and Variables model is given in Figure \ref{fig:Patt_PheasantHypothesis}.
+    
+    By capturing a rich set of data of a language evaluation, we can pave the way for further analysis, where the information collected in several independently conducted language evaluations can be combined. To do so, the next step is to instantiate this model. In Figure \ref{fig:expInstantiation}, we illustrate a partial instantiation of this model, using information collected from the family of language evaluation experiments described \cite{kosar2011program}. This particular example is chosen for illustration because that family of evaluation experiments is an excellent example of how \gls{dsl} properties validation can be performed in a sound way. The instantiation is only partial, as the whole instantiation would be extremely cluttered.   
+    
+    \subsection{Experiments overview}
+    
+    The main point in streamlining the evaluation of \gls{dsl}s and making information available in a common framework is that we can build upon that framework an evidence-based body of knowledge on \gls{dsl}s and their properties with respect to their usability. We performed a systematic comparison of four language evaluation experiments. They were examples of best practices in languages evaluation with a concern on usability, from which we could perform some meta-analysis, leading not only to a collection of lessons learned “from the trenches”, but also to the identification of opportunities to further improve existing validation efforts. 
+    
+    The selected studies are Kieburtz \cite{kieburtz1996software}, Murray \cite{murray2000kaleidoquery}, Kosar \cite{kosar2011program} and Barišić \cite{Barisic2012plateu} (Section \ref{sec:Pheasant}), which are reported in Table \ref{tab:exStudies}. The first column represents a specific criterion that we will use in our comparative overview of these studies. The four remaining columns provide information on each of the selected studies. Kosar et al. conducted a family of three experiments, while the remaining selected studies are single experiments. The generic lack of families of experiments, rather than single experiments is a long identified shortcoming in the experimental validation of software engineering claims, so this should be highlighted as a very strong point in this work. Families of experiments help mitigating validity threats that occur in single experiments. In this particular case, the fact that the tested hypotheses have consistent results in all the three experiments in the experiment family increases the confidence in the soundness of the obtained results. Ideally, there should also be experiments within the family run by completely separate research groups, so that any biases by the experiment team that might exist would also be removed. Independent replication of experiments is a standard practice in other domains. For example, the Cochrane Collaboration \footnote{http://www.cochrane.org/ (accessed September 19, 2017)} supports a common repository for health care evidence, which is fed by independently run families of experiments. 
+    
+    \begin{table}[]
+\centering
+\caption{Experiments overview}
+\label{tab:exStudies}
+\begin{tabular}{|p{0.14\columnwidth}|p{0.21\columnwidth}|p{0.21\columnwidth}|p{0.21\columnwidth}|p{0.21\columnwidth}|}
+\hline
+\textbf{Criteria}              & \textbf{Kieburzt1996 \cite{kieburtz1996software}}                                                                                                                       & \textbf{Murray1998 \cite{murray2000kaleidoquery}}                                                                                                                                                                                                      & \textbf{Kosar2012 \cite{kosar2011program}}                                                                               & \textbf{Barišić2011 \cite{Barisic2012plateu}}                                                                                                                                              \\ \hline
+\textbf{Experiment runs}       & Single                                                                                                                                      & Single                                                                                                                                                                                                                   & Family of 3 runs                                                                                 & Single                                                                                                                                                            \\ \hline
+\textbf{Quality concerns}      & Flexibility, productivity, reliability, usability                                                                                           & Learnability, understandability, usability, user satisfaction and language evolution                                                                                                                                     & Effectiveness, time frame, efficiency, usability, perceived complexity                           & Effectiveness, efficiency, self-confidence in results and language evolution                                                                                      \\ \hline
+\textbf{Context}               & In-vitro, offline                                                                                                                           & In-vitro, offline                                                                                                                                                                                                        & In-vitro, offline                                                                                & In-vitro, offline                                                                                                                                                 \\ \hline
+\textbf{Comparison}            & DSL vs. GPL                                                                                                                                 & Visual DSL vs. Textual DSL                                                                                                                                                                                               & DSL vs. GPL                                                                                      & DSL vs.GPL                                                                                                                                                        \\ \hline
+\textbf{Participants profile}  & Professionals                                                                                                                               & Graduate students                                                                                                                                                                                                        & Graduate students                                                                                & Graduate students                                                                                                                                                 \\ \hline
+\textbf{DSL}                   & MTV-G                                                                                                                                       & Kaleidoquery                                                                                                                                                                                                             & FDL, DOT, XAML                                                                                   & \gls{pheasant}                                                                                                                                                          \\ \hline
+\textbf{Baseline}              & ADA templates                                                                                                                               & OQL (textual DSL)                                                                                                                                                                                                        & FD library in Java, GD library in C, Windows form Library in C\#                                 & BEE/C++                                                                                                                                                           \\ \hline
+\textbf{Materials origin}      & Industry-level                                                                                                                              & Academic                                                                                                                                                                                                                 & Academic                                                                                         & Academic                                                                                                                                                          \\ \hline
+\textbf{Training in DSL}       & Yes                                                                                                                                         & Yes                                                                                                                                                                                                                      & Yes                                                                                              & Yes                                                                                                                                                               \\ \hline
+\textbf{Training in Baseline}  & Yes                                                                                                                                         & Yes                                                                                                                                                                                                                      & Yes                                                                                              & For inexperienced users                                                                                                                                           \\ \hline
+\textbf{Group participants}    & 2 similar groups                                                                                                                            & 4 similar groups                                                                                                                                                                                                         & 6 similar groups                                                                                 & 4 similar groups                                                                                                                                                  \\ \hline
+\textbf{Independent variables} & Language type, participant                                                                                                                  & Language type, language factor, experience                                                                                                                                                                               & Language type,domain, question type, experience                                                  & Language type, question type, experience                                                                                                                          \\ \hline
+\textbf{Dependent variables}   & Effort, effort/task, acceptance test failures, task difficulty classification, and perceptions on flexibility, productivity and confidence. & Correctness, user preferences concerning both languages                                                                                                                                                                  & Program comprehension, time, efficiency, simplicity of use, test complexity                      & Time, Correctness, Confidence scale                                                                                                                               \\ \hline
+\textbf{Analysis}              & ANOVA                                                                                                                                       & Paired sample T-test, independent samples T-Test                                                                                                                                                                         & Wilcoxon Signed Ranks Test                                                                       & Wilcoxon Signed Ranks Test, Sign Test                                                                                                                             \\ \hline
+%\textbf{Results summary}       & Increased productivity, reliability, flexibility, with MTV-G. Users preferred its usability to the alternative baseline.                    & Increased effectiveness and self confidence in results with Kaleidoquery for non-programmers, who clearly preferred Kaleidoquery. No significant difference with programmers, who generally outperformed non-programmers & Increased effectiveness and efficiency of programs written in DSLs when compared to baseline GPL & Increased effectiveness, efficiency, self-confidence in results with PHEASANT, when compared to the baseline C++/BEE. Experts generally outperformed non-experts. \\ \hline
+\end{tabular}
+\end{table}
+    
+    Back in 1997, Brooks advocated that meta-analysis should be used to combine the results of independent study replications in Software Engineering \cite{Brooks1997}. Miller attempted to perform a meta-analysis on a set of independent defect detection experiments, but found serious difficulties concerning the diversity of the experiments and heterogeneity of their data sets, and was unable to derive a consistent view on the overall results \cite{Miller2000JSS}. A noticeable feature in the quality concerns row is that, either directly or indirectly, all these studies are concerned with the quality in use of a \gls{dsl}, including perspectives such as its effect on the productivity of practitioners, which is sometimes indirectly assessed through the effectiveness and efficiency of the language usage. This is, of course, not surprising, as these examples were chosen precisely because they illustrate how such evaluation can be performed, in different contexts. Kosar et al.’s work \cite{kosar2011program} is an independent evaluation of several \gls{dsl}s and is mostly concerned with program comprehension correctness and efficiency while using the DSLs when compared with using \gls{gpl}s. A detailed analysis of their data could be used to identify opportunities for improving the tested \gls{dsl}s. Kieburtz et al.’s experiment \cite{kieburtz1996software} addresses DSL evolution as part of the concern with flexibility. The remaining two experiments explicitly look for opportunities for improving the respective \gls{dsl}s under scrutiny.
+    
+    The four studies are run in vitro (i.e., in the laboratory, under controlled conditions), off-line. This context is particularly interesting in that the researchers can better control extraneous factors that would otherwise bring validity threats to each of the experiment. Being offline, the risks for the organizations where the studies are conducted are also mitigated, in the sense that if anything goes wrong with the experimentation, this will have no visible effect to external stakeholders (e.g., clients that were considering using a \gls{dsl}). The downside for this is that there are validity threats concerning the realism of an assessment performed in vitro, as well as that of conducting the experiment offline. Clearly, there are interesting research opportunities to mitigate these threats, by evaluating the same \gls{dsl}s in a real-world, uncontrolled environment, to strengthen the external validity of the obtained results. The same holds for selection of participants in the experiment, where, whenever possible, real users of the \gls{dsl} should be involved. 
+    
+    The number of participants is also an issue, due to the relatively high costs of engaging real users in the validation of languages. Concerning this, we would highlight Kieburtz’s experiment \cite{kieburtz1996software} as it shows how a meaningful assessment can be performed, even with a very low number of participants (only 4). Of course, for statistical soundness, larger numbers of subjects should be used, but, as noted by usability experts, a small number of users can still detect a high number of usability improvement opportunities in a product \cite{Nielsen1993}. Using a small number of participants is an interesting option in early evaluations aimed at identifying defects of the language, to reduce costs. In order to draw more definitive conclusions (with high reliability and validity) that state if the language is better than the previous baseline it is necessary to use a larger number of participants. For instance, in Kieburtz’s experiment, the conclusions were sound with respect to the participants, but had a threat with respect to their external validity: with only 4 participants, it was not possible to rule out the possibility of their individual skills playing a role in how the competing languages were evaluated. A similar comment might be made for the evaluation experiments described by Murray \cite{murray2000kaleidoquery} and Barišić \cite{Barisic2012plateu}, with 10 and 15 participants, respectively. In isolation, each of these experiments has its own external validity threats. Interestingly, if we combine the results in all these experiments, a consistent pattern of \gls{dsl} success starts to emerge. Last, but not the least, several of these evaluation experiments uses academic examples for validation, rather than 'real-world' problems. This is, of course, a convenience constraint which entails the obvious threat of external validity, if the examples are not representative of the actual tasks real users will have to perform with the \gls{dsl}s. Even with real-world examples, the (lack of) coverage of the \gls{dsl} language with those examples is also a common threat.
+    
+    In all these \gls{dsl}s, there is a high variability of domains and techniques to build \gls{dsl}s, suggesting that the lessons learned from this collection of language evaluation experiments should, in principle, apply to \gls{dsl}s from other domains. All the selected studies compare \gls{dsl}s with an existing baseline which is, in most cases, a \gls{gpl}-based solution. The noticeable exception is Murray’s experiment, where a graphical \gls{dsl} is contrasted with the textual notation it is built upon. These examples also illustrate how, in most reported cases, the usability evaluation of \gls{dsl}s is performed once. In a \gls{ucd} process, this should not be the case. As such, we would expect to find \gls{dsl} usability assessments covering several versions of the same language, thus supporting the language evolution. Language evolution is covered in some of these studies, usually in the final questionnaire that is prepared for participants, in the end of the evaluation. This feedback can be valuable for language engineers, but the effect of implementing the changes suggested by participants’ feedback should ideally also be assessed by a new replica of the experiment, to run with the new version of the \gls{dsl}, like we did in case of Visualino (Section \ref{sec:visualino}, Annex \ref{ann:Visualino}).
+    
+    \begin{figure}[h]
+        \centering
+            \includegraphics[scale=1]{Chapters/Figures/Chapter14Figure8.png}
+            \caption{Experiments design: Observations and Treatments (taken from \cite{barisic2012book})}
+            \label{fig:exDesigns}
+    \end{figure}
+    
+    Concerning the experimental designs (see Figure \ref{fig:exDesigns}), whether implicitly or explicitly, they all report collecting some background information. In some of them, domain training was necessary, while in others, it was not. One of the common concerns in all experiments was to cancel possible learning effects, by splitting participants into at least a couple of groups, so that one of the groups would learn the baseline first and then the \gls{dsl}, while the other group would have its training and testing path in the reverse order. Whenever more than one category of participants existed (e.g., programmers vs. non-programmers), the groups were further split so that there was a balanced number of experienced and non-experienced subjects following each of the training and testing paths. Experiments usually ended with a questionnaire, so that participant’s perceptions on their performance in the experiment, as well as suggestions for improvement in the languages, or other relevant information could be recorded.
+    
+    All experiments used some statistical approach to assess the extent to which the differences in collected data between using the \gls{dsl}, or the baseline, were significant. In all cases, some statistically significant differences in the results were reported. These differences should be regarded as indicators of a tendency, rather than as definitive, due to the already discussed external validity issues of these experiments, when considered in isolation, but their overall consistency gives us some trust on the observed trends. In all experiments, the quality impacts of using \gls{dsl}s vs. using the existing baselines are noticeable, and strengthen the claims concerning a stronger usability using \gls{dsl}s, when compared to their baselines, with an impact on the productivity of professionals using them, in these tests. We also note how, whenever there is a separation among experienced and non-experienced test participants, the improvement effects are more noticeable in the non-experienced participants. The overall feedback, usually collected through a mix of Likert-scale questionnaires (e.g., each answer is encoded in a symmetric scale expressing the level of agreement with a given statement, ranging from a strong agreement to a strong disagreement), and open questions is, in general, favorable to \gls{dsl}s, or indifferent, but only rarely favorable to the baseline. 
+    
+    The obvious conclusion of all these studies is that, in general, the analyzed \gls{dsl}s outperformed their baselines, confirming the anecdotal stories on the benefits of \gls{dsl}s, with varying differences between the baselines and the \gls{dsl}s. This is not surprising for at least two motives: (i) those \gls{dsl}s were built to be a better alternative than the baselines they were compared with, in most cases, so the language engineers had a grasp of how to improve on the existing baselines – the \gls{dsl}s were built to be good at those tasks they were tested with so, the tests showed that this objective was met; (ii) taking a skeptic’s view, it is also arguable that, due to publication bias, we are mostly bound to have assess to success stories, rather than failure ones. A proponent of a new language is less likely to write a report explaining how the language fails to meet some of its goals, whereas the author of a successful language is interested in illustrating, through validation, the advantages of using the new language. This skeptic’s view is a strong argument for the independent validation of claims on \gls{dsl}s’ advantages over existing baselines. That said, it should be noted that Kosar’s family of validation experiments is an independent one, in the sense that the evaluators are not simultaneously the developers of the solutions under comparison.
+    
+    
+\section{Iterative User-Centered Design approach}	%	(source: [14])
+\label{sec:iterativeUCD}
+
+    We claim that the usability of a language needs to be evaluated by involving the language’s end users into development. To be able to identify potential quality problems that will lead to user interaction and experience problems, a suitable approach is to apply \gls{ucd} practices during design and development of the language. Nevertheless, it is found hard to control budget and plan time and responsibilities accordingly. An incremental, iterative process should be applied to enable tracking of design changes and validation of usability metrics.
+    
+    \subsection{Process for performing usability evaluation on DSLs}
+        
+        In order to propose a process for performing usability evaluation on DSLs, we
+    first must ask what are the main goals of a language engineer when
+    devising a new \gls{dsl}. 
+     The main design objectives for building a new \gls{dsl} are:
+    \begin{itemize}
+      \item To build a comprehensive language that captures domain expressivity.
+      \item To achieve compliance with existing standards in a given domain.
+      \item To overcome previously identified problems in the domain.
+    \end{itemize}
+    
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[scale=0.50]{Chapters/Figures/DSLEvaluationProcess.pdf}
+    	\caption{Evaluation Process for DSLs' Usability (taken from \cite{Barisic2011HowEvaluation})}
+    	\label{fig:evaluationProcess}
+    \end{figure}
+    
+    As in other usability evaluation methodologies, Usability evaluation should
+    be embedded in the \gls{dsl} development process (Section \ref{sec:dslcycle}), and considered from the
+    beginning of its development together with \gls{ucd} activities from
+    \textit{Section} \ref{sec:usabilityDesign} as we propose in \textit{Figure}
+    \ref{fig:evaluationProcess}. According to our proposal, Usability requirements should be identified during \textit{domain analysis phase} of \gls{dsl}'s
+    construction i.e. while eliciting domain concepts. A first step would be to understand and specify the Context of Use of \gls{dsl}s. In order to achieve that, it is necessary to engage interviews or questionnaires with the \gls{dsl}'s intended end users in order to capture information about their working environment and the products that are already used within the domain. It is necessary to identify characteristics that the users find useful, frustrating or lacking while using the existing approach to solve the problem and group them in the usability requirements. A set of evaluation goals can be identified during the requirements’ elicitation process.
+    
+    In the \textit{language design phase}, it is necessary to validate if the design decisions conform to the context of use (e.g. chosen technical environment is integrable with the users’ environment, or that the designed DSL constructs are understandable). Unclear assumptions can be improved through different iterations, but already with the first designs, the Expert Evaluator can define questions that could answer evaluation goals and
+    which quality attributes from
+    \textit{Figure} \ref{fig:qualityInUse} are meaningful for the implemented domain model. For each domain concept, it is necessary to identify or predict both its frequency and relevance within the domain. 
+    
+    During the \textit{implementation phase}, the evaluation model can be specified. The stakeholders that should be involved in the evaluation could already be profiled and prepared for the execution. In certain cases, just use of proactive approach can be sufficient to evaluate the iteration objectives.
+   
+    Finally, in the \textit{evaluation phase}, the Expert Evaluator executes experiments and analyses the results, while the Language Engineers may still perform tests or prepare the product for Deployment. 
+    Preferably, during the evaluation the users are given real problems to solve in order to cover the most important tasks identified in the domain. Data about satisfaction and cognitive workload should also be evaluated subjectively through questionnaires. 
+    It is especially important in this phase to measure all the learnability issues,
+    since \gls{dsl}s should be (in principle) easy to learn and remember.  Of course, in
+    order to certify that we are creating a good \gls{dsl} we should conduct a 
+    comparative analysis with previous products that are already used in the domain
+    and also were built to achieve the same goals. 
+    
+    The main idea is that we can measure the distance between the language domain model and
+    the usability-context model during language development through defined quality metrics that influence Usability. The smaller the conceptual
+    distance, the higher the level of achieved Quality in Use.
+    
+    The proposed iterative \gls{ucd} evaluation approach can be merged into the development cycles of already existing
+    and evolving languages. It enables us to intervene at any point of the DSL development. Very often the developers only become concerned with Usability issues in later phases of the \gls{dsl} life-cycle.
+
+    \subsection{Pattern language for DSL usability evaluation}
+    
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.6]{Chapters/Figures/PatternLanguagePicture.png}
+            \caption{Pattern Language (taken from \cite{Barisic2012patterns})}
+            \label{fig:patternLang}
+        \end{figure}
+    
+        The goal of our systematic approach is to support DSL usability evaluations since the early stages of its development to prevent user-interaction mistakes, hence achieving a usable DSL by construction. The initial vision is detailed by a pattern language for evaluating the usability of DSLs that places the intended users of a language as the focal aspect of its design and conception by establishing formal correspondences for all stages between the DSL development process and the usability evaluation process. This iterative approach allows us to track the usability requirements and impact of recommendations, with a well-prepared evaluation process, allowing us to control the budget and the scope of the language’s evaluation. 
+        
+        A pattern language is a set of inter-dependent patterns that provide a complete solution to a complex problem \cite{buschmann1996system}.
+        The main purpose of these patterns is to identify which commonly and successfully-used techniques for usability evaluation can be effectively applied in \gls{dsl} design and guide the reader on the process of applying said techniques. As such, apart from the provided examples, the main core of Known Uses and Examples we provide exist outside the realm of DSLs. 
+        This set of practices reflecting high-level guidelines are presented in Figure \ref{fig:patternLang} and detailed in Appendix\ref{app:patterns}. Our inter-dependent set of patterns is divided into the following three design spaces:
+        
+        
+        \subsubsection{Agile development process}
+        \label{sec:Agilepattern}
+             Agile Development Process breaks tasks into small increments and each iteration should fit in short time-boxes that typically do not last more than a month \cite{Martin2002}. It promotes face-to face communication in workshops without impact of hierarchy roles of team members. All of them should take same level of responsibility that business and user needs are satisfied, by optimizing impact of evaluation feedback on language development. An appropriate iteration strategy that balances time invested into design of problem and its solution should be planned well with technical implementation. When goals are scoped and budget is fixed, we are ready to proceed to design and implementation activities that are guided by patterns given by Iterative \gls{ucd} (Section \ref{sec:UCDpattern}).
+             
+             This design space includes patterns devoted to project management and engineering of a DSL. Through organisation and planning of language development, this practice enables the control of evaluation activities, their scope (i.e. the context of use), the budget and tracking the success of the DSL. 
+             
+             These patterns are summarized as follow:
+             \begin{itemize}
+                 \item [-] \emph{User And Context Model Extraction} (Section \ref{sec:Patt1.1}). Before building a new DSL we should identify all intended user profiles and target context of use.
+                 \item [-] \emph{Evaluation Process And Design Planning} (Section \ref{sec:Patt1.2}). Usability evaluations and experimental designs should be carefully planned through an experimental process model.
+                 \item [-] \emph{Iterative User-Centered DSL Design} (Section \ref{sec:Patt1.3}). Introducing DSLs User-Centered methods allows us to achieve a productivity increase.
+                 \item [-] \emph{Iteration Validation} (Section \ref{sec:Patt1.4}). By validating the iterations in time-box fixed intervals we can monitor progress and check if development is going in the desirable direction.
+                 \item [-] \emph{Context Scope Trading} (Section \ref{sec:Patt1.5}). Short iterations require short and well scoped contexts.
+                 \item [-] \emph{Fixed Budget Usability Evaluation} (Section \ref{sec:Patt1.6}). In order to reduce the cost of Usability validation and increase the validity of design decisions, the development team should plan development budgets according to the scope of iteration.
+             \end{itemize}
+             
+        
+        \subsubsection{Iterative User-Centered design}
+        \label{sec:UCDpattern}
+        
+                It is necessary to engage the End Users in the language design in order to collect valuable information about their working scenarios and requirements \cite{righi2007}. In order to assess appropriateness of given concept design decisions it is necessary to identify meaningful quality attributes for each domain concept and its use. Metrics should be defined and calculated based on their dependency to designed concepts and should be in conformance with evaluation goals. Finally, they are expected to result with concrete hypotheses, tests, metrics, samples and statements that should be addressed and validated trough Experimental Evaluation Model.
+        
+                Iterative \gls{ucd} provides patterns for the engagement of the Expert Evaluator into the development process, with the intention of collecting relevant information concerning the Language Engineer perception of the problem solution and Domain Users’ interpretation. Depending on the cognitive model instances to be evaluated, the DSL implementation technique or usability investigation technique, each design vary a lot.
+                
+                These patterns are summarized as follow:
+                     \begin{itemize}
+                         \item [-] \emph{Usability Requirements Definition} (Section \ref{sec:Patt2.1}). While building domain concepts, through direct interaction with Domain Experts, it is valuable to collect background information of the target users of each language concepts, in order to specify what usability means to them.
+                         \item [-] \emph{Conceptual Distance Assessment} (Section \ref{sec:Patt2.2}). In order to understand how the design of the language’s architecture impacts usability requirements, it is necessary to elect quality indicators and relate them to domain concepts.
+                         \item [-] \emph{Domain Concept Usability Evaluation} (Section \ref{sec:Patt2.3}). Using metrics to analyze the metamodel’s concepts representation allows the Language Engineer to reason on how different concept models impact the DSL’s quality in use.
+                         \item [-] \emph{Usability Requirements Testing} (Section \ref{sec:Patt2.4}). It is necessary to provide tests and evaluate if the current implemented features contribute to the defined goals.
+                         \item [-] \emph{Experimental DSL Evaluation Design} (Section \ref{sec:Patt2.5}). When a release candidate version of the DSL for a specific target user group seems to be ready for deployment, an experimental usability validation should be performed with real users and real test case scenarios.
+                     \end{itemize}
+                     
+        \subsubsection{Experimental evaluation design}
+        
+        Experimental evaluation design supports the specification of experiment (e.g. hypothesis, tests, metrics, samples and statements) and is instantiated by evaluation model (Section \ref{sec:experiment}) which is expected to support specifications for any usability investigation assessment. Example of model instances can be find in Appendix: 
+                     \begin{itemize}
+                         \item [-] \emph{Problem Statement Design Model} (Section \ref{sec:Patt3.1}).
+                         \item [-] \emph{Experimentation Context Design Model} (Section \ref{sec:Patt3.2}).
+                         \item [-] \emph{Instrument Design Model} (Section \ref{sec:Patt3.3}).
+                         \item [-] \emph{Sample Design Model} (Section \ref{sec:Patt3.4}).
+                         \item [-] \emph{Quality Design Model} (Section \ref{sec:Patt3.5}).
+                         \item [-] \emph{Hypothesis and Variables Design Model} (Section \ref{sec:Patt3.6}).
+                     \end{itemize}
+        
+        
+        \subsubsection{Related patterns}
+        
+        There is a related line of work on HCI patterns, covering areas like ubiquitous systems \cite{roth2002}, web design \cite{vanduyne2003}, safety-critical interactive systems \cite{hussey1999patterns}, as well as more general interaction design languages \cite{orelly2007, Schmidt2010, tidwell2005animated, vanWelly2003}. Although HCI has a large focus on Usability, the patterns available mainly avoid process patterns and prefer patterns that represent actual usable human interaction artifacts \cite{mahemoff2001usability}, like News Box, Shopping Cart or Breadcrumbs.
+        
+        Spinellis \cite{spinellis2001} presents a pattern language for the design and implementation of DSLs. Contrary to ours, these patterns refer to concrete implementation strategies and not to the process of building the DSL or usability concerns. Gunter \cite{gunter2011}  presents a pattern language for Internal DSLs. These patterns mainly focus on how to map domain concepts to language artifacts and follow by implementing given artifacts with a \gls{gpl} capable of supporting internal languages.
+        
+        Much of our patterns are based upon Völter and Bettin’s pattern language for MDD \cite{volter2004}. These patterns represent a well-rounded view of MDD but they do not explicitly account for the importance of Usability in DSLs and therefore do not give explicit instructions on how to test and validate usability of the end product. It is our opinion that our pattern language can be composed with Völter and Bettin’s to produce a more complete version of a pattern language for MDD with usability concerns. To the best of our knowledge, ours is the only pattern language focusing on Domain Specific Language development process with user centered design.
+        
+        As for usability, there are not many patterns or pattern languages available to cover usability concerns. Folmer and Bosch \cite{folmer2003usability} developed a usability framework based on usability patterns to investigate the relationship between usability and software architecture. This work however has little relation to usability tests and to the development of usable software through usability validation. They instead map well know \gls{hci} patterns, such as Wizard, Multi-tasking and Model-View-Controller to quality attributes and usability properties. However, this is somewhat related to our Conceptual Distance Assessment pattern (Section \ref{sec:Patt2.2}) and the framework could in theory be used to identify the mappings between domain concepts and quality attributes. 
+        %Ferre et al’s software architectural view of usability patterns \cite{ferre2003} follows a similar approach. 
+        Graham’s pattern language for web usability \cite{grahm2002}  deals with usability evaluation and usability testing process. However, these patterns are hard to follow due to the high number of patterns and lack of formal structure. Furthermore, Graham’s patterns are targeted at web-based software. The pattern language most similar to ours is Gellner and Forbig’s Usability Evaluation Pattern Language \cite{gellner2003usability}. This pattern language is composed of thirty five patterns for usability testing. Of those, the Eight Phase pattern represents a set of eight stages of the process of usability evaluation. This is a similar approach to ours and has the merit of summarizing the process into a single pattern. However, the goal of the pattern is to disseminate usability evaluation for small scale projects while our pattern language considers small to large projects.
+        
+        
+        
+    

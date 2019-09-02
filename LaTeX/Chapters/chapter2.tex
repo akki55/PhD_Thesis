@@ -1,0 +1,413 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with the background
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Research context}
+\label{cha:context}
+
+The immersion of computer technology in a wide range of domains leads to a situation where the users' needs become increasingly demanding and complex. Consequently, software engineers need to cope with the growth of both essential and accidental complexity \cite{Brooks1975}. They have to provide solutions that solve a class of crucial problems in a given domain, which is sometimes very difficult to learn, such as the rules and technical jargon found in knowledge areas such as Physics, Finance, Medicine, etc. Also, it is necessary to deal with the accidental complexity of the used technology, e.g., the use of low-level abstraction programming languages while integrating a wide plethora of different tools and libraries.The adoption of \gls{dsl}s is regarded as an approach to reduce the accidental complexity of software systems development \cite{Correal2007DSM, volter2013model, gray2007domain}.
+
+
+\section{Domain-Specific Languages (DSLs)}      %(source: CAT Section 2.1; Annex 2 Section 2.1)
+    \label{sec:DSL}
+    A \textbf{\gls{dsl}} is a language that supports solutions to essential problems from a given domain (e.g. Physics Computing, Financial Domain, Health-care, Control Systems, and Gaming). They are intended to raise the level of abstraction closer to users' domain understanding. Opposing to a \gls{gpl}, such as Java or C++, that is meant to be applicable across domains, a \gls{dsl} offers the end user the possibility to express his needs in terms of the domain of the problem instead of in terms of the computational solution \cite{selic2003pragmatics}. \gls{dsl}s provide a notation tailored towards an application domain as they are based on models of relevant concepts and features of the domain \cite{Mernik2005CSUR}. As \gls{dsl}s are used to describe and generate members of a family of systems or products in the application domain, they give the expressive power to model the required family members more easily. \gls{dsl}s are claimed to match users' mental model of the problem domain by constraining the user to the given problem \cite{Hermans2009Models}. Finally, \gls{dsl}s simplify the development of applications in specialised domains at the cost of their generality.
+    
+    A \gls{dsl} can offer several important advantages over a General Purpose Language (GPL) \cite{czarnecki2005overview}:
+    \begin{itemize}
+        \item \textit{Domain-specific abstractions:} a \gls{dsl} provides pre-defined abstractions to represent directly concepts from the application domain;
+        \item \textit{Domain-specific concrete syntax:} a \gls{dsl} offers a natural notation for a given domain and avoids the syntactic clutter that often results when using a GPL;
+        \item \textit{Domain-specific error checking:} a \gls{dsl} enables building static analysers that can find more errors than similar analysers for a GPL and that can report the errors in a language familiar to the domain expert;
+        \item \textit{Domain-specific optimizations:}  a \gls{dsl} creates opportunities for generating optimized code based on domain-specific knowledge, which is usually not available to a compiler for a GPL;
+        \item \textit{Domain-specific tool support:} a \gls{dsl} creates opportunities to improve any tooling aspect of a development environment, including, editors, debuggers, version control, etc.; the domain-specific knowledge that is explicitly captured by a \gls{dsl} can be used to provide more intelligent tool support for developers.
+    \end{itemize}
+ 
+    The idea of \gls{dsl}s is as old as the notion of programming languages \cite{Mernik2005CSUR}.  Widely used \gls{dsl}s are: Excel macro (spreadsheets), SQL (database queries), LaTeX (typesetting), HTML (hypertext web pages), VHDL (hardware design), PostScript, LabVIEW, Simulink, and Lego Mindstorms. They come in a wide variety of forms, e.g., textual, diagrammatic, graph-based, form-based, grid-based, etc. \gls{dsl}s are also called: application-oriented, special-purpose, 4GL (4th generation), task-specific, problem-oriented, end-user or little languages. 
+
+    \subsection{Growing adoption of DSLs supported by MDD}
+        The use of the \textbf{\gls{mdd}} techniques and tools is seen as a viable approach for dealing with accidental complexity \cite{volter2013model}. \gls{mdd} is grounded on the notion of providing explicit Models, seen as 'first class artefacts' in the process, that are further transformed into other lower level, more detailed, models. These transformations are also considered as development artefacts and can be explicitly modelled by using transformation models. This approach has the special impact of dealing with the complexity of large-scale problems while enabling rapid prototyping, simulation, validation and verification techniques \cite{kelly2008domain, Weiss1999SPL}.
+        
+        In general, \emph{'A model is a representation of something, constructed and used for a particular purpose'} \cite{benyon2012conceptual}. K{\"u}hne defines this concept more appropriate to our context as \emph{'A model is an abstraction of a (real or language-based) system allowing predictions or conferences to be made'} \cite{kuhne2006matters}. Modellers build models to represent something. But a model has no meaning by itself. The information in the model can be understood if the model is combined with an interpretation. Extracting the correct meaning from the model can only be achieved if a common understanding of the concepts between modeller and the interpreter (who will typically use the model) is established. This common understanding leads us to a language.
+        In practice, \gls{dsl}s can be used to represent domain-specific models in \gls{mdd} approaches. Each different model adopted by an \gls{mdd} approach can be seen as a \gls{dsl} that addresses the modelling of abstractions at a specific stage of software development. We have several guides that discuss how to implement a \gls{dsl} based on \gls{mdd} approach \cite{selic2003pragmatics,Atkinson2003,strembeck2009approach}.
+    
+    \subsection{DSL implementation classification}
+        \gls{dsl}s can be implemented in different languages, such as textual or graphical languages, interactive GUIs, or embedded in other programming languages \cite{greenfield2003software}. 
+        
+        \subsubsection{Internal vs. External DSLs}
+            Fowler \cite{dslfowlerbook} %(Fowler, 2010)
+            and Gray et al. \cite{gray2007domain} %(Gray et al., 2007) 
+            handle \gls{dsl}s in two different styles that can be distinguished with regard to the implementation approach of the \gls{dsl}. 
+            
+            An \textit{internal \gls{dsl}}, also called as embedded \gls{dsl}, is defined as an extension to an existing GPL and uses it as a base host language (e.g. Ruby \gls{dsl}s \cite{freeze2006creating} such as of first iteration version of FlowSL \cite{barisic2014flows}, or Hudak’s embedded \gls{dsl} \cite{Hudak:1996:BDE:242224.242477}). 
+            %(Hudak, 1996)). 
+            It is not necessary to build a new generator for an internal \gls{dsl}, as it can use the compiler or interpreter of the host language. \gls{dsl}s can be layered on top of a host language using subtyping (i.e. programming libraries that define new classes with behaviours that reflect domain concepts). This layered style of \gls{dsl} design is very unrestrictive because it does not preclude the use of non-\gls{dsl} expressions. Implementation of a \gls{dsl} via a definition of a new language from scratch is possible but is very restrictive because the language is self-contained.
+        
+            An \textit{external \gls{dsl}} is defined in a different format than the host language of the application and transformed into it using some form of a compiler (e.g. Microsofts’ OSLO framework or graphical \gls{dsl}s, such as \gls{pheasant} \cite{Amaral2005Thesis}, Lego \cite{LEGOmindstorm}, Visualino \cite{PedroMiguel2013}, etc. ).  An external \gls{dsl} can use all kinds of language constructs as it enables designers to define any possible syntax independent from the syntactical particularities of a given host language. 
+        
+        \subsubsection{Development without vs. with use of language workbench }
+        
+            The implementation of a \gls{dsl} without a language workbench, e.g. coupled with its own development environment, is possible through rigorous planning and software engineering. In this case, an application with an interface for assessing the concrete syntax items of the language is the programming environment. This \gls{ide} of \gls{dsl} design is also very restrictive, though it is important to note that the language definition is often obscured in the environment design, rather than decoupled from it. 
+            
+            A development with use of language workbench, i.e. \gls{dsme}, provides interfaces for activities such as expression building, model execution, and well-formedness checking (among others). This way to define a \gls{dsl} involves the co-creation and synthesis of the structural portion (i.e., C, A, and Mc) of the \gls{dsl} through the use of a meta-modelling environment. This style of \gls{dsl} modelling design facilitates rapid development but is at the same time somewhat restrictive. It produces similar results to the IDE style of design, though it is significantly more sophisticated since the definition of the language is used to define the \gls{dsme}, rather than a design-time result of the development of the \gls{dsme}.
+            
+            Different tools and platforms are now being defined to support \gls{dsl} implementation and processing, such as, Microsoft \gls{dsl} Tools \cite{Cook2007Book}, OpenArchitectureWare \cite{haase2007introduction}, \gls{gme} \cite{ledeczi2001generic}, \gls{rsa} \cite{leroux2006rational} and Epsilon \cite{kolovos2010epsilon} based on GMF/EMF \cite{steinberg2008emf, gronback2009eclipse}, MetaEdit+ \cite{tolvanen2003metaedit+}, AtomPM \cite{syriani2013atompm} and MPS \cite{Campagne2014TheI.}.
+            
+        \subsubsection{Horizontal vs. Vertical DSLs}
+        
+        If we perform an analysis of the names of reusable components (in reusable infrastructures), and the reusable data structures and methods from existing \gls{api}, and determine the possibilities of how they can be composed in a meaningful way then we can infer a \textbf{bottom-up} \gls{dsl} from that reusable infrastructure. This bottom-up method of building languages by reusing existing reusable infrastructures may, however, generate languages that lack generality in the capability of solving any class of problems of a given domain, or if the domain of the problem is not yet fully bounded (categorized), there may be irregular composition patterns that can be nonsense regarding the problem.
+        
+        A \textbf{top-down} method would be to complete the domain analysis phase that is behind the existing reusable infrastructure, by discarding any existing implementation and focusing only on the complete description and categorization of the class of problems from which its users will use our new \gls{dsl} to describe their solutions while using the identified problem concepts when regarded to its context of use. If we find a mapping between all the possible expressible solutions (which might be very difficult in some cases) in our new \gls{dsl} and the existing concepts of a reusable infrastructure, then we have assembled a top-down \gls{dsl}.
+        
+        \gls{dsl}s that are built in a top-down fashion are mostly called \textit{horizontal \gls{dsl}s} while \gls{dsl}s that are built in bottom-up fashion are called \textit{vertical \gls{dsl}s} \cite{kleppe2009software}. In practice, it is more common for a \gls{dsl} design for human-computer communication to be built using a combination of bottom-up and top-down approaches.
+    
+     \subsection{DSL stakeholders}
+     \label{sec:DSLstake}
+    
+        A \textbf{Language Engineer} is a professional who is skilled in the application of the engineering discipline to the creation of software languages. This professional manages the implementation priorities, designs the software language and is responsible for making the language functional at the system level. In general, Language Engineers are involved in the language specification, implementation, and evaluation, as well as in providing templates and scripts \cite{kleppe2009software}.
+    
+        A \textbf{\gls{dsl} User} or \textbf{Domain User} is any person who uses software languages to create applications (e.g. application developers) \cite{kleppe2009software}. The possible user base of the models can easily be broader as domain-specific modelling allows application users to be better involved in the application development process. In that case, customers, other than typical application developers, can read, accept and, in some cases change application specifications, being directly involved in the application development process. A Domain User can work with models which apply concepts directly related to specific characteristics of the configuration, such as specifying deployment of software units to hardware or describing high-availability settings for uninterrupted services with redundancy for various fault recovery scenarios \cite{kelly2008domain}.
+        
+        A \textbf{Domain Expert} is a person involved in the language development process, and is also sometimes known as a knowledge engineer. In the case of domain-specific modelling, they do not need to have the software development background, but they can specify the application for code generation. A Domain Expert specifies models for concept prototyping or concept demonstration, and Language Engineers can proceed from these models. They are responsible for managing system goals and iterations. In contrast with Domain Users, they should have domain knowledge that includes areas of all target model applications.
+        
+        \gls{dsl}s are usually built by Language Engineers in cooperation with Domain Experts \cite{volter2013model}. In practice, Domain Users will use the \gls{dsl}. These Domain Users are the real target audience for the \gls{dsl}.  The Domain Experts and Language Engineers can play the Domain User role, but they are, often, just a small subset of target end-users population. Although Domain Users are familiar with the domain, they are not necessarily as experienced as the Domain Experts. They may also lack the experience of Language Engineers in using languages. So, it may turn out that the language is valid by construction for Domain Experts and Language Engineers, but not necessarily to other Domain Users.
+        Neglecting Domain Users in the development process may lead to a \gls{dsl} they are not really able to work with.
+    
+    \subsection{DSL life-cycle}
+        \label{sec:dslcycle}
+        Several steps are detailed by Thibault \cite{Thibault1998PhD}, V{\"o}lter \cite{volter2013model}, Mernik \cite{Mernik2005CSUR}, Visser \cite{Visser2007}, Strembeck and Zdun \cite{strembeck2009approach}, to develop a \gls{dsl}, contributing to the formal definition of the \gls{dsl} life-cycle. The following are listed as \gls{dsl} development phases: decision, analysis, design, implementation and deployment. Mernik \cite{Mernik2005CSUR} provided a set of patterns that describe common situations that potential developers may find themselves in, and were already tackled successfully by previous \gls{dsl} development projects.  
+        
+        The first phase is the \textbf{Decision} that corresponds to the 'when' part of the \gls{dsl} development, while the remaining phases correspond to the 'how' part. Its goal is to identify the need for a \gls{dsl} to the domain and its validity, which includes justifying that the effort to invest in its creation can be compensated. 
+        %justify the efforts that will be invested in its creation are worth. The investment in \gls{dsl} development has to pay for itself by more economical software development and enabling of software development by users with less domain and programming expertise, or even by end-users with some domain, but virtually no programming expertise.
+        %A quantitative treatment of the tradeoffs involved is difficult as short-term considerations and lack of expertise may easily cause indefinite postponement of the decision. 
+        To make the decision, the stakeholders (including Domain Experts and Language Engineers) need to discuss the requirements of the domain following \gls{dsl} development patterns. 
+        %Adopting an existing \gls{dsl} is much less expensive and requires much less expertise than developing a new one. However, it may turn out to be too risky due to the lack of available information. 
+        
+        The following phase is the \textbf{Analysis}. Its goal is to define the domain model with support to the \gls{dsl}. The analysis has to take into account the particularities of the domain that will be explored, such as the terms and expressions intrinsic to a problem. In this phase, Domain Experts helps Language Engineers to define
+        the description of domain concepts, the feature models, the functional and technical requirements, and the goal model.
+        The Analysis phase primarily produces a domain model, representing common and varying properties of the system within the domain \cite{czarnecki2005overview}. The domain model will be used to assist with the creation of configurable architectures and components. 
+        %in a configurable manner by acting as a foundation upon which to design these components.
+
+        
+        The next phase is \textbf{Design}, where Language Engineers formalise a language abstract syntax (i.e. meta-model) and define the representations for the model elements and production/composition rules.
+        %that form a concrete syntax and define the expected behaviour of the language elements.
+        Additionally, the semantics of the language is defined. 
+        The design approaches of \gls{dsl} design can be characterised along two orthogonal dimensions: the relationship between the \gls{dsl} and existing languages, and the formal nature of the design description \cite{Mernik2005CSUR}. A \gls{dsl} can be designed from scratch or based on an already existing language. 
+        Based on the reuse of existing languages there are three different design patterns: \textit{piggyback} (is partially used), \textit{specialization} (is restricted) and \textit{extension} (is extended). The formal nature of \gls{dsl} can range between:
+         \begin{itemize}
+             \item \textit{informal} – a \gls{dsl} is specified in natural language and/or with examples, and
+            \item \textit{formal} – a \gls{dsl} is specified using one of the available semantic definition methods, e.g. regular expressions, grammars, etc.
+         \end{itemize}
+        
+        %Based on the reuse of existing languages there are three different design patterns: piggyback (is partially used), specialisation (is restricted) and extension (is extended). The formal nature of \gls{dsl} can range between:
+        %informal – a \gls{dsl} is specified in natural language and/or with examples, and
+        %formal – a \gls{dsl} is specified using one of the available semantic definition methods, e.g. regular expressions, grammars, etc.
+        
+        The fourth phase is the actual \textbf{Implementation}, which includes the integration of \gls{dsl} artefacts with the infrastructure, as well as the implementation of the necessary \gls{dsl} to platform transformations. A \gls{dsl} can be implemented by different approaches (e.g., interpreter, compiler, preprocessing, embedding, extensible compiler/interpreter, COTS, hybrid \cite{Mernik2005CSUR}), each having its own merits \cite{Kosar2008JIST}.
+        In this phase, the developers produce the model checkers and simulators, which will help the modeller to validate the specified models. Finally, the \gls{dsl} is delivered with its documentation in the \textbf{Deployment} phase. While Domain Experts themselves can understand, validate and modify the software by adapting the models expressed in \gls{dsl}s, more substantial changes may involve altering a \gls{dsl} implementation. Therefore, the \gls{dsl} should have a migration strategy, as any other software product.
+        
+        \begin{figure}[h]
+        \centering
+            \includegraphics[scale=0.32]{Chapters/Figures/DSLCycle.png}
+            \caption{DSL Life-Cycle (taken from \cite{barisic2017UseMeJournal})}
+            \label{fig:dslCycle}
+        \end{figure}
+        
+        We argue that this process lacks an important step: \textbf{Evaluation} \cite{Barisic2011HowEvaluation, Ceh2011ComSis}, just before the deployment (see Figure \ref{fig:dslCycle}), that should include the verification (testing if the right functionality is provided by the \gls{dsl}) as well as its validation  (testing if this \gls{dsl} is right for its users). In the current state of practice, the focus of evaluation is only on the language engineering, and not on its usability, leading to a clear lack of validation involving the end-users \cite{kosar2016domain}. Current verification  is supported by model checkers and simulators.  As the \gls{dsl} promotes the modification of models which are claimed to be easier to produce and understand, the actual impact of the \gls{dsl} in these tasks should be systematically evaluated involving its real users, performing real user actions. This phase is expected to help mitigate a  pervasive problem of software engineering, i.e. software comprehension \cite{rajlich2002role}, that addresses the challenge for associating human oriented concepts with their counterpart solution domain concepts (e.g. computational terms).
+        
+        Visser \cite{Visser2007} recommends the inductive approach which, in opposition to designing the complete \gls{dsl} before implementation, incrementally introduces abstractions that allow capturing a set of common programming patterns in software development for a particular domain. Visser also states that developing the \gls{dsl} in iterations can mitigate the risk of failure. Instead of a big project that produces a functional \gls{dsl} in the end, an iterative process produces a useful \gls{dsl} early on.
+        The availability of sophisticated language workbenches facilitates the development of \gls{dsl}s making them increasingly more popular. This comes at the risk that a badly designed \gls{dsl} can bring more harm than benefits and decrease productivity when compared to the existing baseline alternative (typically, a \gls{gpl}, although a new \gls{dsl} can also be developed to replace an existing DSL that is perceived not to be adequate enough for the goals of the organization using it). In particular, a poorly designed \gls{dsl} can be too hard to adopt by its domain users. As such, to evaluate usability is one of the key strategies to mitigate this risk as usability has an important impact on the achieved productivity of \gls{dsl} users.
+    
+    
+    
+\section{Usability evaluation}		%(source: CAT Section 2.2; Annex 2 Section 2.2)
+    \label{sec:Usability}
+    
+    \gls{dsl}s are conceived as communication interfaces between human and computers. Therefore, if we take into account the main purpose of \gls{hci}, we can conclude that to evaluate \gls{dsl}s has several similarities to assessing regular \gls{ui}s \cite{Barisic2012plateu}. We argue that any \gls{ui} is a realisation of a language, where a language is considered as a theoretical object (i.e. model) that describes the allowed terms and how to compose them into the sentences involved in a particular \gls{hci}. On another hand, \gls{ui} represents all points of human interaction (orchestrated inputs and outputs) with a \gls{dsl} for solving a domain problem.
+
+    \textbf{Usability Engineering} is a field that is generally concerned with \gls{hci} and specifically with devising \gls{ui}s that have high Usability. It provides structured methods for achieving efficiency and elegance in interface design \cite{Nielsen1993}. Empirical (i.e. experimental) evaluation studies of \gls{ui}s with real users is a crucial phase of the Usability engineering life-cycle \cite{dix2004human}. A relevant set of quantitative and qualitative measurements must be inferred and combined together to lead to a useful assessment of the several dimensions that define software Quality in Use, often referred to as Usability \cite{isoiec25010}.
+
+    \subsection{Usability vs. Quality in Use}
+    
+    The notion of \textbf{Usability} is used in many different contexts and its definitions developed progressively. Usability is defined by Shackel and Richardson \cite{shackel1991human} as the capability in human functional terms to be used easily and effectively by the specified range of users, given specified training and user support, to fulfil technically specified range of tasks, within the specified range of environmental scenarios. Shortly, Usability is \emph{'the capability to be used by humans easily and effectively, where 'easily = to a specified level of subjective assessment'; 'effectively = to a specified level of (human) performance'}.
+
+    Usability is the quality characteristic that measures the ease of use of any software system that interacts directly with an end user. It is a subjective non-functional requirement that can only be measured indirectly by the extent to which it satisfies its corresponding needs based on the users' cognitive capacity. It focuses on features of the \gls{hci}. Usability is the result of the achieved level of quality in use of a software system i.e. a user's view of quality. It is dependent on achieving the necessary external and internal quality that is influenced by the achievement of different quality attributes dependent on a context of use. Tests of language Usability are based on measurements of the users' experiences with it.
+    
+    International Organisation for Standardization (ISO) firstly defines Usability as 'the effectiveness, efficiency, and satisfaction with which specified users achieve specified goals in particular environments' (ISO 9241-11 \cite{isoiec9241part11}). Later on, the notion of Usability is integrated into the software quality framework under the term Quality in Use (ISO 9126 \cite{isoiec9126}). Finally, Usability is defined as \emph{'degree to which a product or system can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use'}. Usability can either be specified and measured as a product quality characteristic in terms of its sub-characteristics or specified and measured directly by measures that are a subset of quality in use (ISO/IEC 25010 \cite{isoiec25010}) (see Figure \ref{fig:qualityInUse}).
+    
+     \begin{figure}[h]
+        \centering
+            \includegraphics[scale=1.5]{Chapters/Figures/QualityInUseISO25010defense2.png}
+            \caption{Quality in Use model by ISO/IEC 25010 \cite{isoiec25010}}
+            \label{fig:qualityInUse}
+        \end{figure}
+    
+    Similarly to the other software qualities, Usability evaluation should not be simply added at the end of the development process. Instead, it has to be included in the development process from the beginning by taking into consideration internal and external quality attributes.
+
+    {\bfseries Internal quality} is the
+    {\itshape 'totality of characteristics of the software product from an internal view'} that provides Usability metrics that are used for predicting the extent to which the software in question can be understood, learned, operated, attractive and compliant with Usability regulations and guidelines. 
+    Internal metrics can be applied to a non-executable software product during designing and coding. Internal metrics provide users, evaluators, 
+    testers, and developers with the benefit that they are able to evaluate software product quality and address quality issues 
+    early before the software product becomes executable  \cite{isoiec9126}.
+    
+    {\bfseries External quality} is the {\itshape 'totality of characteristics of
+    the software product from an external view'} that provide us
+    with metrics that use measures of a software product derived from measures of the
+     behaviour of the system of which it is a part, by testing, 
+    operating and observing the executable software or system. Before acquiring or 
+    using a software product it should be evaluated using metrics based on business 
+    objectives related to the use, exploitation and management of the product in  a
+    real Context of Use. External metrics provide
+    users,   evaluators, testers, and developers with the benefit that they are able
+    to evaluate software product quality during testing or operation 
+    \cite{isoiec9126}.
+
+    Evaluating {\bfseries Quality in Use} validates 
+    software quality in specific user-task scenarios. \emph{Quality in Use} is the user's view of the quality of a system containing software, and is measured in terms of the result of using the software, rather than properties of the software itself. Achieving \emph{Quality in Use} is dependent on achieving the necessary
+     \emph{External quality}, which in turn is dependent on achieving the necessary \emph{Internal
+     quality}. Measures are normally required at all three levels, as meeting
+     criteria for internal measures is not usually sufficient to ensure achievement
+     of criteria for external measures, and meeting criteria for external measures 
+     is not usually sufficient to ensure achieving criteria for \emph{Quality in
+     Use}. 
+     
+    Achieving \emph{Quality in Use} for different users means achieving different goals: for \emph{the end user}, quality in use is mainly a result of Functionality, Reliability, Operability and Efficiency; for \emph{the person maintaining} the software, quality in use is seen as result of Maintainability; for \emph{the person porting} the software, as result of Portability. The new model for achieving \emph{Quality in Use} provides a framework for a more comprehensive approach to specifying Usability requirements and measuring Usability taking into account the stakeholder's perspective.
+
+    To evaluate the achieved Quality in Use of \gls{dsl}s we find it necessary to assess the following attributes, on which we concentrate in the scope of this thesis:
+    \begin {itemize}
+      \item \emph{Effectiveness} should determine the accuracy and
+    completion of the implementation of the sentences;
+      \item \emph{Efficiency} tells us what level of effectiveness is achieved at
+      the expense of various resources, such as mental and physical effort, time or
+      financial cost, and is commonly measured in the sense of time spent to
+      complete a sentence;
+      \item \emph{Satisfaction} captures freedom from
+    inconveniences and positive attitude towards the use of the language; and
+      \item \emph{Context coverage} with an emphases on learnability and memorability
+      of the language terms.
+    \end{itemize} 
+
+    There is an increasing awareness of the quality in use of languages, fostered by the competition of language providers.  Better Usability is a competitive advantage, although evaluating it remains challenging.  While evaluating competing languages, it is hard to:
+    \begin{itemize}
+        \item interpret the existing metrics in a fair, unbiased way;
+        \item provide relevant design changes; and
+        \item assure that the scope of their evaluation is preserved to target user groups.
+    \end{itemize}
+    
+    Software \textbf{Expert Evaluators} typically implement complex experimental evaluation studies. Their expertise is essential to design the evaluation sessions properly and to gather, interpret, and synthesise significant results. Although it is desirable to have an Expert Evaluator within the teams, it is not always possible. This calls for the need of automated tools that support these experts, as well as other \gls{dsl} stakeholders. 
+    
+    \subsection{Usability evaluation methods}
+    
+    The importance of Usability as a quality attribute has led to the development of several Usability evaluation methods, whose purpose is to determine systematically the degree to which a software product is easy to use.  According to Fernandez et. al., \cite{Fernandez2011UsabilityStudy}, the Usability evaluation methods can be defined as
+    \emph{'procedures composed by a series of well-defined activities to collect data related to the interaction between the end user and a software product, in order to determine how the specific properties of a particular software contribute to achieving specific goals'}. Usually, these methods are employed during all phases of the software development process to ensure the design of a usable product that can meet high-quality standards.
+    
+    Nielsen and Molich proposed evaluating Usability in four ways \cite{nielsen1990heuristic};
+ 
+     {\bfseries Formally} by some analysis techniques. \emph{Evaluations using models and simulations} can predict measures such as time to complete a task or the difficulty of learning to use a product. Some models have the potential 
+      advantage that they can be used without the need for any prototype to be developed.
+     
+    {\bfseries Automatically} by a computerized procedure. This can be done by 
+    \emph{Automated checking of conformance to guidelines and standards} or by
+    \emph{Evaluation of data collected during system usage}. This kind of
+    evaluation is possible when initial prototypes or initial versions of the full
+    implementation are available.
+    
+    {\bfseries Empirically} by experiments with test users. \emph{Evaluation
+     with users} is recommended at all stages of development if
+     possible, or at least in the final stage of development. Nielsen suggests at least eight participants per group in empirical evaluation for obtaining a significant number of participants \cite{nielsen1990heuristic}. Although this is only a rule of thumb, a pragmatic sample size that Nielsen has found convenient to provide 'good enough' results, rather than a sound sample size determination for the adequate number of participants in an evaluation.  We can use:
+     
+    - \emph{Formative} methods that focus on understanding the user's behaviour, intentions and expectations in 
+     order to understand any problems encountered, and typically employ a 
+     'think-aloud' protocol or 
+     
+    - \emph{Summative} methods that measure the product
+     Usability, and can be used to establish and test user requirements. Testing may be based on the principles of standards and measure a range of Usability 
+     components. Each type of measure is usually regarded as a separate factor with a relative importance that depends on the Context of Use. Iterative testing with small numbers of participants is preferable, starting early in the design and development processes.
+    
+     {\bfseries Heuristically} by simply looking at the product and passing
+    judgment according to an own opinion. It is usually considered as
+    \emph{Evaluation conducted by expert} and it can be used when initial prototypes are available. Expert methods that do not use task 
+    scenarios are referred to as reviews or inspections, while task-based 
+    evaluations are referred to as walkthroughs. Conducting expert evaluation is
+    recommended to identify as many Usability issues as possible in order to eliminate them before conducting user-based evaluations.
+    
+        
+    \begin{table}[]
+\centering
+\caption{Frequency of Use of Each Usability Evaluation Method
+ according to \cite{pazUsabilityMethodsReview}}
+\label{tab:USaMethods}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Usability Evaluation Method}              & \textbf{Percentage} \\ \hline
+Survey / Questionnaire                            & 26.26               \\ \hline
+User Testing                                      & 14.14               \\ \hline
+Heuristic Evaluation                              & 12.63               \\ \hline
+Interview                                         & 10.35               \\ \hline
+User Testing – Thinking Aloud / Thinking Out Loud & 9.6                 \\ \hline
+Software Metrics / Usability Metrics              & 4.8                 \\ \hline
+Automated Evaluation via Software Tool            & 4.04                \\ \hline
+Cognitive Walkthrough                             & 2.78                \\ \hline
+Prototype Evaluation                              & 2.78                \\ \hline
+Focus Group                                       & 1.52                \\ \hline
+Checklist Verification                            & 1.26                \\ \hline
+Pencil \& Paper                                   & 1.26                \\ \hline
+Perspective Based Usability Inspection            & 1                   \\ \hline
+Field Observation / Field Study                   & \textless1          \\ \hline
+Eye Tracking                                      & \textless1          \\ \hline
+Click Map / Scroll Map / Heat Map                 & \textless1          \\ \hline
+Opinion Mining                                    & \textless1          \\ \hline
+Web Usability Evaluation Process                  & \textless1          \\ \hline
+Retrospective Thinking Aloud                      & \textless1          \\ \hline
+Cognitive Task Analysis                           & \textless1          \\ \hline
+Usability Guidelines                              & \textless1          \\ \hline
+Card Sorting                                      & \textless1          \\ \hline
+Canvas Card Sorting                               & \textless1          \\ \hline
+Retrospective Sense Making                        & \textless1          \\ \hline
+Personas                                          & \textless1          \\ \hline
+User Workflow                                     & \textless1          \\ \hline
+Cognitive Jogthrough                              & \textless1          \\ \hline
+Domain Specific Inspection                        & \textless1          \\ \hline
+Participatory Heuristic Evaluation                & \textless1          \\ \hline
+Semiotic Inspection Method                        & \textless1          \\ \hline
+Usability \& Communicability Evaluation Method    & \textless1          \\ \hline
+Simplified Pluralistic Walkthrough                & \textless1          \\ \hline
+Simplified Streamlined Cognitive Walkthrough      & \textless1          \\ \hline
+Music Performance Measurement Method              & \textless1          \\ \hline
+\end{tabular}
+\end{table}
+    
+    
+    In June 2015, Paz and Pow-Sang \cite{pazUsabilityMethodsReview} performed a systematic mapping review of Usability evaluation methods on publications since 2012. They identify what are the most widely used techniques to evaluate the Usability of software products in the context of a development process (See Table \ref{tab:USaMethods}). Additionally, the review authors identify which are methods commonly used for each category of
+    software application involved in a development process. The definitions for 
+    different evaluation methods according to Nielsen \cite{Nielsen1993} and Paz et. al., \cite{Paz2014CurrentReview} are provided in Appendix \ref{app:usaMethods}.
+    However, because of the broad range of these techniques, the choice of the most suitable method for a particular scenario has become a difficult decision. There is no agreement on what the best method is.
+    %The arrival of numerous techniques has resulted in an extensive discussion to determine the most widely accepted method by the scientific community. In addition, new variants based on the traditional proposals emerged without a concrete evidence that these approaches are still employed as procedures to evaluate the usability of software products [11].
+     
+    \subsection{Usability design - how and when?}
+    \label{sec:usabilityDesign}
+    
+        Usability has two complementary roles in design: as an attribute that must be designed into the product, and as the highest-level quality objective, which should be the overall purpose of design \cite{Petrieevaluation}.
+        Two important issues are how and when to assess \gls{dsl} Usability.
+        
+        Concerning the \textbf{how}, we can think of \gls{dsl}s as communication interfaces between their users and a computing platform, making \gls{dsl} Usability evaluation a particular case of evaluating \gls{ui}s \cite{Barisic2011INFORUM}. This implies identifying the key quality criteria from the perspective of the most relevant stakeholders, to instantiate an evaluation model for that particular \gls{dsl} \cite{kahraman2013framework, Barisic2012patterns}. These criteria are the evaluation goals, for which a set of relevant quantitative and qualitative measurements must be identified and collected. We borrow from \gls{ui} evaluation several practices, including obtaining these measurements by observing or interviewing, users \cite{rubin2008handbook}. In general, it is crucial that the evaluation of \gls{hci}s includes real users \cite{dix2004human}, for the sake of its validity. In the context of \gls{dsl}s, the 'real users' are the Domain Users (see Section \ref{sec:DSLstake}).
+        
+        Interactive Usability investigation methods apply contextual inquiry and formative Usability testing as crucial for successful Usability design \cite{pazUsabilityMethodsReview}. \emph{Usability Testing} includes task analysis that studies the way people perform tasks with existing systems. By a high-level abstraction study of cognitive processes, we could identify what are the individual tasks that the language is expected to support. 
+        For each task we should identify: \emph{Goal}, \emph{Pre-conditions}, \emph{Dependencies}, \emph{User background} and \emph{Sub tasks}.
+        
+        The cognitive activities that should be analysed in the study are:
+        \begin{enumerate}
+            \item \textit{Learning} both syntax and semantics; 
+            \item \textit{Composition} of the syntax required to perform a function;
+            \item \textit{Comprehension} of function syntax composed by someone else;
+            \item \textit{Debugging} of syntax or semantics written by ourselves or others;
+            \item \textit{Modification} of a function written by ourselves or others.
+        \end{enumerate}
+        
+        Experimenters in human factors developed a list of tasks to capture these particular aspects \cite{reisner1988query}: \emph{Sentence Writing}, \emph{Sentence Reading}, \emph{Sentence Interpretation}, \emph{Comprehension, Memorization}, and \emph{Problem Solving}. We can evaluate these tasks using tests such as \emph{Final exams}, \emph{Immediate Comprehension}, \emph{Reviews}, \emph{Productivity}, \emph{Retention}, and \emph{Re-learning}. Performing exhaustive evaluation of different tasks in the language usage is interesting, but would be too expensive. Therefore, the evaluation usually concerns only the most critical activities.
+        
+        More general method in assessing Usability are \emph{Heuristic evaluation} \cite{Nielsen1993}, but are often regarded as not being capable to encompass all Usability attributes. Recently, a new evaluation method called \emph{Domain Specific Inspection} was developed using traditional evaluations in novel ways \cite{pazUsabilityMethodsReview}. Alroobaea \cite{AlroobaeaMayhew} proposed a methodological framework which generates a domain-specific evaluation method, which is used to improve the usability assessment process for a product in any chosen domain. This adaptive framework is able to build a formative and summative evaluation method that provides optimal results with regard to the identification of comprehensive Usability problem areas and relevant Usability evaluation method metrics, with minimum input in terms of the cost and time usually spent on employing a Usability evaluation method. 
+        
+        Concerning the \textbf{when}, we argued that we should adopt a systematic approach to obtaining a timely frequent Usability feedback, while developing the \gls{dsl}, to better monitor its impact \cite{Barisic2011HowEvaluation}. This implies the integration of two different and demanding complementary processes: language development and Usability evaluation. Language Engineers should be aware of Usability concerns during development, to minimise rework caused by unforeseen Usability shortcomings. In turn, Expert Evaluators should have enough understanding of the domain-specific models involved in software language development to be able to properly design the evaluation sessions, gather, interpret, and synthesise meaningful results that can support the \gls{dsl} improvements in a timely way.
+        
+        The timely frequent Usability testing is in line with agile practices, making them a good fit for this combined \gls{dsl} building (i.e. software development) and evaluation process (i.e. Usability design) \cite{larusdottir2013informal}. An agile development process breaks products into small increments, and each iteration should fit in short time-boxes that typically do not last more than a month \cite{cockburn2001agile}. This iterative, incremental development process is also in line with Visser's inductive \gls{dsl} development suggestion \cite{Visser2007} (see Sec. \ref{sec:dslcycle}). Agile practices provide a method for gathering user feedback by conducting a focus group after a feature was implemented, and ask for users' opinions. However, this approach is insufficient in supporting Usability design which is largely based on observing user behaviour by utilisation of Usability investigation before product implementation \cite{sy2007adapting}.
+        
+        Therefore, it is necessary to apply a \textbf{\gls{ucd}} that is comprised of end user involvement in the development of software products at different points of the life-cycle. \gls{ucd} includes Usability evaluation techniques that support Usability design such as participatory design, focus group research, surveys, walkthroughs, preliminary prototyping, expert or heuristic evaluation, Usability testing, as well as follow-up studies \cite{rubin2008handbook, norman1986user, vredenburg2002survey}. 
+        \gls{ucd} can be characterised as a multistage problem-solving process. It foresees how users are likely to use a product and tests the validity of those assumptions concerning user behaviour in real world tests with actual users. Such testing is necessary as it is often tough for the developers of a product to understand what is intuitive for an end user of their design experiences, and what each user's learning curve may look like. The essential activities required to implement \gls{ucd} are described in ISO 13407 \cite{bevan2005cost} as:
+        \begin{enumerate}
+            \item Plan and manage the human centered design process 
+            \item Understand and specify the context of use 
+            \item Specify the stakeholder and organizational requirements 
+            \item Produce design solutions 
+            \item Evaluate designs against requirements 
+        \end{enumerate}
+        
+    
+    \subsection{Contextual aspects of DSL Usability evaluation}
+    
+        In this particular research, we only consider languages that are used as communication interfaces between humans and computers (i.e. \gls{ui}s). Therefore human-human languages, e.g. natural languages, and machine-machine languages, e.g. communication protocols, are not relevant for the work described in this thesis.
+
+        \emph{Semiotics}, the study of the structure and meaning of languages, is a part of linguistics that studies the dependencies and influences among syntax, semantics, and pragmatics. The \emph{syntax} of a language defines what signs we can use in that language, and how we can compose those signs to form sentences. The \emph{semantics} of a language defines the conceptual meaning of the sentences in that language by stating how they can be logically interpreted. Finally, the \emph{pragmatics} sets the context of use from which the sentences of that language can have some logical meaning \cite{sgall1986meaning}.
+        
+        The \textbf{Context of Use} i.e. \emph{'the users, tasks, equipment (hardware, software and materials), and the physical and social environments in which a product is used'} \cite{isoiec9126} is one of the characteristics that we must be considered while evaluating \gls{dsl}s Usability. This is to pragmatically distinguish between the scope of DSLs' assessments. Different \gls{dsl}s, especially the ones that are developed for various domains, have a different Context of Use. We can infer that the users of those \gls{dsl}s, most likely, will have different knowledge sets, each one with a minimum amount of ontological concepts required to  be able to use each language.
+        
+        We need a rigorous and collaborative  Usability evaluation procedure for \gls{dsl}s (both during and after the particular \gls{dsl} development) that supports validation of \gls{dsl} sentences (called instance models) in a correct Context of Use. According to the context of communication, these sentences can have different interpretations. If the context is not clear, interpretations can be ambiguous. Notice that, in this pragmatic perspective, languages that do not even share the same base syntax of those same sentences may share the same domain concepts, i.e. the intersection of their domain concepts is not empty for a given non-empty intersection of contexts of use. If the intersection of their contexts of use is empty, then they do not share any of the identified domain concepts.
+
+
+        If we say that \emph{Context of Use} has some ontological purpose, then we can
+        see it as \emph{a problem to be solved} in the language user's mind.
+        One example of this is the set of \gls{gpl}s where each user has to know about \emph{programming} concepts
+        \emph{(variables, cycles, clauses, components, events)}, plus the domain concepts
+        from a given \emph{Context of Use}. Moreover, languages that reduce the use of
+        \emph{computation domain concepts} and focus on the \emph{domain concepts} of the
+        \emph{contexts of use's} problem are called {\bfseries Domain-Specific
+        Languages}.
+        Notice that, in these pragmatic perspective languages that do not even share the
+        same base syntax may actually share the same \emph{domain concepts}, i.e. the
+        intersection of their \emph{domain concepts} is not empty for a given non-empty
+        intersection of \emph{contexts of use}. If the intersection of their
+        \emph{contexts of use} is empty then they actually do not share any of the
+        identified \emph{domain concepts}.
+        
+        For example: consider both the $SQL$ and $C$ languages. The $SQL$ language has a
+        reserved word called $table$ to represent a database table from a DBMS. There is
+        no $table$ in the list of reserved words of $C$ language that the user of $C$
+        can immediately read as $table$ with the same meaning as read in $SQL$ (i.e. a
+        database table from a DBMS). However, one of the \emph{contexts of use} of $SQL$
+        where $table$ is applied: $create table$ can be emulated by means of a high
+        level $C$ (Application Programmers Interface) \gls{api} function that have the same
+        purpose of creating a table in the same DBMS. Moreover, if there is no $C$ \gls{api}
+        supported by the DBMS, then we can even imagine how it would be to write it
+        completely in $C$ as part of the implementation of \emph{the context of use}
+        stated in $create table$.
+        
+        If we perform an analysis of the names of reusable components
+        (in reusable infrastructures), and the reusable data structures and methods
+        from existing \gls{api}s, and figure out all the possible ways of how they can be
+        composed in a meaningful way
+        then we can infer a
+        \textit{bottom-up} \gls{dsl} from that reusable
+        infrastructure. This \textit{bottom-up} method of building languages by reusing
+        existing reusable infrastructures may however generate languages that lack generality
+        in the capability of solving any class of problems of a given domain, or if the
+        domain of the problem is not yet fully bounded (categorized), there may
+        be irregular composition patterns that can be non-sense with respect to. the problem.
+        
+        A \textit{top-down} method would be to complete the domain analysis phase that
+        is behind the existing reusable infrastructure, by discarding any existing
+        implementation and focusing only on the complete description and categorization
+        of the class of problems from which its users will use our new
+        \gls{dsl} to describe their solutions while using the
+        identified \emph{problem concepts} with respect to its \emph{context of use}. If we
+        find a mapping between all the possible expressible solutions which might be
+        very difficult in some cases in our new \gls{dsl} and the
+        existing \emph{concepts} of a reusable infrastructure, then we have assembled a
+        \textit{top-down} \gls{dsl}. 
+        
+        \gls{dsl}s are built for a more confined context of use, capturing one particular set of domain concepts.
+        While evaluating these languages, the universe of users is smaller, and they have less diversity of skills, so the validity of the results to their target population is much higher. 
+
+        Although typically DSLs have an explicit underlying model (by means of metamodels or grammars), while UIs models are usually implicit in their implementation, in general there is no distinction between using both final products from the user perspective. The influencing characteristics to achieve Quality in Use can be very diverse, namely if we compare two languages in different domains such as the ones presented in Figure \ref{fig:languagecomparisson} ((H)ALL \cite{brunob:va:NW-MoDE} and Lego \footnote{http://mindstorms.lego.com/en-us/Software/Default.aspx} (accessed September 19, 2017)). Here we present an assessment of language non-functional requirements for two languages with different contexts of
+        use. These requirements are presented in terms of internal and external quality
+        attributes from ISO/IEC 9126 \cite{isoiec9126}, for which we predict the expected success level that is necessary for achieving the planned Quality in Use for each of these languages. Different contexts of use lead to different priorities, with respect to quality attributes. For example, we consider external efficiency to be much more important for Lego than for Hall. The waiting time for a language to execute the program on a robot with a Lego can demotivate its users, children, to use it. On another hand, the execution of Hall models is not such a frequent activity of its users and it is acceptable to leave the execution running for certain time, on a cost of investing in high reliability. 
+
+        \begin{figure*}
+        	\centering
+        	\includegraphics[scale=0.3]{Chapters/Figures/KiviatDiagramExampleStreight.png}
+        	\caption{Kiviat diagrams for (H)ALL and Lego  DSLs (taken from \cite{Barisic2011INFORUM})}
+        	\label{fig:languagecomparisson}
+        \end{figure*}
+
+
+Different quality attributes will bring success in the achieved
+Quality of Use. It depends on its context of use and the target user
+population, so they can be identified just after performing the Context of Use
+analysis. Also, it is not always possible to achieve optimal scores for all
+Usability attributes simultaneously, so, when Usability trade-offs seem
+inevitable, it is necessary to find a reasonable trade-off solution that can reasonably satisfy both
+requirements, or, in an extreme case, support an explicit decision concerning which of the conflicting Usability attributes should take precedence.
+
+        
+            
+    
